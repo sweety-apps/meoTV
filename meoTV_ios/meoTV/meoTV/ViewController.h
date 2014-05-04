@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TableViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController {
+    
+}
+
+@property (nonatomic,retain) TableViewController* tableController;
 
 @end
