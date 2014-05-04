@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		71608A811916187C007400EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A801916187C007400EB /* Foundation.framework */; };
+		71608A831916187D007400EB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A821916187D007400EB /* CoreGraphics.framework */; };
+		71608A851916187D007400EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A841916187D007400EB /* UIKit.framework */; };
+		71608A8B1916187D007400EB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71608A891916187D007400EB /* InfoPlist.strings */; };
+		71608A8D1916187D007400EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 71608A8C1916187D007400EB /* main.m */; };
+		71608A911916187D007400EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 71608A901916187D007400EB /* AppDelegate.m */; };
+		71608A941916187D007400EB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71608A921916187D007400EB /* Main.storyboard */; };
+		71608A971916187D007400EB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71608A961916187D007400EB /* ViewController.m */; };
+		71608A991916187D007400EB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71608A981916187D007400EB /* Images.xcassets */; };
+		71608AA01916187D007400EB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A9F1916187D007400EB /* XCTest.framework */; };
+		71608AA11916187D007400EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A801916187C007400EB /* Foundation.framework */; };
+		71608AA21916187D007400EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A841916187D007400EB /* UIKit.framework */; };
+		71608AAA1916187D007400EB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 71608AA81916187D007400EB /* InfoPlist.strings */; };
+		71608AAC1916187D007400EB /* meoTVTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 71608AAB1916187D007400EB /* meoTVTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		71608AA31916187D007400EB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 71608A751916187C007400EB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 71608A7C1916187C007400EB;
+			remoteInfo = meoTV;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		71608A7D1916187C007400EB /* meoTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meoTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		71608A801916187C007400EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		71608A821916187D007400EB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		71608A841916187D007400EB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		71608A881916187D007400EB /* meoTV-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "meoTV-Info.plist"; sourceTree = "<group>"; };
+		71608A8A1916187D007400EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		71608A8C1916187D007400EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		71608A8E1916187D007400EB /* meoTV-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "meoTV-Prefix.pch"; sourceTree = "<group>"; };
+		71608A8F1916187D007400EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		71608A901916187D007400EB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		71608A931916187D007400EB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		71608A951916187D007400EB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		71608A961916187D007400EB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		71608A981916187D007400EB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		71608A9E1916187D007400EB /* meoTVTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = meoTVTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		71608A9F1916187D007400EB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		71608AA71916187D007400EB /* meoTVTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "meoTVTests-Info.plist"; sourceTree = "<group>"; };
+		71608AA91916187D007400EB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		71608AAB1916187D007400EB /* meoTVTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = meoTVTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		71608A7A1916187C007400EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71608A831916187D007400EB /* CoreGraphics.framework in Frameworks */,
+				71608A851916187D007400EB /* UIKit.framework in Frameworks */,
+				71608A811916187C007400EB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71608A9B1916187D007400EB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71608AA01916187D007400EB /* XCTest.framework in Frameworks */,
+				71608AA21916187D007400EB /* UIKit.framework in Frameworks */,
+				71608AA11916187D007400EB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		71608A741916187C007400EB = {
+			isa = PBXGroup;
+			children = (
+				71608A861916187D007400EB /* meoTV */,
+				71608AA51916187D007400EB /* meoTVTests */,
+				71608A7F1916187C007400EB /* Frameworks */,
+				71608A7E1916187C007400EB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		71608A7E1916187C007400EB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				71608A7D1916187C007400EB /* meoTV.app */,
+				71608A9E1916187D007400EB /* meoTVTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		71608A7F1916187C007400EB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				71608A801916187C007400EB /* Foundation.framework */,
+				71608A821916187D007400EB /* CoreGraphics.framework */,
+				71608A841916187D007400EB /* UIKit.framework */,
+				71608A9F1916187D007400EB /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		71608A861916187D007400EB /* meoTV */ = {
+			isa = PBXGroup;
+			children = (
+				71608A8F1916187D007400EB /* AppDelegate.h */,
+				71608A901916187D007400EB /* AppDelegate.m */,
+				71608A921916187D007400EB /* Main.storyboard */,
+				71608A951916187D007400EB /* ViewController.h */,
+				71608A961916187D007400EB /* ViewController.m */,
+				71608A981916187D007400EB /* Images.xcassets */,
+				71608A871916187D007400EB /* Supporting Files */,
+			);
+			path = meoTV;
+			sourceTree = "<group>";
+		};
+		71608A871916187D007400EB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				71608A881916187D007400EB /* meoTV-Info.plist */,
+				71608A891916187D007400EB /* InfoPlist.strings */,
+				71608A8C1916187D007400EB /* main.m */,
+				71608A8E1916187D007400EB /* meoTV-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		71608AA51916187D007400EB /* meoTVTests */ = {
+			isa = PBXGroup;
+			children = (
+				71608AAB1916187D007400EB /* meoTVTests.m */,
+				71608AA61916187D007400EB /* Supporting Files */,
+			);
+			path = meoTVTests;
+			sourceTree = "<group>";
+		};
+		71608AA61916187D007400EB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				71608AA71916187D007400EB /* meoTVTests-Info.plist */,
+				71608AA81916187D007400EB /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		71608A7C1916187C007400EB /* meoTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71608AAF1916187D007400EB /* Build configuration list for PBXNativeTarget "meoTV" */;
+			buildPhases = (
+				71608A791916187C007400EB /* Sources */,
+				71608A7A1916187C007400EB /* Frameworks */,
+				71608A7B1916187C007400EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = meoTV;
+			productName = meoTV;
+			productReference = 71608A7D1916187C007400EB /* meoTV.app */;
+			productType = "com.apple.product-type.application";
+		};
+		71608A9D1916187D007400EB /* meoTVTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 71608AB21916187D007400EB /* Build configuration list for PBXNativeTarget "meoTVTests" */;
+			buildPhases = (
+				71608A9A1916187D007400EB /* Sources */,
+				71608A9B1916187D007400EB /* Frameworks */,
+				71608A9C1916187D007400EB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				71608AA41916187D007400EB /* PBXTargetDependency */,
+			);
+			name = meoTVTests;
+			productName = meoTVTests;
+			productReference = 71608A9E1916187D007400EB /* meoTVTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		71608A751916187C007400EB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = NPHD;
+				TargetAttributes = {
+					71608A9D1916187D007400EB = {
+						TestTargetID = 71608A7C1916187C007400EB;
+					};
+				};
+			};
+			buildConfigurationList = 71608A781916187C007400EB /* Build configuration list for PBXProject "meoTV" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 71608A741916187C007400EB;
+			productRefGroup = 71608A7E1916187C007400EB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				71608A7C1916187C007400EB /* meoTV */,
+				71608A9D1916187D007400EB /* meoTVTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		71608A7B1916187C007400EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71608A991916187D007400EB /* Images.xcassets in Resources */,
+				71608A8B1916187D007400EB /* InfoPlist.strings in Resources */,
+				71608A941916187D007400EB /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71608A9C1916187D007400EB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71608AAA1916187D007400EB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		71608A791916187C007400EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71608A971916187D007400EB /* ViewController.m in Sources */,
+				71608A911916187D007400EB /* AppDelegate.m in Sources */,
+				71608A8D1916187D007400EB /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		71608A9A1916187D007400EB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				71608AAC1916187D007400EB /* meoTVTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		71608AA41916187D007400EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 71608A7C1916187C007400EB /* meoTV */;
+			targetProxy = 71608AA31916187D007400EB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		71608A891916187D007400EB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71608A8A1916187D007400EB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		71608A921916187D007400EB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71608A931916187D007400EB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		71608AA81916187D007400EB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				71608AA91916187D007400EB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		71608AAD1916187D007400EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		71608AAE1916187D007400EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		71608AB01916187D007400EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "meoTV/meoTV-Prefix.pch";
+				INFOPLIST_FILE = "meoTV/meoTV-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		71608AB11916187D007400EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "meoTV/meoTV-Prefix.pch";
+				INFOPLIST_FILE = "meoTV/meoTV-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		71608AB31916187D007400EB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/meoTV.app/meoTV";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "meoTV/meoTV-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "meoTVTests/meoTVTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		71608AB41916187D007400EB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/meoTV.app/meoTV";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "meoTV/meoTV-Prefix.pch";
+				INFOPLIST_FILE = "meoTVTests/meoTVTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		71608A781916187C007400EB /* Build configuration list for PBXProject "meoTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71608AAD1916187D007400EB /* Debug */,
+				71608AAE1916187D007400EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		71608AAF1916187D007400EB /* Build configuration list for PBXNativeTarget "meoTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71608AB01916187D007400EB /* Debug */,
+				71608AB11916187D007400EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		71608AB21916187D007400EB /* Build configuration list for PBXNativeTarget "meoTVTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				71608AB31916187D007400EB /* Debug */,
+				71608AB41916187D007400EB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 71608A751916187C007400EB /* Project object */;
+}
