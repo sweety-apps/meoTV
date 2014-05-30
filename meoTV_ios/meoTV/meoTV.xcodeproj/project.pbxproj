@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7127490B1918BB0A000E6BDF /* WebImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7127490A1918BB0A000E6BDF /* WebImageView.m */; };
+		7130AD911918E8E7001E4DC7 /* UIMovieViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7130AD8E1918E8E7001E4DC7 /* UIMovieViewCell.m */; };
+		7130AD921918E8E7001E4DC7 /* UIMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7130AD901918E8E7001E4DC7 /* UIMovieViewController.m */; };
+		7130AD991918E907001E4DC7 /* MovieInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 7130AD941918E907001E4DC7 /* MovieInfo.m */; };
+		7130AD9A1918E907001E4DC7 /* NSMovieCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7130AD961918E907001E4DC7 /* NSMovieCache.m */; };
+		7130AD9B1918E907001E4DC7 /* NSMovieMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 7130AD981918E907001E4DC7 /* NSMovieMgr.m */; };
 		71608A811916187C007400EB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A801916187C007400EB /* Foundation.framework */; };
 		71608A831916187D007400EB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A821916187D007400EB /* CoreGraphics.framework */; };
 		71608A851916187D007400EB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71608A841916187D007400EB /* UIKit.framework */; };
@@ -29,6 +35,7 @@
 		71608AD1191624E8007400EB /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71608AD0191624E8007400EB /* MainViewController.xib */; };
 		71608AD51916259F007400EB /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 71608AD31916259F007400EB /* TopViewController.m */; };
 		71608AD8191625C3007400EB /* TopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 71608AD7191625C3007400EB /* TopViewController.xib */; };
+		719B0B6319174F8600F4953C /* CategoryMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 719B0B6219174F8600F4953C /* CategoryMgr.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +49,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		712749091918BB0A000E6BDF /* WebImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebImageView.h; path = controller/WebImageView.h; sourceTree = "<group>"; };
+		7127490A1918BB0A000E6BDF /* WebImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebImageView.m; path = controller/WebImageView.m; sourceTree = "<group>"; };
+		7130AD8D1918E8E7001E4DC7 /* UIMovieViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMovieViewCell.h; sourceTree = "<group>"; };
+		7130AD8E1918E8E7001E4DC7 /* UIMovieViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMovieViewCell.m; sourceTree = "<group>"; };
+		7130AD8F1918E8E7001E4DC7 /* UIMovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIMovieViewController.h; sourceTree = "<group>"; };
+		7130AD901918E8E7001E4DC7 /* UIMovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIMovieViewController.m; sourceTree = "<group>"; };
+		7130AD931918E907001E4DC7 /* MovieInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieInfo.h; sourceTree = "<group>"; };
+		7130AD941918E907001E4DC7 /* MovieInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieInfo.m; sourceTree = "<group>"; };
+		7130AD951918E907001E4DC7 /* NSMovieCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMovieCache.h; sourceTree = "<group>"; };
+		7130AD961918E907001E4DC7 /* NSMovieCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMovieCache.m; sourceTree = "<group>"; };
+		7130AD971918E907001E4DC7 /* NSMovieMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSMovieMgr.h; sourceTree = "<group>"; };
+		7130AD981918E907001E4DC7 /* NSMovieMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSMovieMgr.m; sourceTree = "<group>"; };
 		71608A7D1916187C007400EB /* meoTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = meoTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71608A801916187C007400EB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		71608A821916187D007400EB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -73,6 +92,8 @@
 		71608AD21916259F007400EB /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TopViewController.h; path = controller/TopViewController.h; sourceTree = "<group>"; };
 		71608AD31916259F007400EB /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TopViewController.m; path = controller/TopViewController.m; sourceTree = "<group>"; };
 		71608AD7191625C3007400EB /* TopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TopViewController.xib; path = iPhone/TopViewController.xib; sourceTree = "<group>"; };
+		719B0B6119174F8600F4953C /* CategoryMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoryMgr.h; path = model/CategoryMgr.h; sourceTree = "<group>"; };
+		719B0B6219174F8600F4953C /* CategoryMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoryMgr.m; path = model/CategoryMgr.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,6 +219,14 @@
 		71608AB819161992007400EB /* model */ = {
 			isa = PBXGroup;
 			children = (
+				7130AD931918E907001E4DC7 /* MovieInfo.h */,
+				7130AD941918E907001E4DC7 /* MovieInfo.m */,
+				7130AD951918E907001E4DC7 /* NSMovieCache.h */,
+				7130AD961918E907001E4DC7 /* NSMovieCache.m */,
+				7130AD971918E907001E4DC7 /* NSMovieMgr.h */,
+				7130AD981918E907001E4DC7 /* NSMovieMgr.m */,
+				719B0B6119174F8600F4953C /* CategoryMgr.h */,
+				719B0B6219174F8600F4953C /* CategoryMgr.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -205,6 +234,10 @@
 		71608AB91916199A007400EB /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				7130AD8D1918E8E7001E4DC7 /* UIMovieViewCell.h */,
+				7130AD8E1918E8E7001E4DC7 /* UIMovieViewCell.m */,
+				7130AD8F1918E8E7001E4DC7 /* UIMovieViewController.h */,
+				7130AD901918E8E7001E4DC7 /* UIMovieViewController.m */,
 				71608ABB19161C22007400EB /* TableViewController.h */,
 				71608ABC19161C22007400EB /* TableViewController.m */,
 				71608AC2191620B6007400EB /* CategoryViewController.h */,
@@ -213,6 +246,8 @@
 				71608ACC191624C7007400EB /* MainViewController.m */,
 				71608AD21916259F007400EB /* TopViewController.h */,
 				71608AD31916259F007400EB /* TopViewController.m */,
+				712749091918BB0A000E6BDF /* WebImageView.h */,
+				7127490A1918BB0A000E6BDF /* WebImageView.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -327,11 +362,18 @@
 			files = (
 				71608A971916187D007400EB /* ViewController.m in Sources */,
 				71608ACE191624C7007400EB /* MainViewController.m in Sources */,
+				7130AD991918E907001E4DC7 /* MovieInfo.m in Sources */,
+				7130AD9A1918E907001E4DC7 /* NSMovieCache.m in Sources */,
+				7130AD9B1918E907001E4DC7 /* NSMovieMgr.m in Sources */,
 				71608AC5191620B6007400EB /* CategoryViewController.m in Sources */,
 				71608AD51916259F007400EB /* TopViewController.m in Sources */,
+				719B0B6319174F8600F4953C /* CategoryMgr.m in Sources */,
 				71608A911916187D007400EB /* AppDelegate.m in Sources */,
+				7130AD921918E8E7001E4DC7 /* UIMovieViewController.m in Sources */,
 				71608A8D1916187D007400EB /* main.m in Sources */,
 				71608ABE19161C22007400EB /* TableViewController.m in Sources */,
+				7127490B1918BB0A000E6BDF /* WebImageView.m in Sources */,
+				7130AD911918E8E7001E4DC7 /* UIMovieViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,6 +588,7 @@
 				71608AB11916187D007400EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		71608AB21916187D007400EB /* Build configuration list for PBXNativeTarget "meoTVTests" */ = {
 			isa = XCConfigurationList;
@@ -554,6 +597,7 @@
 				71608AB41916187D007400EB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategoryMgr.h"
 
-@interface CategoryViewController : UIViewController {
-    
+@interface CategoryViewController : UIViewController<CategoryMgrDelegate, UITableViewDataSource, UITableViewDelegate> {
+    NSArray* categoryArray;
+    NSArray* tagArray;
 }
+
+@property (retain, nonatomic) IBOutlet UITableView* categoryTable;
 
 @end
