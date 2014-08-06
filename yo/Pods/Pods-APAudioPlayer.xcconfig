@@ -1,0 +1,2 @@
+PODS_APAUDIOPLAYER_LIBRARY_SEARCH_PATHS = "$(PODS_ROOT)/APAudioPlayer/APAudioPlayer/bass" "$(PODS_ROOT)/APAudioPlayer/APAudioPlayer/bass/plugins/bassflac" "$(PODS_ROOT)/APAudioPlayer/APAudioPlayer/bass/plugins/bassopus" "$(PODS_ROOT)/APAudioPlayer/APAudioPlayer/bass/plugins/basswv"
+PODS_APAUDIOPLAYER_OTHER_LDFLAGS = -lbass -lbassflac -lbassopus -lbasswv -framework AVFoundation
