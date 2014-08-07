@@ -600,6 +600,7 @@
         [APService setTags:[NSSet set] alias:@"" callbackSelector:nil  target:nil];
         [[KeyChainHelper sharedInstance] reset];
         AppDelegate *delegate = [[UIApplication sharedApplication] delegate];
+        [[ASIHTTPRequest sharedQueue] cancelAllOperations];
         if(delegate.window.rootViewController == self)
         {
             UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:[[MainViewController alloc]init]];
