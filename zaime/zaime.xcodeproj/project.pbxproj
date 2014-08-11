@@ -43,6 +43,7 @@
 		93FB5C6C1998C5C800B90FB6 /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C651998C5C800B90FB6 /* APContact.m */; };
 		93FB5C6D1998C5C800B90FB6 /* APPhoneWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C671998C5C800B90FB6 /* APPhoneWithLabel.m */; };
 		93FB5C6E1998C5C800B90FB6 /* KLDAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C6A1998C5C800B90FB6 /* KLDAddress.m */; };
+		93FB5C701998C83200B90FB6 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93FB5C6F1998C83200B90FB6 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		93FB5C681998C5C800B90FB6 /* APTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTypes.h; sourceTree = "<group>"; };
 		93FB5C691998C5C800B90FB6 /* KLDAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDAddress.h; sourceTree = "<group>"; };
 		93FB5C6A1998C5C800B90FB6 /* KLDAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDAddress.m; sourceTree = "<group>"; };
+		93FB5C6F1998C83200B90FB6 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93FB5C701998C83200B90FB6 /* MessageUI.framework in Frameworks */,
 				93396A66199897C100F4E723 /* libz.dylib in Frameworks */,
 				93396A64199897BB00F4E723 /* Security.framework in Frameworks */,
 				93396A62199897B600F4E723 /* SystemConfiguration.framework in Frameworks */,
@@ -170,6 +173,7 @@
 		930D65B51993818E003A069D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				93FB5C6F1998C83200B90FB6 /* MessageUI.framework */,
 				93396A65199897C100F4E723 /* libz.dylib */,
 				93396A63199897BB00F4E723 /* Security.framework */,
 				93396A61199897B600F4E723 /* SystemConfiguration.framework */,

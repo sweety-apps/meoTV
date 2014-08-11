@@ -143,5 +143,32 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+/*
+ - (void)dispSendMsg :(NSArray*)results
+ {
+ MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+ if([MFMessageComposeViewController canSendText]) {
+ 
+ controller.body = @"你好嘛？";
+ 
+ NSMutableArray *phones = [[NSMutableArray alloc]init];
+ for (APContact *ap in results)
+ {
+ [phones addObject:ap.phones[0]];
+ }
+ controller.recipients = phones;
+ controller.messageComposeDelegate = self;
+ [self presentViewController:controller animated:YES completion:nil];
+ }
+ }
+ 
+ 
+ [addressBook loadContacts:^(NSArray *contacts, NSError *error) {
+ UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:[[ContactListController alloc]initWithContacts:contacts style:UITableViewStylePlain :^(NSArray *results) {
+ 
+ [self performSelector:@selector(dispSendMsg:) withObject:results afterDelay:0.5f];
+ }]];
+ [self presentViewController:navi animated:YES completion:nil];
+ }];
+ */
 @end
