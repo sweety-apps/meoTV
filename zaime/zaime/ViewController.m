@@ -11,6 +11,7 @@
 #import "BaseMesage.h"
 #import "config.h"
 #import <AVFoundation/AVFoundation.h>
+#import "AFAppDotNetAPIClient.h"
 @interface ViewController ()
 {
     UIImageView *view ;
@@ -37,10 +38,27 @@
     lastPoint = CGPointZero;
     lastTime = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMsg:) name:kReceiveMsg object:nil];
-    
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    btn.frame = CGRectMake(100, 100, 100, 60);
+    [btn addTarget:self action:@selector(sendYo) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+    btn.backgroundColor  = [UIColor greenColor];
+    [[AFAppDotNetAPIClient sharedClient] POST:kFetchFriendLists parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"18617149851",@"owner", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@",error);
+    }];
     
 }
-
+- (void)sendYo
+{
+    [[AFAppDotNetAPIClient sharedClient] POST:kSendMsg parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"推送",@"content",@"a",@"to", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+          NSLog(@"%@",error);
+    }];
+   
+}
 - (void)shock
 {
     if((othersidePoint.x == kZero && othersidePoint.y == kZero) || (currentPoint.y == kZero && currentPoint.x == kZero)) return;

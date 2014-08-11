@@ -24,7 +24,7 @@
                                                    UIRemoteNotificationTypeAlert)];
     // Required
     [APService setupWithOption:launchOptions];
-    [APService setTags:[NSSet set] alias:@"zhao" callbackSelector:nil target:nil];
+    [APService setTags:[NSSet set] alias:@"a" callbackSelector:nil target:nil];
     return YES;
 }
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {

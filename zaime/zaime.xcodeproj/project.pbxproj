@@ -35,6 +35,7 @@
 		935E53BA1994BB4A009420B1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935E53B91994BB4A009420B1 /* AVFoundation.framework */; };
 		9370CFB419986B7B007B5B8D /* fingerprint.png in Resources */ = {isa = PBXBuildFile; fileRef = 9370CFB319986B7B007B5B8D /* fingerprint.png */; };
 		93BBF2621998A6E7005BD823 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BBF2611998A6E7005BD823 /* libPushSDK.a */; };
+		93BBF2651998B6D5005BD823 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BBF2641998B6D5005BD823 /* AFAppDotNetAPIClient.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,8 @@
 		9370CFB319986B7B007B5B8D /* fingerprint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fingerprint.png; sourceTree = "<group>"; };
 		93BBF2601998A6E7005BD823 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		93BBF2611998A6E7005BD823 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
+		93BBF2631998B6D5005BD823 /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
+		93BBF2641998B6D5005BD823 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,6 +227,8 @@
 		932BBDAF199466F100C46EB5 /* sharedInstance */ = {
 			isa = PBXGroup;
 			children = (
+				93BBF2631998B6D5005BD823 /* AFAppDotNetAPIClient.h */,
+				93BBF2641998B6D5005BD823 /* AFAppDotNetAPIClient.m */,
 				932BBDB01994670700C46EB5 /* XMPPClient.h */,
 				932BBDB11994670700C46EB5 /* XMPPClient.m */,
 			);
@@ -405,6 +410,7 @@
 				932BBDB71994687A00C46EB5 /* BaseMesage.m in Sources */,
 				930D65C71993818E003A069D /* AppDelegate.m in Sources */,
 				930D65C31993818E003A069D /* main.m in Sources */,
+				93BBF2651998B6D5005BD823 /* AFAppDotNetAPIClient.m in Sources */,
 				932BBDB21994670700C46EB5 /* XMPPClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
