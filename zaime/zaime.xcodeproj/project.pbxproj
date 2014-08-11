@@ -36,6 +36,13 @@
 		9370CFB419986B7B007B5B8D /* fingerprint.png in Resources */ = {isa = PBXBuildFile; fileRef = 9370CFB319986B7B007B5B8D /* fingerprint.png */; };
 		93BBF2621998A6E7005BD823 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BBF2611998A6E7005BD823 /* libPushSDK.a */; };
 		93BBF2651998B6D5005BD823 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BBF2641998B6D5005BD823 /* AFAppDotNetAPIClient.m */; };
+		93FB5C561998C1FC00B90FB6 /* NotificationCompent.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C551998C1FC00B90FB6 /* NotificationCompent.m */; };
+		93FB5C591998C26100B90FB6 /* ContactListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C581998C26100B90FB6 /* ContactListController.m */; };
+		93FB5C601998C58200B90FB6 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C5E1998C58200B90FB6 /* pinyin.c */; };
+		93FB5C6B1998C5C800B90FB6 /* APAddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C631998C5C800B90FB6 /* APAddressBook.m */; };
+		93FB5C6C1998C5C800B90FB6 /* APContact.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C651998C5C800B90FB6 /* APContact.m */; };
+		93FB5C6D1998C5C800B90FB6 /* APPhoneWithLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C671998C5C800B90FB6 /* APPhoneWithLabel.m */; };
+		93FB5C6E1998C5C800B90FB6 /* KLDAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C6A1998C5C800B90FB6 /* KLDAddress.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +97,21 @@
 		93BBF2611998A6E7005BD823 /* libPushSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libPushSDK.a; sourceTree = "<group>"; };
 		93BBF2631998B6D5005BD823 /* AFAppDotNetAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFAppDotNetAPIClient.h; sourceTree = "<group>"; };
 		93BBF2641998B6D5005BD823 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
+		93FB5C541998C1FC00B90FB6 /* NotificationCompent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCompent.h; sourceTree = "<group>"; };
+		93FB5C551998C1FC00B90FB6 /* NotificationCompent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCompent.m; sourceTree = "<group>"; };
+		93FB5C571998C26100B90FB6 /* ContactListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListController.h; sourceTree = "<group>"; };
+		93FB5C581998C26100B90FB6 /* ContactListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactListController.m; sourceTree = "<group>"; };
+		93FB5C5E1998C58200B90FB6 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
+		93FB5C5F1998C58200B90FB6 /* pinyin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pinyin.h; sourceTree = "<group>"; };
+		93FB5C621998C5C800B90FB6 /* APAddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APAddressBook.h; sourceTree = "<group>"; };
+		93FB5C631998C5C800B90FB6 /* APAddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APAddressBook.m; sourceTree = "<group>"; };
+		93FB5C641998C5C800B90FB6 /* APContact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APContact.h; sourceTree = "<group>"; };
+		93FB5C651998C5C800B90FB6 /* APContact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APContact.m; sourceTree = "<group>"; };
+		93FB5C661998C5C800B90FB6 /* APPhoneWithLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPhoneWithLabel.h; sourceTree = "<group>"; };
+		93FB5C671998C5C800B90FB6 /* APPhoneWithLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPhoneWithLabel.m; sourceTree = "<group>"; };
+		93FB5C681998C5C800B90FB6 /* APTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APTypes.h; sourceTree = "<group>"; };
+		93FB5C691998C5C800B90FB6 /* KLDAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDAddress.h; sourceTree = "<group>"; };
+		93FB5C6A1998C5C800B90FB6 /* KLDAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDAddress.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +189,7 @@
 		930D65BC1993818E003A069D /* zaime */ = {
 			isa = PBXGroup;
 			children = (
+				93FB5C531998C1FC00B90FB6 /* compent */,
 				93BBF25F1998A6E7005BD823 /* lib */,
 				9370CFB219986B73007B5B8D /* images */,
 				932BBDB31994686C00C46EB5 /* controllers */,
@@ -238,6 +261,8 @@
 		932BBDB31994686C00C46EB5 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				93FB5C571998C26100B90FB6 /* ContactListController.h */,
+				93FB5C581998C26100B90FB6 /* ContactListController.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -262,10 +287,46 @@
 		93BBF25F1998A6E7005BD823 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				93FB5C611998C5A100B90FB6 /* addressbook */,
+				93FB5C5D1998C57500B90FB6 /* pinyin */,
 				93BBF2601998A6E7005BD823 /* APService.h */,
 				93BBF2611998A6E7005BD823 /* libPushSDK.a */,
 			);
 			path = lib;
+			sourceTree = "<group>";
+		};
+		93FB5C531998C1FC00B90FB6 /* compent */ = {
+			isa = PBXGroup;
+			children = (
+				93FB5C541998C1FC00B90FB6 /* NotificationCompent.h */,
+				93FB5C551998C1FC00B90FB6 /* NotificationCompent.m */,
+			);
+			path = compent;
+			sourceTree = "<group>";
+		};
+		93FB5C5D1998C57500B90FB6 /* pinyin */ = {
+			isa = PBXGroup;
+			children = (
+				93FB5C5E1998C58200B90FB6 /* pinyin.c */,
+				93FB5C5F1998C58200B90FB6 /* pinyin.h */,
+			);
+			path = pinyin;
+			sourceTree = "<group>";
+		};
+		93FB5C611998C5A100B90FB6 /* addressbook */ = {
+			isa = PBXGroup;
+			children = (
+				93FB5C621998C5C800B90FB6 /* APAddressBook.h */,
+				93FB5C631998C5C800B90FB6 /* APAddressBook.m */,
+				93FB5C641998C5C800B90FB6 /* APContact.h */,
+				93FB5C651998C5C800B90FB6 /* APContact.m */,
+				93FB5C661998C5C800B90FB6 /* APPhoneWithLabel.h */,
+				93FB5C671998C5C800B90FB6 /* APPhoneWithLabel.m */,
+				93FB5C681998C5C800B90FB6 /* APTypes.h */,
+				93FB5C691998C5C800B90FB6 /* KLDAddress.h */,
+				93FB5C6A1998C5C800B90FB6 /* KLDAddress.m */,
+			);
+			path = addressbook;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -407,10 +468,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				930D65D01993818E003A069D /* ViewController.m in Sources */,
+				93FB5C6E1998C5C800B90FB6 /* KLDAddress.m in Sources */,
+				93FB5C6C1998C5C800B90FB6 /* APContact.m in Sources */,
 				932BBDB71994687A00C46EB5 /* BaseMesage.m in Sources */,
 				930D65C71993818E003A069D /* AppDelegate.m in Sources */,
+				93FB5C6D1998C5C800B90FB6 /* APPhoneWithLabel.m in Sources */,
+				93FB5C561998C1FC00B90FB6 /* NotificationCompent.m in Sources */,
 				930D65C31993818E003A069D /* main.m in Sources */,
 				93BBF2651998B6D5005BD823 /* AFAppDotNetAPIClient.m in Sources */,
+				93FB5C6B1998C5C800B90FB6 /* APAddressBook.m in Sources */,
+				93FB5C601998C58200B90FB6 /* pinyin.c in Sources */,
+				93FB5C591998C26100B90FB6 /* ContactListController.m in Sources */,
 				932BBDB21994670700C46EB5 /* XMPPClient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

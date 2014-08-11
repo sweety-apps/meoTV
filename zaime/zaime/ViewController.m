@@ -32,7 +32,7 @@
     UIPanGestureRecognizer *swipe = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
     [self.view addGestureRecognizer:swipe];
     [[XMPPClient sharedInstance] setupStream];
-    [[XMPPClient sharedInstance] connectWithAccount:@"a" pwd:@"123321"];
+    [[XMPPClient sharedInstance] connectWithAccount:@"zhao" pwd:@"123321"];
     currentPoint = CGPointZero;
     othersidePoint = CGPointZero;
     lastPoint = CGPointZero;
@@ -127,7 +127,7 @@
         {
            
             lastPoint = point;
-            BaseMesage *message = [self createMsgWithTo:@"zhao" from:@" " content:[NSString stringWithFormat:@"%f-%f",point.x,point.y]];
+            BaseMesage *message = [self createMsgWithTo:@"a" from:@" " content:[NSString stringWithFormat:@"%f-%f",point.x,point.y]];
             [self shock];
             dispatch_async(dispatch_get_main_queue(), ^{
                 lastTime = [[NSDate date] timeIntervalSince1970];

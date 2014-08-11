@@ -26,7 +26,7 @@
 #pragma mark -手指方块的大小
 
 #pragma mark - 发送位置的间隔，单位是毫秒
-#define kSendMsgInterval 800
+#define kSendMsgInterval 500
 
 #pragma - mark 请求地址
 #define kSendMsg @"http://yo.meme-da.com/send_msg.php" //发送推送
