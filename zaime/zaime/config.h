@@ -28,6 +28,15 @@
 #pragma mark - 发送位置的间隔，单位是毫秒
 #define kSendMsgInterval 800
 
+#pragma - mark 请求地址
+#define kSendMsg @"http://yo.meme-da.com/send_msg.php" //发送推送
+#define kSignUp @"http://yo.meme-da.com/register.php" //注册
+#define kSubmitContacts @"http://yo.meme-da.com/update_contact.php" //上传通讯录
+#define kFetchFriendLists @"http://yo.meme-da.com/friends_list.php" //请求朋友列表
+#define kSendMNS @"http://yo.meme-da.com/send_sms.php" //发送短信
+#define kSearchFriends @"http://yo.meme-da.com/find.php" //查找好友
+#define kDeleteFriends @"http://yo.meme-da.com/delete_friend.php" //删除好友
+
 
 
 #endif
