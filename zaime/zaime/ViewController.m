@@ -20,6 +20,7 @@
 #import "UIImageView+WebCache.h"
 #import "YLProgressBar.h"
 #import "DownloadEmotion.h"
+
 @interface ViewController ()
 {
     UIImageView *view ;
@@ -31,6 +32,11 @@
     NSProgress *progress;
     APAddressBook *addressBook;
     YLProgressBar *_progressBar;
+    DownloadEmotion *downLoadEmotion;
+    PhotoStackView *photoStackView;
+    
+    int picSize;
+    NSArray *_photos;
 }
 @end
 
@@ -48,12 +54,15 @@
     othersidePoint = CGPointZero;
     lastPoint = CGPointZero;
     lastTime = 0;
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMsg:) name:kReceiveMsg object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMsg:) name:kReceiveTextMsg object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveEmotion:) name:kReceiveEmotionMsg object:nil];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(100, 100, 100, 60);
-    [btn addTarget:self action:@selector(showContactList) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(sendEmotion) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     btn.backgroundColor  = [UIColor greenColor];
+    
+    
     [[AFAppDotNetAPIClient sharedClient] POST:kFetchFriendLists parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"18617149851",@"owner", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -72,23 +81,14 @@
 //    _progressBar.type = YLProgressBarTypeFlat;
 //    _progressBar.stripesColor = [UIColor blueColor];
 //    [self.view addSubview:_progressBar];
-//    NSArray *urls = @[@"http://www.gifaaa.com/content/uploadfile/201404/a9351397662960.gif",@"http://www.gifaaa.com/content/uploadfile/201404/6b811397701164.gif",@"http://www.gifaaa.com/content/uploadfile/201404/8de21397622162.gif"];
-//    [[DownloadEmotion sharedInstance] downloadWithURLS:urls  :^(NSDictionary *results) {
-//        static int i = 0;
-//        i++;
-//        [_progressBar setProgress:i/(float)[urls count] animated:YES];
-//        for (NSString *key in [results keyEnumerator])
-//        {
-//            UIImage *image = [results objectForKey:key];
-//            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-//            imageView.frame = CGRectMake((i-1)*80, 10, 80, 80);
-//            [self.view addSubview:imageView];
-//        }
-//        if(i == urls.count)
-//        {
-//            i = 0;
-//        }
-//    }];
+    picSize = 80;
+    photoStackView = [[PhotoStackView alloc]initWithFrame:CGRectMake(0, 0, picSize, picSize)];
+    photoStackView.dataSource = self;
+    photoStackView.delegate = self;
+    photoStackView.center = self.view.center;
+    [self.view addSubview:photoStackView];
+    
+
     
 }
 - (void)dispSendMsg :(NSArray*)results
@@ -108,7 +108,11 @@
         [self presentViewController:controller animated:YES completion:nil];
     }
 }
-
+- (void)sendEmotion
+{
+    BaseMesage *message = [self createMsgWithTo:@"a" from:@"" content:@"http://www.gifaaa.com/content/uploadfile/201404/a9351397662960.gif" type:MessageEmotion];
+   [[XMPPClient sharedInstance] sendMsg:message];
+}
 - (void)showContactList
 {
     [addressBook loadContacts:^(NSArray *contacts, NSError *error) {
@@ -143,6 +147,15 @@
         AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     }
 }
+- (void)receiveEmotion:(NSNotification*)noti
+{
+    NSString *emotion = [noti object];
+    [downLoadEmotion downloadWithURLS:[NSArray arrayWithObject:emotion] :^(UIImage *image, NSString *url) {
+        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+        imageView.frame = CGRectMake(80, 10, 80, 80);
+        [self.view addSubview:imageView];
+    }];
+}
 - (void)receiveMsg:(NSNotification*)noti
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, kZero), ^{
@@ -157,7 +170,10 @@
                 view.image = [UIImage imageNamed:@"fingerprint"];
                 [self.view addSubview:view];
             }
-            view.center = CGPointMake(x, y);
+            [UIView animateWithDuration:0.1 animations:^{
+                 view.center = CGPointMake(x, y);
+            } completion:nil];
+           
             othersidePoint = view.center;
             [self shock];
         });
@@ -169,19 +185,29 @@
     
     
 }
-- (BaseMesage*)createMsgWithTo :(NSString*)to from:(NSString*)from content:(NSString*)content
+- (BaseMesage*)createMsgWithTo :(NSString*)to from:(NSString*)from content:(NSString*)content type:(MessageType)type
 {
     BaseMesage *message = [[BaseMesage alloc]init];
     message.msgContent = content;
-    message.type = @"chat";
+    message.type = type;
     message.sendDate = [NSDate date];
-    message.conversationId = @"";
     message.to = to;
     message.from = from;
-    message.isIncoming = NO;
-    message.messageId = @"";
-    message.status = MsgStatusSending;
     return message;
+}
+-(NSArray *)photos {
+    if(!_photos) {
+        
+        _photos = [NSArray arrayWithObjects:
+                   [UIImage imageNamed:@"photo1.jpg"],
+                   [UIImage imageNamed:@"photo2.jpg"],
+                   [UIImage imageNamed:@"photo3.jpg"],
+                   [UIImage imageNamed:@"photo4.jpg"],
+                   [UIImage imageNamed:@"photo5.jpg"],
+                   nil];
+        
+    }
+    return _photos;
 }
 -(void)handleSwipeFrom:(UITapGestureRecognizer *)recognizer
 {
@@ -199,7 +225,7 @@
         {
            
             lastPoint = point;
-            BaseMesage *message = [self createMsgWithTo:@"zhao" from:@" " content:[NSString stringWithFormat:@"%f-%f",point.x,point.y]];
+            BaseMesage *message = [self createMsgWithTo:@"zhao" from:@"" content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MessageText];
             [self shock];
             dispatch_async(dispatch_get_main_queue(), ^{
                 lastTime = [[NSDate date] timeIntervalSince1970];
@@ -215,8 +241,46 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - 照片浏览的datasource
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
+- (NSUInteger)numberOfPhotosInPhotoStackView:(PhotoStackView *)photoStack
+{
+    return 5;
+}
+- (UIImage *)photoStackView:(PhotoStackView *)photoStack photoForIndex:(NSUInteger)index
+{
+   return  [[self photos] objectAtIndex:index];
+}
+// - (CGSize)photoStackView:(PhotoStackView *)photoStack photoSizeForIndex:(NSUInteger)index
+//{
+//    return CGSizeMake(picSize, picSize);
+//}
+#pragma mark - 照片浏览的委托
+-(void)photoStackView:(PhotoStackView *)aphotoStackView didSelectPhotoAtIndex:(NSUInteger)index
+{
+//    picSize = 200;
+//    [UIView animateWithDuration:0.5 animations:^{
+//        CGPoint center = photoStackView.center;
+//        photoStackView.center = center;
+//        CGRect frame = photoStackView.frame;
+//        frame.size.height = picSize;
+//        frame.size.width = picSize;
+//        photoStackView.frame = frame;
+//        
+//    } completion:^(BOOL finished) {
+//        [photoStackView reloadData];
+//    }];
+    
+    
+}
+//增加一个图片
+/*
+ NSMutableArray *photosMutable = [self.photos mutableCopy];
+ [photosMutable addObject:[UIImage imageNamed:@"photo6.jpg"]];
+ self.photos = photosMutable;
+ [self.photoStack reloadData];
+ */
 @end

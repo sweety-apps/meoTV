@@ -12,7 +12,8 @@ typedef enum
 {
     MessageText,
     MessageImage,
-    MEssageAudion
+    MessageAudion,
+    MessageEmotion
     
 }MessageType;
 
@@ -26,14 +27,10 @@ typedef enum
 
 @interface BaseMesage : NSObject
 
-@property (nonatomic,assign) BOOL isIncoming;
-@property (nonatomic,assign) MsgStatus status;
-@property (nonatomic,strong) NSString *conversationId;
 @property (nonatomic,strong) NSString *from;
 @property (nonatomic,strong) NSString *to;
-@property (nonatomic,strong) NSString *type;
+@property (nonatomic,assign) MessageType type;
 @property (nonatomic,strong) NSDate *sendDate;
 @property (nonatomic,strong) NSString *msgContent;
-@property (nonatomic,strong) NSString *messageId;
 
 @end

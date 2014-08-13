@@ -12,12 +12,11 @@
 {
     NSMutableArray *results;
 }
-+ (instancetype)sharedInstance;
 /**
  @brief 进行表情下载
  @param urls 表情地址集合
  @param progress 下载进度
  @param complete 美下载结束一个进行回调,results里面装的是image-url字典
  */
-- (void)downloadWithURLS :(NSArray*)urlStrs :(void(^)(NSDictionary *results))complete;
+- (void)downloadWithURLS :(NSArray*)urlStrs :(void(^)(UIImage *image,NSString *url))complete;
 @end

@@ -10,12 +10,9 @@
 
 @implementation BaseMesage
 @synthesize msgContent=_msgContent;
-@synthesize messageId=_messageId;
 @synthesize from=_from;
 @synthesize to=_to;
 @synthesize type=_type;
 @synthesize sendDate=_sendDate;
-@synthesize conversationId=_conversationId;
-@synthesize status=_status;
 
 @end

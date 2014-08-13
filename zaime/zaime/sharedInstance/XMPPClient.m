@@ -70,6 +70,28 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
 	
 	[[self xmppStream] sendElement:presence];
 }
+- (NSString*)getMessageType :(MessageType)type
+{
+     NSString *typeStr;
+    switch (type) {
+           
+        case MessageAudion:
+            typeStr = @"audio";
+            break;
+        case MessageEmotion:
+            typeStr = @"emotion";
+            break;
+        case MessageText:
+            typeStr = @"text";
+            break;
+        case MessageImage:
+            typeStr = @"image";
+            break;
+        default:
+            break;
+    }
+    return typeStr;
+}
 - (NSXMLElement*)createMsg :(BaseMesage*)msg
 {
     NSXMLElement *body = [NSXMLElement elementWithName:@"body"];
@@ -80,7 +102,8 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
     NSString *jid = [[msg.to stringByAppendingString:@"@"] stringByAppendingString:kServerName];
     [message addAttributeWithName:@"to" stringValue:jid];
     [message addAttributeWithName:@"from" stringValue:msg.from];
-    [message addAttributeWithName:@"id" stringValue:msg.messageId];
+    [message addAttributeWithName:@"type" stringValue:@"chat"];
+    [message addAttributeWithName:@"kind" stringValue:[self getMessageType:msg.type]];
     [message addChild:body];
     return message;
 }
@@ -99,7 +122,6 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
 - (void)sendMsg:(BaseMesage *)msg
 {
     NSXMLElement *message = [self createMsg:msg];
-    [message addAttributeWithName:@"type" stringValue:@"chat"];
     NSXMLElement *receipt = [NSXMLElement elementWithName:@"request" xmlns:@"urn:xmpp:receipts"];
     [message addChild:receipt];
     [xmppStream sendElement:message];
@@ -202,7 +224,16 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
 }
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
+    NSLog(@"%@",message);
     NSString *body = message.body;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kReceiveMsg object:body];
+   NSString *kind = [[message attributeForName:@"kind"] stringValue];
+    if([kind isEqualToString:@"text"])
+    {
+         [[NSNotificationCenter defaultCenter] postNotificationName:kReceiveTextMsg object:body];
+    }else if([kind isEqualToString:@"emotion"])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kReceiveEmotionMsg object:body];
+    }
+   
 }
 @end

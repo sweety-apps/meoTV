@@ -7,13 +7,9 @@
 //
 
 #import "DownloadEmotion.h"
-#import "SharedInstanceGCD.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 @implementation DownloadEmotion
 
-SHARED_INSTANCE_GCD_USING_BLOCK(^{
-    return [[self alloc]init];
-})
 - (id)init
 {
     self = [super init];
@@ -23,19 +19,18 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
     }
     return self;
 }
-- (void)downloadWithURLS :(NSArray*)urlStrs :(void(^)(NSDictionary *results))complete;
+- (void)downloadWithURLS :(NSArray*)urlStrs :(void(^)(UIImage *image,NSString *url))complete;
 {
     [results removeAllObjects];
     for (NSString *url in urlStrs)
     {
         [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:url] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize) {
-            
+            NSLog(@"xxx");
             
         } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
             if(complete)
             {
-                NSDictionary *res = [NSDictionary dictionaryWithObjectsAndKeys:image,imageURL.absoluteString, nil];
-                complete(res);
+                complete(image,imageURL.absoluteString);
             }
         }];
        

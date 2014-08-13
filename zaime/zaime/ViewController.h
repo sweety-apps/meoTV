@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-@interface ViewController : UIViewController<MFMessageComposeViewControllerDelegate>
+#import "PhotoStackView.h"
+@interface ViewController : UIViewController<MFMessageComposeViewControllerDelegate,PhotoStackViewDataSource,PhotoStackViewDelegate>
 
 @end

@@ -15,7 +15,8 @@
 #define kServerName @"127.0.0.1"
 
 #pragma mark - 通知名
-#define kReceiveMsg @"kReceiveMsg"
+#define kReceiveTextMsg @"kReceiveTextMsg"
+#define kReceiveEmotionMsg @"kReceiveEmotionMsg"
 
 #pragma mark - 手指移动不发送范围矩形的边长
 #define kNotSendSquire 3
@@ -36,6 +37,8 @@
 #define kSendMNS @"http://yo.meme-da.com/send_sms.php" //发送短信
 #define kSearchFriends @"http://yo.meme-da.com/find.php" //查找好友
 #define kDeleteFriends @"http://yo.meme-da.com/delete_friend.php" //删除好友
+
+#pragma mark - 接受照片的尺寸
 
 
 
