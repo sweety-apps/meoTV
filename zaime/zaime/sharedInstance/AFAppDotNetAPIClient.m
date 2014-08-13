@@ -24,5 +24,23 @@ static NSString * const AFAppDotNetAPIBaseURLString = @"http://yo.meme-da.com/";
     
     return _sharedClient;
 }
+- (NSURLSessionDownloadTask*)downLoadFile:(NSString *)url
+{
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [request addValue:@"image/*" forHTTPHeaderField:@"Accept"];
+    
+    __block NSURLSessionDownloadTask *task = [self downloadTaskWithRequest:request progress:nil destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+        NSString *doc = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
+        doc = [doc stringByAppendingPathComponent:@"12.gif"];
+        return [NSURL URLWithString:doc];
+    } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+ 
+        NSLog(@"%@",filePath);
+    }];
+    
+    [task resume];
+    
+    return task;
+}
 
 @end

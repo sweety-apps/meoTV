@@ -23,6 +23,9 @@
 	BOOL isXmppConnected;
     BOOL isRegister;
     BOOL isLogin;
+    
+    NSString *registerPass;
+    NSString *registerAccount;
 }
 @property (nonatomic, strong, readonly) XMPPStream *xmppStream;
 @property (nonatomic, strong, readonly) XMPPReconnect *xmppReconnect;
@@ -30,7 +33,7 @@
 + (instancetype)sharedInstance;
 
 - (BOOL)connectWithAccount :(NSString*)account pwd:(NSString*)pwd;
-- (void)anonymousConnection;
+- (void)registerWithAccount:(NSString*)account password:(NSString*)pass;
 - (void)logout;
 - (void)sendMsg :(BaseMesage*)msg;
 - (void)setupStream;

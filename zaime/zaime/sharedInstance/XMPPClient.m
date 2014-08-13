@@ -84,9 +84,11 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
     [message addChild:body];
     return message;
 }
-- (void)anonymousConnection
+- (void)registerWithAccount:(NSString*)account password:(NSString*)pass;
 {
     NSString *tjid = [[NSString alloc] initWithFormat:@"anonymous@%@", kServerName];
+    registerPass = pass;
+    registerAccount = account;
     [xmppStream setMyJID:[XMPPJID jidWithString:tjid]];
     if ([xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:nil])
     {
@@ -134,13 +136,10 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
 }
 - (void)registerUser
 {
-    NSString *myJID = @"zhao@127.0.0.1";
-	NSString *myPassword = @"123321";
-    // NSString *kSecAccount =  [wapper objectForKey:(__bridge id)(kSecAttrAccount)];
-    // NSString *kSecPassword =  [wapper objectForKey:(__bridge id)(kSecValueData)];
+    NSString *myJID = [[registerAccount stringByAppendingString:@"@"] stringByAppendingString:kServerName];
     [xmppStream setMyJID:[XMPPJID jidWithString:myJID]];
     NSError *error=nil;
-    if (![xmppStream registerWithPassword:myPassword error:&error])
+    if (![xmppStream registerWithPassword:registerPass error:&error])
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"创建帐号失败"
                                                             message:[error localizedDescription]

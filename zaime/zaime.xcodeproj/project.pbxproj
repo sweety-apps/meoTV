@@ -23,6 +23,7 @@
 		930D65DB1993818E003A069D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 930D65BA1993818E003A069D /* UIKit.framework */; };
 		930D65E31993818E003A069D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 930D65E11993818E003A069D /* InfoPlist.strings */; };
 		930D65E51993818E003A069D /* zaimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 930D65E41993818E003A069D /* zaimeTests.m */; };
+		93229FF2199B119800C75A77 /* DownloadEmotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 93229FF1199B119800C75A77 /* DownloadEmotion.m */; };
 		932BBDB21994670700C46EB5 /* XMPPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 932BBDB11994670700C46EB5 /* XMPPClient.m */; };
 		932BBDB71994687A00C46EB5 /* BaseMesage.m in Sources */ = {isa = PBXBuildFile; fileRef = 932BBDB61994687A00C46EB5 /* BaseMesage.m */; };
 		93331B9619988CFC008AD730 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93331B9519988CFC008AD730 /* PushConfig.plist */; };
@@ -32,6 +33,8 @@
 		93396A62199897B600F4E723 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93396A61199897B600F4E723 /* SystemConfiguration.framework */; };
 		93396A64199897BB00F4E723 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93396A63199897BB00F4E723 /* Security.framework */; };
 		93396A66199897C100F4E723 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 93396A65199897C100F4E723 /* libz.dylib */; };
+		9341AB14199A085F0055076D /* loading.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9341AB13199A085F0055076D /* loading.gif */; };
+		9341AB17199A17A90055076D /* KLDAFImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 9341AB16199A17A90055076D /* KLDAFImageCache.m */; };
 		935E53BA1994BB4A009420B1 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935E53B91994BB4A009420B1 /* AVFoundation.framework */; };
 		9370CFB419986B7B007B5B8D /* fingerprint.png in Resources */ = {isa = PBXBuildFile; fileRef = 9370CFB319986B7B007B5B8D /* fingerprint.png */; };
 		93BBF2621998A6E7005BD823 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BBF2611998A6E7005BD823 /* libPushSDK.a */; };
@@ -79,6 +82,8 @@
 		930D65E01993818E003A069D /* zaimeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "zaimeTests-Info.plist"; sourceTree = "<group>"; };
 		930D65E21993818E003A069D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		930D65E41993818E003A069D /* zaimeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = zaimeTests.m; sourceTree = "<group>"; };
+		93229FF0199B119800C75A77 /* DownloadEmotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadEmotion.h; sourceTree = "<group>"; };
+		93229FF1199B119800C75A77 /* DownloadEmotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadEmotion.m; sourceTree = "<group>"; };
 		932BBDAE199466B100C46EB5 /* SharedInstanceGCD.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SharedInstanceGCD.h; sourceTree = "<group>"; };
 		932BBDB01994670700C46EB5 /* XMPPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMPPClient.h; sourceTree = "<group>"; };
 		932BBDB11994670700C46EB5 /* XMPPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMPPClient.m; sourceTree = "<group>"; };
@@ -92,6 +97,9 @@
 		93396A61199897B600F4E723 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		93396A63199897BB00F4E723 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		93396A65199897C100F4E723 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		9341AB13199A085F0055076D /* loading.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading.gif; sourceTree = "<group>"; };
+		9341AB15199A17A90055076D /* KLDAFImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDAFImageCache.h; sourceTree = "<group>"; };
+		9341AB16199A17A90055076D /* KLDAFImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDAFImageCache.m; sourceTree = "<group>"; };
 		935E53B91994BB4A009420B1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9370CFB319986B7B007B5B8D /* fingerprint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fingerprint.png; sourceTree = "<group>"; };
 		93BBF2601998A6E7005BD823 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
@@ -258,6 +266,8 @@
 				93BBF2641998B6D5005BD823 /* AFAppDotNetAPIClient.m */,
 				932BBDB01994670700C46EB5 /* XMPPClient.h */,
 				932BBDB11994670700C46EB5 /* XMPPClient.m */,
+				93229FF0199B119800C75A77 /* DownloadEmotion.h */,
+				93229FF1199B119800C75A77 /* DownloadEmotion.m */,
 			);
 			path = sharedInstance;
 			sourceTree = "<group>";
@@ -283,6 +293,7 @@
 		9370CFB219986B73007B5B8D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				9341AB13199A085F0055076D /* loading.gif */,
 				9370CFB319986B7B007B5B8D /* fingerprint.png */,
 			);
 			path = images;
@@ -304,6 +315,8 @@
 			children = (
 				93FB5C541998C1FC00B90FB6 /* NotificationCompent.h */,
 				93FB5C551998C1FC00B90FB6 /* NotificationCompent.m */,
+				9341AB15199A17A90055076D /* KLDAFImageCache.h */,
+				9341AB16199A17A90055076D /* KLDAFImageCache.m */,
 			);
 			path = compent;
 			sourceTree = "<group>";
@@ -384,6 +397,11 @@
 				TargetAttributes = {
 					930D65B21993818E003A069D = {
 						DevelopmentTeam = B4BR4E2M87;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					930D65D61993818E003A069D = {
 						TestTargetID = 930D65B21993818E003A069D;
@@ -418,6 +436,7 @@
 				9370CFB419986B7B007B5B8D /* fingerprint.png in Resources */,
 				930D65D21993818E003A069D /* Images.xcassets in Resources */,
 				930D65CA1993818E003A069D /* Main_iPhone.storyboard in Resources */,
+				9341AB14199A085F0055076D /* loading.gif in Resources */,
 				93331B9619988CFC008AD730 /* PushConfig.plist in Resources */,
 				930D65C11993818E003A069D /* InfoPlist.strings in Resources */,
 			);
@@ -473,6 +492,7 @@
 			files = (
 				930D65D01993818E003A069D /* ViewController.m in Sources */,
 				93FB5C6E1998C5C800B90FB6 /* KLDAddress.m in Sources */,
+				93229FF2199B119800C75A77 /* DownloadEmotion.m in Sources */,
 				93FB5C6C1998C5C800B90FB6 /* APContact.m in Sources */,
 				932BBDB71994687A00C46EB5 /* BaseMesage.m in Sources */,
 				930D65C71993818E003A069D /* AppDelegate.m in Sources */,
@@ -480,6 +500,7 @@
 				93FB5C561998C1FC00B90FB6 /* NotificationCompent.m in Sources */,
 				930D65C31993818E003A069D /* main.m in Sources */,
 				93BBF2651998B6D5005BD823 /* AFAppDotNetAPIClient.m in Sources */,
+				9341AB17199A17A90055076D /* KLDAFImageCache.m in Sources */,
 				93FB5C6B1998C5C800B90FB6 /* APAddressBook.m in Sources */,
 				93FB5C601998C58200B90FB6 /* pinyin.c in Sources */,
 				93FB5C591998C26100B90FB6 /* ContactListController.m in Sources */,

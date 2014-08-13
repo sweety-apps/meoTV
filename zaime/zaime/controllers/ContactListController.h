@@ -7,13 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-
 typedef void(^SelectComplete)(NSArray *result);
-@interface ContactListController : UITableViewController
+@interface ContactListController : UITableViewController<UISearchBarDelegate,UISearchDisplayDelegate>
 {
     @private
     NSArray *contacts;
     SelectComplete complete;
 }
+@property(nonatomic,strong) UISearchBar *searchBar;
+@property(nonatomic,strong) UISearchDisplayController *searchDc;
+
 - (id)initWithContacts :(NSArray*)contacts  style:(UITableViewStyle)style :(void(^)(NSArray *results))selectComplete;
 @end

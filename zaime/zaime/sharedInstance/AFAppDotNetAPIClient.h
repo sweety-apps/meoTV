@@ -12,5 +12,6 @@
 @interface AFAppDotNetAPIClient : AFHTTPSessionManager
 
 + (instancetype)sharedClient;
+- (NSURLSessionDownloadTask*)downLoadFile :(NSString *)url;
 
 @end

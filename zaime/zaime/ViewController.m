@@ -12,6 +12,14 @@
 #import "config.h"
 #import <AVFoundation/AVFoundation.h>
 #import "AFAppDotNetAPIClient.h"
+#import "APAddressBook.h"
+#import "ContactListController.h"
+#import "UIImageView+AFNetworking.h"
+#import "APContact.h"
+#import <SDWebImage/UIImageView+WebCache.h>
+#import "UIImageView+WebCache.h"
+#import "YLProgressBar.h"
+#import "DownloadEmotion.h"
 @interface ViewController ()
 {
     UIImageView *view ;
@@ -20,6 +28,9 @@
     NSTimer *compare;
     CGPoint lastPoint;
     NSTimeInterval lastTime;
+    NSProgress *progress;
+    APAddressBook *addressBook;
+    YLProgressBar *_progressBar;
 }
 @end
 
@@ -32,7 +43,7 @@
     UIPanGestureRecognizer *swipe = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
     [self.view addGestureRecognizer:swipe];
     [[XMPPClient sharedInstance] setupStream];
-    [[XMPPClient sharedInstance] connectWithAccount:@"zhao" pwd:@"123321"];
+    [[XMPPClient sharedInstance] connectWithAccount:@"a" pwd:@"123321"];
     currentPoint = CGPointZero;
     othersidePoint = CGPointZero;
     lastPoint = CGPointZero;
@@ -40,7 +51,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMsg:) name:kReceiveMsg object:nil];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(100, 100, 100, 60);
-    [btn addTarget:self action:@selector(sendYo) forControlEvents:UIControlEventTouchUpInside];
+    [btn addTarget:self action:@selector(showContactList) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     btn.backgroundColor  = [UIColor greenColor];
     [[AFAppDotNetAPIClient sharedClient] POST:kFetchFriendLists parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"18617149851",@"owner", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -48,11 +59,72 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@",error);
     }];
+    addressBook = [[APAddressBook alloc]init];
+    addressBook.sortDescriptors = @[
+                                    [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES],
+                                    [NSSortDescriptor sortDescriptorWithKey:@"lastName" ascending:YES]
+                                    ];
+    addressBook.filterBlock = ^BOOL(APContact *contact)
+    {
+        return contact.phones.count > 0;
+    };
+//    _progressBar = [[YLProgressBar alloc]initWithFrame:CGRectMake(0, 0, 320, 5)];
+//    _progressBar.type = YLProgressBarTypeFlat;
+//    _progressBar.stripesColor = [UIColor blueColor];
+//    [self.view addSubview:_progressBar];
+//    NSArray *urls = @[@"http://www.gifaaa.com/content/uploadfile/201404/a9351397662960.gif",@"http://www.gifaaa.com/content/uploadfile/201404/6b811397701164.gif",@"http://www.gifaaa.com/content/uploadfile/201404/8de21397622162.gif"];
+//    [[DownloadEmotion sharedInstance] downloadWithURLS:urls  :^(NSDictionary *results) {
+//        static int i = 0;
+//        i++;
+//        [_progressBar setProgress:i/(float)[urls count] animated:YES];
+//        for (NSString *key in [results keyEnumerator])
+//        {
+//            UIImage *image = [results objectForKey:key];
+//            UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+//            imageView.frame = CGRectMake((i-1)*80, 10, 80, 80);
+//            [self.view addSubview:imageView];
+//        }
+//        if(i == urls.count)
+//        {
+//            i = 0;
+//        }
+//    }];
     
+}
+- (void)dispSendMsg :(NSArray*)results
+{
+    MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
+    if([MFMessageComposeViewController canSendText]) {
+        
+        controller.body = @"你好嘛？";
+        
+        NSMutableArray *phones = [[NSMutableArray alloc]init];
+        for (APContact *ap in results)
+        {
+            [phones addObject:ap.phones[0]];
+        }
+        controller.recipients = phones;
+        controller.messageComposeDelegate = self;
+        [self presentViewController:controller animated:YES completion:nil];
+    }
+}
+
+- (void)showContactList
+{
+    [addressBook loadContacts:^(NSArray *contacts, NSError *error) {
+       if([APAddressBook access] == APAddressBookAccessGranted)
+       {
+           UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:[[ContactListController alloc]initWithContacts:contacts style:UITableViewStylePlain :^(NSArray *results) {
+               
+               [self performSelector:@selector(dispSendMsg:) withObject:results afterDelay:0.5f];
+           }]];
+           [self presentViewController:navi animated:YES completion:nil];
+       }
+    }];
 }
 - (void)sendYo
 {
-    [[AFAppDotNetAPIClient sharedClient] POST:kSendMsg parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"推送",@"content",@"a",@"to", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppDotNetAPIClient sharedClient] POST:kSendMsg parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"推送",@"content",@"zhao",@"to", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
           NSLog(@"%@",error);
@@ -127,7 +199,7 @@
         {
            
             lastPoint = point;
-            BaseMesage *message = [self createMsgWithTo:@"a" from:@" " content:[NSString stringWithFormat:@"%f-%f",point.x,point.y]];
+            BaseMesage *message = [self createMsgWithTo:@"zhao" from:@" " content:[NSString stringWithFormat:@"%f-%f",point.x,point.y]];
             [self shock];
             dispatch_async(dispatch_get_main_queue(), ^{
                 lastTime = [[NSDate date] timeIntervalSince1970];
@@ -143,32 +215,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
- - (void)dispSendMsg :(NSArray*)results
- {
- MFMessageComposeViewController *controller = [[MFMessageComposeViewController alloc] init];
- if([MFMessageComposeViewController canSendText]) {
- 
- controller.body = @"你好嘛？";
- 
- NSMutableArray *phones = [[NSMutableArray alloc]init];
- for (APContact *ap in results)
- {
- [phones addObject:ap.phones[0]];
- }
- controller.recipients = phones;
- controller.messageComposeDelegate = self;
- [self presentViewController:controller animated:YES completion:nil];
- }
- }
- 
- 
- [addressBook loadContacts:^(NSArray *contacts, NSError *error) {
- UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:[[ContactListController alloc]initWithContacts:contacts style:UITableViewStylePlain :^(NSArray *results) {
- 
- [self performSelector:@selector(dispSendMsg:) withObject:results afterDelay:0.5f];
- }]];
- [self presentViewController:navi animated:YES completion:nil];
- }];
- */
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
 @end

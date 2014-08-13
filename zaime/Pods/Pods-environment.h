@@ -75,6 +75,18 @@
 // Please contact the author.
 // Version: 1.6.5.1.
 
+// SDWebImage
+#define COCOAPODS_POD_AVAILABLE_SDWebImage
+#define COCOAPODS_VERSION_MAJOR_SDWebImage 3
+#define COCOAPODS_VERSION_MINOR_SDWebImage 7
+#define COCOAPODS_VERSION_PATCH_SDWebImage 1
+
+// SDWebImage/Core
+#define COCOAPODS_POD_AVAILABLE_SDWebImage_Core
+#define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
+#define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
+#define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
+
 // XMPPFramework
 #define COCOAPODS_POD_AVAILABLE_XMPPFramework
 #define COCOAPODS_VERSION_MAJOR_XMPPFramework 3
@@ -302,4 +314,10 @@
 #define COCOAPODS_VERSION_MAJOR_XMPPFramework_XEP_0308 3
 #define COCOAPODS_VERSION_MINOR_XMPPFramework_XEP_0308 6
 #define COCOAPODS_VERSION_PATCH_XMPPFramework_XEP_0308 4
+
+// YLProgressBar
+#define COCOAPODS_POD_AVAILABLE_YLProgressBar
+#define COCOAPODS_VERSION_MAJOR_YLProgressBar 3
+#define COCOAPODS_VERSION_MINOR_YLProgressBar 1
+#define COCOAPODS_VERSION_PATCH_YLProgressBar 1
 

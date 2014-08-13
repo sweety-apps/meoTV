@@ -1,2 +1,4 @@
 pod 'XMPPFramework', '~> 3.6.4'
 pod 'AFNetworking', '~> 2.3.1'
+pod 'SDWebImage', '~> 3.7.1'
+pod 'YLProgressBar', '~> 3.1.1'

@@ -14,6 +14,10 @@
     NSMutableArray *selectResult;
     NSMutableDictionary *group;
     NSMutableArray *final;
+    
+    NSMutableDictionary *searchGroup;
+    NSMutableArray *searchFinal;
+    NSMutableArray *searchContacts;
 }
 @end
 
@@ -25,7 +29,13 @@
     if (self) {
         contacts = acontacts;
         complete = aselectComplete;
-        [self groupContacts];
+        group = [[NSMutableDictionary alloc]init];
+        final = [[NSMutableArray alloc]init];
+        searchContacts = [[NSMutableArray alloc]init];
+        searchFinal = [[NSMutableArray alloc]init];
+        searchGroup = [[NSMutableDictionary alloc]init];
+        
+        [self groupContacts:group contacts:contacts final:final];
     }
     return self;
 }
@@ -91,11 +101,11 @@
     if(index == 26) return @"#";
     return nil;
 }
-- (void)groupContacts
+- (void)groupContacts :(NSMutableDictionary*)agroup contacts:(NSArray*)acontacts final:(NSMutableArray*)afinal
 {
-    if(!group)
-        group = [[NSMutableDictionary alloc]init];
-    for (APContact *ap in contacts)
+    if(!agroup)
+        agroup = [[NSMutableDictionary alloc]init];
+    for (APContact *ap in acontacts)
     {
         NSString *name = [ap.lastName==nil?@"":ap.lastName stringByAppendingString:ap.firstName==nil?@"":ap.firstName];
         char z = '#';
@@ -105,29 +115,28 @@
         }
         
         NSString *first =  [NSString stringWithFormat:@"%c",z];
-        if([group objectForKey:first])
+        if([agroup objectForKey:first])
         {
-            NSMutableArray *source = [group objectForKey:first];
+            NSMutableArray *source = [agroup objectForKey:first];
             [source addObject:ap];
         }else
         {
             NSMutableArray *source = [[NSMutableArray alloc]initWithObjects:ap, nil];
-            [group setObject:source forKey:first];
+            [agroup setObject:source forKey:first];
         }
         
         
     }
     int a[27] = {-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1};
-    for (NSString *key in [group keyEnumerator])
+    for (NSString *key in [agroup keyEnumerator])
     {
         a[[self getIndex:key]] = [self getIndex:key];
     }
-    final = [[NSMutableArray alloc]init];
     for (int i = 0; i != 27; i++)
     {
         if(a[i] != -1)
         {
-            [final addObject:[NSString stringWithFormat:@"%d",i]];
+            [afinal addObject:[NSString stringWithFormat:@"%d",i]];
         }
     }
     
@@ -152,7 +161,42 @@
     self.navigationItem.rightBarButtonItem = right;
     
     selectResult = [[NSMutableArray alloc]init];
+    
+    
+    
+    self.searchBar=[[UISearchBar  alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 320.0f, 44.0f)];
+    self.searchBar.tintColor=[UIColor colorWithRed:0.8f green:0.8f blue:0.8f alpha:1.0f];
+    self.searchBar.autocorrectionType=UITextAutocorrectionTypeNo;
+    self.searchBar.autocapitalizationType=UITextAutocapitalizationTypeNone;
+    self.searchBar.hidden=NO;
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+    self.searchBar.placeholder=[NSString stringWithCString:"请输入需要查找的文本内容"  encoding: NSUTF8StringEncoding];
+    self.tableView.tableHeaderView=self.searchBar;
+    
+    self.searchDc=[[UISearchDisplayController alloc] initWithSearchBar:self.searchBar contentsController:self];
+    self.searchDc.searchResultsDataSource=self;
+    self.searchDc.searchResultsDelegate=self;
+    self.searchDc.delegate = self;
+    [self.searchDc  setActive:NO];
+    self.searchBar.delegate = self;
+    
+    for (id searchbutton in self.searchBar.subviews)
+        
+    {
+        
+        UIView *view = (UIView *)searchbutton;
+        
+        UIButton *cancelButton = (UIButton *)[view.subviews objectAtIndex:2];
+        
+        cancelButton.enabled = YES;
+        
+        [cancelButton setTitle:@"取消"  forState:UIControlStateNormal];//文字
+        
+        break;
+        
+    }
 }
+
 - (void)submit
 {
    
@@ -177,11 +221,19 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+     if(tableView == self.searchDisplayController.searchResultsTableView)
+     {
+         return 1;
+     }
     return group.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+     if(tableView == self.searchDisplayController.searchResultsTableView)
+     {
+         return searchContacts.count;
+     }
     NSString *index = [final objectAtIndex:section];
     NSString *key = [self getKey:[index integerValue]];
     return [[group objectForKey:key] count];
@@ -189,6 +241,10 @@
 
 - (NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return nil;
+    }
     NSString *index = [final objectAtIndex:section];
     NSString *key = [self getKey:[index integerValue]];
     return [key uppercaseString];
@@ -205,10 +261,20 @@
     }
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    NSString *index = [final objectAtIndex:indexPath.section];
-    NSString *key = [self getKey:[index integerValue]];
-    NSArray *cons = [group objectForKey:key];
-    APContact *ap = [cons objectAtIndex:indexPath.row];
+    
+    
+    
+    APContact *ap = nil;
+    if(tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        ap = [searchContacts objectAtIndex:indexPath.row];
+    }else
+    {
+        NSString *index = [final objectAtIndex:indexPath.section];
+        NSString *key = [self getKey:[index integerValue]];
+        NSArray *cons = [group objectForKey:key];
+        ap = [cons objectAtIndex:indexPath.row];
+    }
     if([selectResult containsObject:ap])
     {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -221,22 +287,59 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if(cell.accessoryType == UITableViewCellAccessoryCheckmark)
+    if(tableView == self.searchDisplayController.searchResultsTableView)
     {
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        NSString *index = [final objectAtIndex:indexPath.section];
-        NSString *key = [self getKey:[index integerValue]];
-        NSArray *cons = [group objectForKey:key];
-        [selectResult removeObject:[cons objectAtIndex:indexPath.row]];
+        if(cell.accessoryType == UITableViewCellAccessoryCheckmark)
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            [selectResult removeObject:[searchContacts objectAtIndex:indexPath.row]];
+        }else
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            [selectResult addObject:[searchContacts objectAtIndex:indexPath.row]];
+        }
     }else
     {
-        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-        NSString *index = [final objectAtIndex:indexPath.section];
-        NSString *key = [self getKey:[index integerValue]];
-        NSArray *cons = [group objectForKey:key];
-        [selectResult addObject:[cons objectAtIndex:indexPath.row]];
+        if(cell.accessoryType == UITableViewCellAccessoryCheckmark)
+        {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            NSString *index = [final objectAtIndex:indexPath.section];
+            NSString *key = [self getKey:[index integerValue]];
+            NSArray *cons = [group objectForKey:key];
+            [selectResult removeObject:[cons objectAtIndex:indexPath.row]];
+        }else
+        {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+            NSString *index = [final objectAtIndex:indexPath.section];
+            NSString *key = [self getKey:[index integerValue]];
+            NSArray *cons = [group objectForKey:key];
+            [selectResult addObject:[cons objectAtIndex:indexPath.row]];
+        }
+    }
+   
+}
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    [searchContacts removeAllObjects];
+    for (APContact *ap in contacts)
+    {
+        NSString *name = [ap.lastName==nil?@"":ap.lastName stringByAppendingString:ap.firstName==nil?@"":ap.firstName];
+        NSRange range=[name rangeOfString:searchText];
+        if(range.location!=NSNotFound)
+        {
+            [searchContacts addObject:ap];
+            
+        }else{
+            
+        }
     }
 }
-
-
+- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
+{
+    [self.searchDc  setActive:NO animated:YES];
+}
+- (void) searchDisplayControllerDidEndSearch:(UISearchDisplayController *)controller
+{
+    [self.tableView reloadData];
+}
 @end
