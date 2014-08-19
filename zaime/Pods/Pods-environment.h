@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 3
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 1
 
+// BOSImageResizeOperation
+#define COCOAPODS_POD_AVAILABLE_BOSImageResizeOperation
+#define COCOAPODS_VERSION_MAJOR_BOSImageResizeOperation 0
+#define COCOAPODS_VERSION_MINOR_BOSImageResizeOperation 1
+#define COCOAPODS_VERSION_PATCH_BOSImageResizeOperation 0
+
 // CocoaAsyncSocket
 #define COCOAPODS_POD_AVAILABLE_CocoaAsyncSocket
 #define COCOAPODS_VERSION_MAJOR_CocoaAsyncSocket 7
@@ -93,6 +99,12 @@
 #define COCOAPODS_VERSION_MINOR_FMDB_standard 3
 #define COCOAPODS_VERSION_PATCH_FMDB_standard 0
 
+// KeychainItemWrapper
+#define COCOAPODS_POD_AVAILABLE_KeychainItemWrapper
+#define COCOAPODS_VERSION_MAJOR_KeychainItemWrapper 1
+#define COCOAPODS_VERSION_MINOR_KeychainItemWrapper 2
+#define COCOAPODS_VERSION_PATCH_KeychainItemWrapper 0
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3
@@ -104,6 +116,12 @@
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
+
+// UIView+PartialRoundedCorner
+#define COCOAPODS_POD_AVAILABLE_UIView_PartialRoundedCorner
+#define COCOAPODS_VERSION_MAJOR_UIView_PartialRoundedCorner 1
+#define COCOAPODS_VERSION_MINOR_UIView_PartialRoundedCorner 0
+#define COCOAPODS_VERSION_PATCH_UIView_PartialRoundedCorner 0
 
 // XMPPFramework
 #define COCOAPODS_POD_AVAILABLE_XMPPFramework

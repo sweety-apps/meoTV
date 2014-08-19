@@ -17,6 +17,7 @@
 #pragma mark - 通知名
 #define kReceiveTextMsg @"kReceiveTextMsg"
 #define kReceiveEmotionMsg @"kReceiveEmotionMsg"
+#define kReceiveMoveEnd @"kReceiveMoveEnd"
 
 #pragma mark - 手指移动不发送范围矩形的边长
 #define kNotSendSquire 3
@@ -40,6 +41,18 @@
 
 #pragma mark - 接受照片的尺寸
 
+#pragma mark - 数据库版本号
+#define kDBVersion @"1"
 
+#pragma mark - keychain的组名
+#define keychainGroup @"szkldinc"
+
+#pragma mark - 表结构
+//发送图片历史表
+#define kPicHistory @[@"from",@"url",@"time"]
+#define kPicHistoryColumnsType @[@"VARCHAR",@"VARCHAR",@"DATETIME"]
+
+#pragma mark - 表名 
+#define kPicTableName @"kPicTableName"
 
 #endif

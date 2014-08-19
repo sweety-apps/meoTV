@@ -2,8 +2,8 @@
 //  NotificationCompent.m
 //  zaime
 //
-//  Created by NPHD on 14-8-4.
-//  Copyright (c) 2014年 NPHD. All rights reserved.
+//  Created by 1528 MAC on 14-8-7.
+//  Copyright (c) 2014年 kld. All rights reserved.
 //
 
 #import "NotificationCompent.h"

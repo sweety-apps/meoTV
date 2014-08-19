@@ -87,6 +87,9 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
         case MessageImage:
             typeStr = @"image";
             break;
+        case MEssageMoveEnd:
+            typeStr = @"touchend";
+            break;
         default:
             break;
     }
@@ -224,7 +227,6 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
 }
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
-    NSLog(@"%@",message);
     NSString *body = message.body;
    NSString *kind = [[message attributeForName:@"kind"] stringValue];
     if([kind isEqualToString:@"text"])
@@ -233,6 +235,9 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
     }else if([kind isEqualToString:@"emotion"])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:kReceiveEmotionMsg object:body];
+    }else if([kind isEqualToString:@"touchend"])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kReceiveMoveEnd object:body];
     }
    
 }

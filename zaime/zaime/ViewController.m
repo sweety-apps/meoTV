@@ -20,7 +20,14 @@
 #import "UIImageView+WebCache.h"
 #import "YLProgressBar.h"
 #import "DownloadEmotion.h"
-
+#import "Common.h"
+#import "KLDDatabase.h"
+//#import "MyView.h"
+//#import "ACEDrawingView.h"
+#define kLoginUserName @"a"
+#define kConnectUserName @"zhao"
+#import "KSDCanvas.h"
+#define SYSTEMFONT(x) [UIFont systemFontOfSize:(x)]
 @interface ViewController ()
 {
     UIImageView *view ;
@@ -36,29 +43,41 @@
     PhotoStackView *photoStackView;
     
     int picSize;
-    NSArray *_photos;
+    NSMutableArray *_photos;
+    KSDCanvas *drawView;
+    
+    CGPoint lastReceivePoint;
+    
 }
 @end
 
 @implementation ViewController
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    UIPanGestureRecognizer *swipe = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
-    [self.view addGestureRecognizer:swipe];
+    
+    lastReceivePoint = CGPointMake(-1, -1);
+    
+    //UIPanGestureRecognizer *swipe = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    //[self.view addGestureRecognizer:swipe];
     [[XMPPClient sharedInstance] setupStream];
-    [[XMPPClient sharedInstance] connectWithAccount:@"a" pwd:@"123321"];
+    [[XMPPClient sharedInstance] connectWithAccount:kLoginUserName pwd:@"123321"];
+   // [[XMPPClient sharedInstance] registerWithAccount:@"xf" password:@"123321"];
+    [Common sharedInstance].username = kLoginUserName;
     currentPoint = CGPointZero;
     othersidePoint = CGPointZero;
     lastPoint = CGPointZero;
     lastTime = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMsg:) name:kReceiveTextMsg object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMoveEnd:) name:kReceiveMoveEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveEmotion:) name:kReceiveEmotionMsg object:nil];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    btn.frame = CGRectMake(100, 100, 100, 60);
-    [btn addTarget:self action:@selector(sendEmotion) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = CGRectMake(20, 60, 60, 60);
+    [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn];
     btn.backgroundColor  = [UIColor greenColor];
     
@@ -82,14 +101,51 @@
 //    _progressBar.stripesColor = [UIColor blueColor];
 //    [self.view addSubview:_progressBar];
     picSize = 80;
-    photoStackView = [[PhotoStackView alloc]initWithFrame:CGRectMake(0, 0, picSize, picSize)];
-    photoStackView.dataSource = self;
-    photoStackView.delegate = self;
-    photoStackView.center = self.view.center;
-    [self.view addSubview:photoStackView];
+//    photoStackView = [[PhotoStackView alloc]initWithFrame:CGRectMake(0, 0, picSize, picSize)];
+//    photoStackView.dataSource = self;
+//    photoStackView.delegate = self;
+//    photoStackView.center = self.view.center;
+//    [self.view addSubview:photoStackView];
     
+    downLoadEmotion = [[DownloadEmotion alloc]init];
+    
+//    [[KLDDatabase sharedInstance] createDbWithName:[Common sharedInstance].username complete:^(NSString *path, BOOL isDbExist) {
+//        NSLog(@"xxx");
+//    }];
+    
+    [[KLDDatabase sharedInstance] createDatabaseAndTables:[Common sharedInstance].username :^{
+        NSLog(@"数据库检查完毕");
+    }];
+    
+    
+    drawView=[[KSDCanvas alloc]initWithFrame:CGRectMake(0, 200, 320, 300)];
+    [drawView setBackgroundColor:RGBCOLOR(101, 129, 90)];
+    ViewController __weak *tmp = self;
+    [drawView setMoveing:^(CGPoint point) {
+        BaseMesage *message = [tmp createMsgWithTo:kConnectUserName from:@"" content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MessageText];
+        [tmp shock];
+        [[XMPPClient sharedInstance] sendMsg:message];
+    }];
+    [self.view addSubview:drawView];
+    [self.view sendSubviewToBack:drawView];
+    [self performSelector:@selector(clear) withObject:nil afterDelay:20];
+}
+- (void)clear
+{
+    [UIView animateWithDuration:2 animations:^{
+        for (UIView *sub in drawView.subviews)
+        {
+            sub.alpha = 0;
+        }
+    } completion:^(BOOL finished) {
+        for (UIView *sub in drawView.subviews)
+        {
+            [sub removeFromSuperview];
+        }
+    }];
+}
+-(void)btnAction:(id)sender{
 
-    
 }
 - (void)dispSendMsg :(NSArray*)results
 {
@@ -110,7 +166,7 @@
 }
 - (void)sendEmotion
 {
-    BaseMesage *message = [self createMsgWithTo:@"a" from:@"" content:@"http://www.gifaaa.com/content/uploadfile/201404/a9351397662960.gif" type:MessageEmotion];
+    BaseMesage *message = [self createMsgWithTo:kConnectUserName from:kLoginUserName content:@"http://www.gifaaa.com/content/uploadfile/201404/a9351397662960.gif" type:MessageEmotion];
    [[XMPPClient sharedInstance] sendMsg:message];
 }
 - (void)showContactList
@@ -128,10 +184,21 @@
 }
 - (void)sendYo
 {
-    [[AFAppDotNetAPIClient sharedClient] POST:kSendMsg parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"推送",@"content",@"zhao",@"to", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFAppDotNetAPIClient sharedClient] POST:kSendMsg parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"推送",@"content",kConnectUserName,@"to", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
           NSLog(@"%@",error);
+    }];
+    
+    [[AFAppDotNetAPIClient sharedClient] POST:@"" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        /*
+           [formData appendPartWithFileData :imageData name:@"1" fileName:@"1.png" mimeType:@"image/jpeg"];
+         */
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
     }];
    
 }
@@ -151,9 +218,12 @@
 {
     NSString *emotion = [noti object];
     [downLoadEmotion downloadWithURLS:[NSArray arrayWithObject:emotion] :^(UIImage *image, NSString *url) {
-        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
-        imageView.frame = CGRectMake(80, 10, 80, 80);
-        [self.view addSubview:imageView];
+        
+        
+//        UIImageView *imageView = [[UIImageView alloc]initWithImage:image];
+//        [self.view addSubview:imageView];
+        [_photos addObject:image];
+        [photoStackView reloadData];
     }];
 }
 - (void)receiveMsg:(NSNotification*)noti
@@ -164,26 +234,37 @@
         float x = [[points objectAtIndex:0] floatValue];
         float y = [[points objectAtIndex:1] floatValue];
         dispatch_async(dispatch_get_main_queue(), ^{
-            if(!view)
-            {
-                view = [[UIImageView alloc]initWithFrame:CGRectMake(kZero, kZero, 32, 32)];
-                view.image = [UIImage imageNamed:@"fingerprint"];
-                [self.view addSubview:view];
-            }
-            [UIView animateWithDuration:0.1 animations:^{
-                 view.center = CGPointMake(x, y);
-            } completion:nil];
-           
+//            if(!view)
+//            {
+//                view = [[UIImageView alloc]initWithFrame:CGRectMake(kZero, kZero, 32, 32)];
+//                view.image = [UIImage imageNamed:@"fingerprint"];
+//                [self.view addSubview:view];
+//            }
+//           // [UIView animateWithDuration:0.1 animations:^{
+//                 view.center = CGPointMake(x, y);
+//           // } completion:nil];
+//            if(i < 3)
+//            {
+//                [drawView receivePoint:CGPointMake(x, y)];
+//                i++;
+//            }else
+//            {
+//                i = 0;
+            CGPoint rpoint = CGPointMake(x, y);
+           // [drawView receivePoint:rpoint];
             othersidePoint = view.center;
+            UIView *aview = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+            aview.center = rpoint;
+            aview.backgroundColor = [UIColor redColor];
+            [drawView addSubview:aview];
             [self shock];
         });
         
     });
-   
     
-    
-    
-    
+}
+- (void)receiveMoveEnd :(NSNotification*)noti
+{
 }
 - (BaseMesage*)createMsgWithTo :(NSString*)to from:(NSString*)from content:(NSString*)content type:(MessageType)type
 {
@@ -198,13 +279,14 @@
 -(NSArray *)photos {
     if(!_photos) {
         
-        _photos = [NSArray arrayWithObjects:
-                   [UIImage imageNamed:@"photo1.jpg"],
-                   [UIImage imageNamed:@"photo2.jpg"],
-                   [UIImage imageNamed:@"photo3.jpg"],
-                   [UIImage imageNamed:@"photo4.jpg"],
-                   [UIImage imageNamed:@"photo5.jpg"],
-                   nil];
+        _photos = [[NSMutableArray alloc]init];
+//        _photos = [NSArray arrayWithObjects:
+//                   [UIImage imageNamed:@"photo1.jpg"],
+//                   [UIImage imageNamed:@"photo2.jpg"],
+//                   [UIImage imageNamed:@"photo3.jpg"],
+//                   [UIImage imageNamed:@"photo4.jpg"],
+//                   [UIImage imageNamed:@"photo5.jpg"],
+//                   nil];
         
     }
     return _photos;
@@ -221,11 +303,11 @@
         offsety = abs(offsety);
         offsetx = abs(offsetx);
          currentPoint = point;
-        if(offsetx >= kNotSendSquire && offsety >= kNotSendSquire && (([[NSDate date] timeIntervalSince1970]-lastTime)*1000>kSendMsgInterval || lastTime == 0))
+        if(/*offsetx >= kNotSendSquire && offsety >= kNotSendSquire && (([[NSDate date] timeIntervalSince1970]-lastTime)*1000>kSendMsgInterval || lastTime == 0)*/YES)
         {
            
             lastPoint = point;
-            BaseMesage *message = [self createMsgWithTo:@"zhao" from:@"" content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MessageText];
+            BaseMesage *message = [self createMsgWithTo:kConnectUserName from:@"" content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MessageText];
             [self shock];
             dispatch_async(dispatch_get_main_queue(), ^{
                 lastTime = [[NSDate date] timeIntervalSince1970];
@@ -248,7 +330,7 @@
 }
 - (NSUInteger)numberOfPhotosInPhotoStackView:(PhotoStackView *)photoStack
 {
-    return 5;
+    return [[self photos] count];
 }
 - (UIImage *)photoStackView:(PhotoStackView *)photoStack photoForIndex:(NSUInteger)index
 {

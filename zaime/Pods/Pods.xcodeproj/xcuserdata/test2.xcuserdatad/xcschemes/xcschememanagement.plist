@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-BOSImageResizeOperation.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-CocoaAsyncSocket.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -24,7 +29,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-KeychainItemWrapper.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-UIView+PartialRoundedCorner.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -47,42 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>184A7DA2BC93414E9CFEAC39</key>
+		<key>21B907F3AFFC4105A0695405</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2AACE3446CBD426597B3433D</key>
+		<key>2619CDA4E74846A3B19CFAEE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>389A203609D641229CBE026D</key>
+		<key>37D0541F99A643EC9A3FE4FB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>453168800BC54DE0A9131FDB</key>
+		<key>3C531C40934246BAAD312933</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5294709DFFFE49D99D7D0405</key>
+		<key>467CF16F4A0C4316912C3E99</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A0262E6379234194BD0D45F4</key>
+		<key>48349632F04743D984F0B8FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CC096FB8FDB04B0E9B5D0DF1</key>
+		<key>57AF0A01C03441C18F868E91</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E3BD3C647B0F4C46BFCE800E</key>
+		<key>66A0311E793844B9981A8D19</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6D2D8F2F6BC6489EB0F94141</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7C092D27A6BD40C497A78BD7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ACE427A687CE4E0F80438AA9</key>
 		<dict>
 			<key>primary</key>
 			<true/>

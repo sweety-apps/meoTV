@@ -13,7 +13,8 @@ typedef enum
     MessageText,
     MessageImage,
     MessageAudion,
-    MessageEmotion
+    MessageEmotion,
+    MEssageMoveEnd
     
 }MessageType;
 
