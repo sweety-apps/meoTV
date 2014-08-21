@@ -30,6 +30,9 @@
 		9322A000199B544E00C75A77 /* photo5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93229FFA199B544E00C75A77 /* photo5.jpg */; };
 		932BBDB21994670700C46EB5 /* XMPPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 932BBDB11994670700C46EB5 /* XMPPClient.m */; };
 		932BBDB71994687A00C46EB5 /* BaseMesage.m in Sources */ = {isa = PBXBuildFile; fileRef = 932BBDB61994687A00C46EB5 /* BaseMesage.m */; };
+		932DDABC19A4846000AE3ABF /* EmotionBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DDABB19A4846000AE3ABF /* EmotionBoard.m */; };
+		932DDAC119A4AE6D00AE3ABF /* DRNRealTimeBlurView.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DDABE19A4AE6D00AE3ABF /* DRNRealTimeBlurView.m */; };
+		932DDAC219A4AE6D00AE3ABF /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DDAC019A4AE6D00AE3ABF /* UIImage+BoxBlur.m */; };
 		93331B9619988CFC008AD730 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93331B9519988CFC008AD730 /* PushConfig.plist */; };
 		9334FB02199C5BF700A4BC4C /* KLDDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9334FB01199C5BF700A4BC4C /* KLDDatabase.m */; };
 		9334FB05199C610100A4BC4C /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 9334FB04199C610100A4BC4C /* Common.m */; };
@@ -48,6 +51,7 @@
 		93BBF2621998A6E7005BD823 /* libPushSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93BBF2611998A6E7005BD823 /* libPushSDK.a */; };
 		93BBF2651998B6D5005BD823 /* AFAppDotNetAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 93BBF2641998B6D5005BD823 /* AFAppDotNetAPIClient.m */; };
 		93C7F50019A355FF002DE9CC /* KSDCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 93C7F4FF19A355FE002DE9CC /* KSDCanvas.m */; };
+		93D1577519A5961400EAF292 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 93D1577419A5961400EAF292 /* MyView.m */; };
 		93FB5C561998C1FC00B90FB6 /* NotificationCompent.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C551998C1FC00B90FB6 /* NotificationCompent.m */; };
 		93FB5C591998C26100B90FB6 /* ContactListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C581998C26100B90FB6 /* ContactListController.m */; };
 		93FB5C601998C58200B90FB6 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = 93FB5C5E1998C58200B90FB6 /* pinyin.c */; };
@@ -105,6 +109,12 @@
 		932BBDB51994687A00C46EB5 /* BaseMesage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMesage.h; sourceTree = "<group>"; };
 		932BBDB61994687A00C46EB5 /* BaseMesage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMesage.m; sourceTree = "<group>"; };
 		932BBDB819946D3600C46EB5 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		932DDABA19A4846000AE3ABF /* EmotionBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmotionBoard.h; sourceTree = "<group>"; };
+		932DDABB19A4846000AE3ABF /* EmotionBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmotionBoard.m; sourceTree = "<group>"; };
+		932DDABD19A4AE6D00AE3ABF /* DRNRealTimeBlurView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DRNRealTimeBlurView.h; sourceTree = "<group>"; };
+		932DDABE19A4AE6D00AE3ABF /* DRNRealTimeBlurView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DRNRealTimeBlurView.m; sourceTree = "<group>"; };
+		932DDABF19A4AE6D00AE3ABF /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BoxBlur.h"; sourceTree = "<group>"; };
+		932DDAC019A4AE6D00AE3ABF /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
 		93331B9519988CFC008AD730 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		9334FB00199C5BF700A4BC4C /* KLDDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLDDatabase.h; sourceTree = "<group>"; };
 		9334FB01199C5BF700A4BC4C /* KLDDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLDDatabase.m; sourceTree = "<group>"; };
@@ -130,6 +140,8 @@
 		93BBF2641998B6D5005BD823 /* AFAppDotNetAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFAppDotNetAPIClient.m; sourceTree = "<group>"; };
 		93C7F4FE19A355FE002DE9CC /* KSDCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDCanvas.h; sourceTree = "<group>"; };
 		93C7F4FF19A355FE002DE9CC /* KSDCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSDCanvas.m; sourceTree = "<group>"; };
+		93D1577319A5961400EAF292 /* MyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
+		93D1577419A5961400EAF292 /* MyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
 		93FB5C541998C1FC00B90FB6 /* NotificationCompent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCompent.h; sourceTree = "<group>"; };
 		93FB5C551998C1FC00B90FB6 /* NotificationCompent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCompent.m; sourceTree = "<group>"; };
 		93FB5C571998C26100B90FB6 /* ContactListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactListController.h; sourceTree = "<group>"; };
@@ -347,6 +359,12 @@
 		93FB5C531998C1FC00B90FB6 /* compent */ = {
 			isa = PBXGroup;
 			children = (
+				93D1577319A5961400EAF292 /* MyView.h */,
+				93D1577419A5961400EAF292 /* MyView.m */,
+				932DDABD19A4AE6D00AE3ABF /* DRNRealTimeBlurView.h */,
+				932DDABE19A4AE6D00AE3ABF /* DRNRealTimeBlurView.m */,
+				932DDABF19A4AE6D00AE3ABF /* UIImage+BoxBlur.h */,
+				932DDAC019A4AE6D00AE3ABF /* UIImage+BoxBlur.m */,
 				93229FF3199B508E00C75A77 /* PhotoStackView.h */,
 				93229FF4199B508E00C75A77 /* PhotoStackView.m */,
 				93FB5C541998C1FC00B90FB6 /* NotificationCompent.h */,
@@ -355,6 +373,8 @@
 				9341AB16199A17A90055076D /* KLDAFImageCache.m */,
 				93C7F4FE19A355FE002DE9CC /* KSDCanvas.h */,
 				93C7F4FF19A355FE002DE9CC /* KSDCanvas.m */,
+				932DDABA19A4846000AE3ABF /* EmotionBoard.h */,
+				932DDABB19A4846000AE3ABF /* EmotionBoard.m */,
 			);
 			path = compent;
 			sourceTree = "<group>";
@@ -538,6 +558,7 @@
 				93229FF2199B119800C75A77 /* DownloadEmotion.m in Sources */,
 				93FB5C6C1998C5C800B90FB6 /* APContact.m in Sources */,
 				932BBDB71994687A00C46EB5 /* BaseMesage.m in Sources */,
+				932DDAC219A4AE6D00AE3ABF /* UIImage+BoxBlur.m in Sources */,
 				930D65C71993818E003A069D /* AppDelegate.m in Sources */,
 				9334FB05199C610100A4BC4C /* Common.m in Sources */,
 				93C7F50019A355FF002DE9CC /* KSDCanvas.m in Sources */,
@@ -548,11 +569,14 @@
 				930D65C31993818E003A069D /* main.m in Sources */,
 				93BBF2651998B6D5005BD823 /* AFAppDotNetAPIClient.m in Sources */,
 				9341AB17199A17A90055076D /* KLDAFImageCache.m in Sources */,
+				932DDAC119A4AE6D00AE3ABF /* DRNRealTimeBlurView.m in Sources */,
 				9334FB02199C5BF700A4BC4C /* KLDDatabase.m in Sources */,
 				93FB5C6B1998C5C800B90FB6 /* APAddressBook.m in Sources */,
 				93FB5C601998C58200B90FB6 /* pinyin.c in Sources */,
+				93D1577519A5961400EAF292 /* MyView.m in Sources */,
 				93FB5C591998C26100B90FB6 /* ContactListController.m in Sources */,
 				932BBDB21994670700C46EB5 /* XMPPClient.m in Sources */,
+				932DDABC19A4846000AE3ABF /* EmotionBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

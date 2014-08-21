@@ -12,6 +12,10 @@ typedef void(^MovingAction)(CGPoint point);
 @interface KSDCanvas : UIView
 {
     MovingAction moving;
+    NSTimeInterval lastInvoke;
+    NSMutableArray *data;
+    NSMutableArray *points;
 }
 - (void)setMoveing:(MovingAction)actio;
+- (void)addPoint :(CGPoint)point;
 @end

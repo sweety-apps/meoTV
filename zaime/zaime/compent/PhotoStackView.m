@@ -338,10 +338,13 @@ static CGFloat const PhotoRotationOffsetDefault = 4.0f;
             }
             UIImageView *photoImageView     = [[UIImageView alloc] initWithFrame:(CGRect){CGPointZero, imageSize}];
             photoImageView.image            = image;
+ 
             UIView *view                    = [[UIView alloc] initWithFrame:photoImageView.frame];
             view.layer.rasterizationScale   = [[UIScreen mainScreen] scale];            
             view.layer.shouldRasterize      = YES; // rasterize the view for faster drawing and smooth edges
-
+            CGAffineTransform at =CGAffineTransformMakeRotation(M_PI/2);
+            
+            [view setTransform:at];
             if (self.showBorder) {
                 
                 // Add the background image

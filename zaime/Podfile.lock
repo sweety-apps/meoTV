@@ -34,6 +34,7 @@ PODS:
   - FMDB/standard (2.3):
     - FMDB/common
   - KeychainItemWrapper (1.2)
+  - MSWeakTimer (1.1.0)
   - SDWebImage (3.7.1):
     - SDWebImage/Core
   - SDWebImage/Core (3.7.1)
@@ -76,6 +77,8 @@ PODS:
     - XMPPFramework/XEP-0224
     - XMPPFramework/XEP-0297
     - XMPPFramework/XEP-0308
+    - XMPPFramework/XEP-0333
+    - XMPPFramework/XEP-0335
   - XMPPFramework/Authentication (3.6.4):
     - XMPPFramework/Core
   - XMPPFramework/BandwidthMonitor (3.6.4):
@@ -166,7 +169,12 @@ PODS:
     - XMPPFramework/Core
   - XMPPFramework/XEP-0297 (3.6.4):
     - XMPPFramework/Core
+    - XMPPFramework/XEP-0203
   - XMPPFramework/XEP-0308 (3.6.4):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0333 (3.6.4):
+    - XMPPFramework/Core
+  - XMPPFramework/XEP-0335 (3.6.4):
     - XMPPFramework/Core
   - YLProgressBar (3.1.1)
 
@@ -175,6 +183,7 @@ DEPENDENCIES:
   - BOSImageResizeOperation (~> 0.1.0)
   - FMDB (~> 2.3)
   - KeychainItemWrapper (~> 1.2)
+  - MSWeakTimer (~> 1.1.0)
   - SDWebImage (~> 3.7.1)
   - UIView+PartialRoundedCorner (~> 1.0.0)
   - XMPPFramework (~> 3.6.4)
@@ -187,9 +196,10 @@ SPEC CHECKSUMS:
   CocoaLumberjack: baf4a09a3bcbdfea3363556a90104e026d3504e2
   FMDB: 31ec26773c7f7b7890a6038235a1f2bbd933a7cb
   KeychainItemWrapper: 577e9e920185892873ded075b8ceb730bebdfd91
+  MSWeakTimer: 6bd071c058fd49daa62013e4ae70caf61d0f2dc2
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   UIView+PartialRoundedCorner: 36b024da40e9a7f163766384bdf47c57dfa2d902
-  XMPPFramework: 15ca7fcceb7d22c2580ecf6f6e69744dbe2ba25b
+  XMPPFramework: b2c73f624071c174b9ac5eb696d56f66f9fe7a57
   YLProgressBar: bd53df90621e5c5d2fb97fab3b1ef76efcce61b2
 
 COCOAPODS: 0.33.1
