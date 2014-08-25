@@ -11,7 +11,7 @@
 #import "XMPPFramework.h"
 #import "XMPPReconnect.h"
 #import "BaseMesage.h"
-@interface XMPPClient : NSObject
+@interface KSDXMPPClient : NSObject
 {
     XMPPStream *xmppStream;
 	XMPPReconnect *xmppReconnect;

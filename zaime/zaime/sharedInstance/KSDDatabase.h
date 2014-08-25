@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FMDB.h"
 typedef void(^CreateComplete)(void);
-@interface KLDDatabase : NSObject
+@interface KSDDatabase : NSObject
 {
     FMDatabaseQueue *queue;
     NSString *dbName;

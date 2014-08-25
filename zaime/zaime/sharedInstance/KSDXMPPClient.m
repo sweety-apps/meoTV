@@ -6,13 +6,13 @@
 //  Copyright (c) 2014年 kld. All rights reserved.
 //
 
-#import "XMPPClient.h"
+#import "KSDXMPPClient.h"
 #import "XMPP.h"
 #import "SharedInstanceGCD.h"
 #import "config.h"
 #import "XMPPReconnect.h"
 #import "XMPPStream.h"
-@implementation XMPPClient
+@implementation KSDXMPPClient
 @synthesize xmppStream;
 @synthesize xmppReconnect;
 SHARED_INSTANCE_GCD_USING_BLOCK(^{

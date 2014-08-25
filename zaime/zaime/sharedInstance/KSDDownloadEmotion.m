@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 kld. All rights reserved.
 //
 
-#import "DownloadEmotion.h"
+#import "KSDDownloadEmotion.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-@implementation DownloadEmotion
+@implementation KSDDownloadEmotion
 
 - (id)init
 {

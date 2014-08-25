@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DownloadEmotion : NSObject
+@interface KSDDownloadEmotion : NSObject
 {
     NSMutableArray *results;
 }

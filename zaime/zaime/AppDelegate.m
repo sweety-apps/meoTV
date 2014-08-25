@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "XMPPClient.h"
+#import "KSDXMPPClient.h"
 #import "ViewController.h"
 #import "APService.h"
 
@@ -29,19 +29,19 @@
 }
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
     
-    // Required
     [APService registerDeviceToken:deviceToken];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
     
     // Required
+    NSLog(@"%@->1",userInfo);
     [APService handleRemoteNotification:userInfo];
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     
-    
+    NSLog(@"%@->2",userInfo);
     // IOS 7 Support Required
     [APService handleRemoteNotification:userInfo];
     completionHandler(UIBackgroundFetchResultNewData);

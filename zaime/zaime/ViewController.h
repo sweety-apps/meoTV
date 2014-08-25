@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
-#import "PhotoStackView.h"
+#import "KSDPhotoStackView.h"
 @interface ViewController : UIViewController<MFMessageComposeViewControllerDelegate,PhotoStackViewDataSource,PhotoStackViewDelegate>
 
 

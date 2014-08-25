@@ -7,11 +7,11 @@
 //
 
 #import "ViewController.h"
-#import "XMPPClient.h"
+#import "KSDXMPPClient.h"
 #import "BaseMesage.h"
 #import "config.h"
 #import <AVFoundation/AVFoundation.h>
-#import "AFAppDotNetAPIClient.h"
+#import "KSDAFClient.h"
 #import "APAddressBook.h"
 #import "ContactListController.h"
 #import "UIImageView+AFNetworking.h"
@@ -19,16 +19,21 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "UIImageView+WebCache.h"
 #import "YLProgressBar.h"
-#import "DownloadEmotion.h"
+#import "KSDDownloadEmotion.h"
 #import "Common.h"
-#import "KLDDatabase.h"
-#import "EmotionBoard.h"
+#import "KSDDatabase.h"
+#import "KSDEmotionBoard.h"
+#import "KSDLiveBlurView.h"
+#import "KSDCanvas.h"
+#import "KSDDrawView.h"
+#import "KSDIMStatus.h"
+#import "UIView+PartialRoundedCorner.h"
+#import "BOSImageResizeOperation.h"
+#import "KSDShotScreen.h"
+#import "KSDImageResize.h"
 #define kLoginUserName @"zhao"
 #define kConnectUserName @"a"
-#import "KSDCanvas.h"
-#define SYSTEMFONT(x) [UIFont systemFontOfSize:(x)]
-#import "DRNRealTimeBlurView.h"
-#import "MyView.h"
+
 @interface ViewController ()
 {
     UIImageView *view ;
@@ -38,15 +43,18 @@
     NSProgress *progress;
     APAddressBook *addressBook;
     YLProgressBar *_progressBar;
-    DownloadEmotion *downLoadEmotion;
-    PhotoStackView *photoStackView;
+    KSDDownloadEmotion *downLoadEmotion;
+    KSDPhotoStackView *photoStackView;
     
     int picSize;
     NSMutableArray *_photos;
-    MyView *drawView;
+    KSDDrawView *drawView;
     
     CGPoint lastReceivePoint;
-    EmotionBoard *board;
+    KSDEmotionBoard *board;
+    
+    __block BOSImageResizeOperation *op;
+
     
 }
 @property(nonatomic,assign) NSTimeInterval lastTime;
@@ -67,8 +75,8 @@
     
     //UIPanGestureRecognizer *swipe = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
     //[self.view addGestureRecognizer:swipe];
-    [[XMPPClient sharedInstance] setupStream];
-    [[XMPPClient sharedInstance] connectWithAccount:kLoginUserName pwd:@"123321"];
+    [[KSDXMPPClient sharedInstance] setupStream];
+    [[KSDXMPPClient sharedInstance] connectWithAccount:kLoginUserName pwd:@"123321"];
    // [[XMPPClient sharedInstance] registerWithAccount:@"xf" password:@"123321"];
     [Common sharedInstance].username = kLoginUserName;
     self.currentPoint = CGPointZero;
@@ -84,7 +92,7 @@
     btn.backgroundColor  = [UIColor greenColor];
     
     
-    [[AFAppDotNetAPIClient sharedClient] POST:kFetchFriendLists parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"18617149851",@"owner", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[KSDAFClient sharedClient] POST:kFetchFriendLists parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"18617149851",@"owner", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"%@",error);
@@ -102,55 +110,99 @@
 //    _progressBar.type = YLProgressBarTypeFlat;
 //    _progressBar.stripesColor = [UIColor blueColor];
 //    [self.view addSubview:_progressBar];
-    photoStackView = [[PhotoStackView alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];
+    photoStackView = [[KSDPhotoStackView alloc]initWithFrame:CGRectMake(0, 0, 300, 300)];
     photoStackView.dataSource = self;
     photoStackView.delegate = self;
-    photoStackView.center = CGPointMake(40, 40);
+    photoStackView.center = CGPointMake(0, 0);
    // [self.view addSubview:photoStackView];
     
-    downLoadEmotion = [[DownloadEmotion alloc]init];
+    downLoadEmotion = [[KSDDownloadEmotion alloc]init];
     
-//    [[KLDDatabase sharedInstance] createDbWithName:[Common sharedInstance].username complete:^(NSString *path, BOOL isDbExist) {
-//        NSLog(@"xxx");
-//    }];
     
-    [[KLDDatabase sharedInstance] createDatabaseAndTables:[Common sharedInstance].username :^{
+    [[KSDDatabase sharedInstance] createDatabaseAndTables:[Common sharedInstance].username :^{
         NSLog(@"数据库检查完毕");
     }];
     
-    drawView=[[MyView alloc]initWithFrame:CGRectMake(0, 100, 320, 300)];
+    drawView=[[KSDDrawView alloc]initWithFrame:CGRectMake(0, 100, 320, 300)];
     drawView.alpha = 0.8;
-    [drawView setBackgroundColor:RGBCOLOR(30, 114, 153)];
+    [drawView setBackgroundColor:[UIColor clearColor]];
     ViewController __weak *tmp = self;
-//    [drawView setMoveing:^(CGPoint point) {
-//        tmp.currentPoint = point;
-//        if(YES)
-//        {
-//            BaseMesage *message = [tmp createMsgWithTo:kConnectUserName from:@"" content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MessageText];
-//            [tmp shock];
-//            [[XMPPClient sharedInstance] sendMsg:message];
-//        }
-//        tmp.lastTime = [[NSDate date] timeIntervalSince1970];
-//        
-//    }];
     [drawView setMovingAction:^(CGPoint point) {
         tmp.currentPoint = point;
         if(YES)
         {
             BaseMesage *message = [tmp createMsgWithTo:kConnectUserName from:@"" content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MessageText];
             [tmp shock];
-            [[XMPPClient sharedInstance] sendMsg:message];
+            [[KSDXMPPClient sharedInstance] sendMsg:message];
         }
         tmp.lastTime = [[NSDate date] timeIntervalSince1970];
     }];
     drawView.center = self.view.center;
-    [self.view addSubview:drawView];
+    
+    KSDLiveBlurView *backgroundView = [[KSDLiveBlurView alloc] initWithFrame: self.view.bounds];
+    
+    backgroundView.originalImage = [UIImage imageNamed:@"bg1.jpg"];
+    backgroundView.isGlassEffectOn = YES;
+    backgroundView.alpha = 0.4f;
+    
+    
+    [self.view addSubview:backgroundView];
     [self.view addSubview:photoStackView];
-    [self.view sendSubviewToBack:drawView];
+    [self.view addSubview:drawView];
+    
+    
+    [[KSDIMStatus sharedClient] isUserOnline:@"a" :^(BOOL isOnline) {
+        if(isOnline)
+        {
+            NSLog(@"在线");
+        }else
+        {
+            NSLog(@"不在线");
+        }
+    } :^(NSError *error) {
+        NSLog(@"发生错误");
+    }];
+    downLoadEmotion = [[KSDDownloadEmotion alloc]init];
+    [downLoadEmotion downloadWithURLS:@[@"http://atp2.yokacdn.com/20130425/4e/4e0eddc85571a7dc09e77c440405d49a.jpg",@"http://f.hiphotos.bdimg.com/album/w%3D2048/sign=79e911c300e9390156028a3e4fd455e7/ca1349540923dd54537e0e8bd009b3de9d8248c7.jpg"] :^(UIImage *image, NSString *url) {
+        
+        if(!image) return ;
+     
+        CGSize dest = CGSizeZero;
+        if(image.size.width > image.size.height)
+        {
+            dest.height = kAvatarSize;
+            dest.width = image.size.width/(image.size.height/kAvatarSize);
+        }else
+        {
+            dest.width = kAvatarSize;
+            dest.height = image.size.height/(image.size.width/kAvatarSize);
+        }
+        [[KSDImageResize sharedInstance] resizeWithImage:image size:dest handler:^(UIImage *result) {
+            UIImageView *tmpImgView = [[UIImageView alloc] initWithImage:result];
+            UIImage *theImage= [[KSDShotScreen sharedInstance] captureView:tmpImgView frame:CGRectMake((tmpImgView.frame.size.width-kAvatarSize)/2.f,(tmpImgView.frame.size.height-kAvatarSize)/2.f, kAvatarSize, kAvatarSize)];// 切割尺寸
+            UIImageView *_imgPic = [[UIImageView alloc]initWithImage:theImage];
+            [_imgPic setCornerRadius:kAvatarSize/2.f direction:UIViewPartialRoundedCornerDirectionAll];
+            [_imgPic setImage:theImage];
+            CGRect frame = _imgPic.frame;
+            if([url isEqualToString:@"http://f.hiphotos.bdimg.com/album/w%3D2048/sign=79e911c300e9390156028a3e4fd455e7/ca1349540923dd54537e0e8bd009b3de9d8248c7.jpg"])
+            {
+                frame.origin.y = [[UIScreen mainScreen] bounds].size.height-90;
+            }else
+            {
+                frame.origin.y = 20;
+            }
+            frame.origin.x = (320-_imgPic.frame.size.width)/2.f+15;
+            
+            _imgPic.frame = frame;
+            [self.view insertSubview:_imgPic belowSubview:photoStackView];
+        }];
+       
+    }];
 }
+
 /*- (void)showHideLoop
 {
-    
+ 
     //show aniamtion
     [UIView animateWithDuration:1 animations:^{
         dr.alpha = 1.f;
@@ -194,7 +246,7 @@
     }];
 }
 -(void)btnAction:(id)sender{
-    board = [[EmotionBoard alloc]initWithFrame:CGRectMake(20, 20, 60, 60)];
+    board = [[KSDEmotionBoard alloc]initWithFrame:CGRectMake(20, 20, 60, 60)];
     [self.view addSubview:board];
     [board show];
 }
@@ -218,7 +270,7 @@
 - (void)sendEmotion
 {
     BaseMesage *message = [self createMsgWithTo:kConnectUserName from:kLoginUserName content:@"http://www.gifaaa.com/content/uploadfile/201404/a9351397662960.gif" type:MessageEmotion];
-   [[XMPPClient sharedInstance] sendMsg:message];
+   [[KSDXMPPClient sharedInstance] sendMsg:message];
 }
 - (void)showContactList
 {
@@ -235,13 +287,13 @@
 }
 - (void)sendYo
 {
-    [[AFAppDotNetAPIClient sharedClient] POST:kSendMsg parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"推送",@"content",kConnectUserName,@"to", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[KSDAFClient sharedClient] POST:kSendMsg parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"推送",@"content",kConnectUserName,@"to", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
         NSLog(@"%@",responseObject);
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
           NSLog(@"%@",error);
     }];
     
-    [[AFAppDotNetAPIClient sharedClient] POST:@"" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    [[KSDAFClient sharedClient] POST:@"" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
         
         /*
            [formData appendPartWithFileData :imageData name:@"1" fileName:@"1.png" mimeType:@"image/jpeg"];
@@ -333,11 +385,11 @@
 {
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
-- (NSUInteger)numberOfPhotosInPhotoStackView:(PhotoStackView *)photoStack
+- (NSUInteger)numberOfPhotosInPhotoStackView:(KSDPhotoStackView *)photoStack
 {
     return [[self photos] count];
 }
-- (UIImage *)photoStackView:(PhotoStackView *)photoStack photoForIndex:(NSUInteger)index
+- (UIImage *)photoStackView:(KSDPhotoStackView *)photoStack photoForIndex:(NSUInteger)index
 {
    return  [[self photos] objectAtIndex:index];
 }
@@ -346,7 +398,7 @@
 //    return CGSizeMake(picSize, picSize);
 //}
 #pragma mark - 照片浏览的委托
--(void)photoStackView:(PhotoStackView *)aphotoStackView didSelectPhotoAtIndex:(NSUInteger)index
+-(void)photoStackView:(KSDPhotoStackView *)aphotoStackView didSelectPhotoAtIndex:(NSUInteger)index
 {
 //    UIImage *image = [_photos objectAtIndex:index];
 //    UIImageView *imageView = [[UIImageView alloc]initWithImage:image];

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 kld. All rights reserved.
 //
 
-#import "MyView.h"
+#import "KSDDrawView.h"
 #import "MSWeakTimer.h"
-@interface MyView()
+@interface KSDDrawView()
 {
      NSTimeInterval lastInvoke;
     CGFloat alaph;
@@ -18,30 +18,8 @@
 @property (strong, nonatomic) dispatch_queue_t privateQueue;
 
 @end
-@implementation MyView
-//保存线条颜色
-static NSMutableArray *colorArray;
-//保存被移除的线条颜色
-static NSMutableArray *deleColorArray;
-//每次触摸结束前经过的点，形成线的点数组
-static NSMutableArray *pointArray;
-static NSMutableArray *receivePointArray;
-//每次触摸结束后的线数组
-static NSMutableArray *lineArray;
-//删除的线的数组，方便重做时取出来
-static NSMutableArray *deleArray;
-//线条宽度的数组
-static float lineWidthArray[4]={10.0,20.0,30.0,40.0};
-//删除线条时删除的线条宽度储存的数组
-static NSMutableArray *deleWidthArray;
-//正常存储的线条宽度的数组
-static NSMutableArray *WidthArray;
-//确定颜色的值，将颜色计数的值存到数组里默认为0，即为绿色
-static int colorCount;
-//确定宽度的值，将宽度计数的值存到数组里默认为0，即为10
-static int widthCount;
-//保存颜色的数组
-static NSMutableArray *colors;
+@implementation KSDDrawView
+static float lineWidthArray[4] = {10.0,20.0,30.0,40.0};
 - (id)init
 {
     self = [super init];
@@ -55,8 +33,6 @@ static NSMutableArray *colors;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        //初始化颜色数组，将用到的颜色存储到数组里
-        colors=[[NSMutableArray alloc]initWithObjects:[UIColor greenColor],[UIColor blueColor],[UIColor redColor],[UIColor blackColor],[UIColor whiteColor], nil];
         WidthArray=[[NSMutableArray alloc]init];
         deleWidthArray=[[NSMutableArray alloc]init];
         pointArray=[[NSMutableArray alloc]init];
@@ -64,12 +40,11 @@ static NSMutableArray *colors;
         lineArray=[[NSMutableArray alloc]init];
         deleArray=[[NSMutableArray alloc]init];
         colorArray=[[NSMutableArray alloc]init];
+        colors = [[NSMutableArray alloc]initWithObjects:[UIColor blackColor],[UIColor greenColor],[UIColor blueColor],[UIColor redColor],[UIColor whiteColor], nil];
         deleColorArray=[[NSMutableArray alloc]init];
-        //颜色和宽度默认都取当前数组第0位为默认值
         colorCount=0;
         widthCount=0;
         lastReceivePoint = CGPointMake(-1, -1);
-        // Initialization code
         
         self.privateQueue = dispatch_queue_create("com.mindsnacks.private_queue", DISPATCH_QUEUE_CONCURRENT);
         
@@ -121,8 +96,9 @@ static NSMutableArray *colors;
     });
 }
 //给界面按钮操作时获取tag值作为width的计数。来确定宽度，颜色同理
--(void)setlineWidth:(NSInteger)width{
-    widthCount=width;
+-(void)setlineWidth:(PenWidthType)type
+{
+    widthCount = type;
 }
 - (void)setMovingAction:(KSDMovingAction)action
 {
@@ -144,8 +120,9 @@ static NSMutableArray *colors;
         
     });
 }
--(void)setLineColor:(NSInteger)color{
-    colorCount=color;
+-(void)setLineColor:(ColorType)type
+{
+    colorCount = type;
 }
 - (void)drawLine :(NSArray*)source :(NSInteger)width :(UIColor*)color :(CGContextRef)context
 {
@@ -157,11 +134,9 @@ static NSMutableArray *colors;
     for (int j=0; j<[source count]-1; j++)
     {
         CGPoint myEndPoint=CGPointFromString([source objectAtIndex:j+1]);
-        //--------------------------------------------------------
         CGContextAddLineToPoint(context, myEndPoint.x,myEndPoint.y);
     }
-    CGContextSetStrokeColorWithColor(context,[UIColor whiteColor].CGColor);
-    //-------------------------------------------------------
+    CGContextSetStrokeColorWithColor(context,color.CGColor);
     CGContextSetLineWidth(context, width);
     CGContextStrokePath(context);
     
@@ -175,7 +150,7 @@ static NSMutableArray *colors;
             NSArray * array=[NSArray arrayWithArray:[lineArray objectAtIndex:i]];
             if ([array count]>0)
             {
-                [self drawLine:array :10 :[UIColor greenColor] :context];
+                [self drawLine:array :lineWidthArray[widthCount] :colors[colorCount] :context];
             }
         }
     }
@@ -184,19 +159,19 @@ static NSMutableArray *colors;
 {
     CGContextRef context=UIGraphicsGetCurrentContext();
     CGContextBeginPath(context);
-    CGContextSetLineWidth(context, 10.0f);
+    CGContextSetLineWidth(context, lineWidthArray[widthCount]);
     CGContextSetLineJoin(context,kCGLineJoinRound);
     CGContextSetLineCap(context, kCGLineCapRound);
     [self reDrawHistory:context];
 
     if ([pointArray count]>0)
     {
-        [self drawLine :pointArray:10 :[UIColor greenColor] :context];
+        [self drawLine :pointArray:lineWidthArray[widthCount] :colors[colorCount] :context];
     }
     
     if ([receivePointArray count]>0)
     {
-        [self drawLine:receivePointArray:10 :[UIColor greenColor] :context];
+        [self drawLine:receivePointArray:lineWidthArray[widthCount] :colors[colorCount] :context];
     }
 
      
@@ -208,9 +183,8 @@ static NSMutableArray *colors;
 }
 //在touchend时，将已经绘制的线条的颜色，宽度，线条线路保存到数组里
 -(void)addLA{
-    NSNumber *wid=[[NSNumber alloc]initWithInt:widthCount];
-    NSNumber *num=[[NSNumber alloc]initWithInt:colorCount];
-    [colorArray addObject:num];
+    NSNumber *wid=[[NSNumber alloc]initWithInt:lineWidthArray[widthCount]];
+    [colorArray addObject:[colors objectAtIndex:colorCount]];
     [WidthArray addObject:wid];
     NSArray *array=[NSArray arrayWithArray:pointArray];
     [lineArray addObject:array];

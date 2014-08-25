@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AFHTTPSessionManager.h"
 
-@interface AFAppDotNetAPIClient : AFHTTPSessionManager
+@interface KSDAFClient : AFHTTPSessionManager
 
 + (instancetype)sharedClient;
 - (NSURLSessionDownloadTask*)downLoadFile :(NSString *)url;

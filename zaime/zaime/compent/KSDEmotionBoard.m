@@ -6,9 +6,9 @@
 //  Copyright (c) 2014年 kld. All rights reserved.
 //
 
-#import "EmotionBoard.h"
+#import "KSDEmotionBoard.h"
 
-@implementation EmotionBoard
+@implementation KSDEmotionBoard
 
 - (id)initWithFrame:(CGRect)frame
 {

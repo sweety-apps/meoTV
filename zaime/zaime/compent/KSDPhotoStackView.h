@@ -9,16 +9,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class PhotoStackView;
+@class KSDPhotoStackView;
 
 @protocol PhotoStackViewDataSource <NSObject>
 
     @required
-    - (NSUInteger)numberOfPhotosInPhotoStackView:(PhotoStackView *)photoStack;
-    - (UIImage *)photoStackView:(PhotoStackView *)photoStack photoForIndex:(NSUInteger)index;
+    - (NSUInteger)numberOfPhotosInPhotoStackView:(KSDPhotoStackView *)photoStack;
+    - (UIImage *)photoStackView:(KSDPhotoStackView *)photoStack photoForIndex:(NSUInteger)index;
 
     @optional
-    - (CGSize)photoStackView:(PhotoStackView *)photoStack photoSizeForIndex:(NSUInteger)index;
+    - (CGSize)photoStackView:(KSDPhotoStackView *)photoStack photoSizeForIndex:(NSUInteger)index;
 
 @end
 
@@ -26,15 +26,15 @@
 @protocol PhotoStackViewDelegate <NSObject>
 
     @optional
-    -(void)photoStackView:(PhotoStackView *)photoStackView willStartMovingPhotoAtIndex:(NSUInteger)index;
-    -(void)photoStackView:(PhotoStackView *)photoStackView willFlickAwayPhotoFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
-    -(void)photoStackView:(PhotoStackView *)photoStackView didRevealPhotoAtIndex:(NSUInteger)index;
-    -(void)photoStackView:(PhotoStackView *)photoStackView didSelectPhotoAtIndex:(NSUInteger)index;
+    -(void)photoStackView:(KSDPhotoStackView *)photoStackView willStartMovingPhotoAtIndex:(NSUInteger)index;
+    -(void)photoStackView:(KSDPhotoStackView *)photoStackView willFlickAwayPhotoFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+    -(void)photoStackView:(KSDPhotoStackView *)photoStackView didRevealPhotoAtIndex:(NSUInteger)index;
+    -(void)photoStackView:(KSDPhotoStackView *)photoStackView didSelectPhotoAtIndex:(NSUInteger)index;
 
 @end
 
 
-@interface PhotoStackView : UIControl <UIGestureRecognizerDelegate>
+@interface KSDPhotoStackView : UIControl <UIGestureRecognizerDelegate>
 
     @property (weak, nonatomic) id <PhotoStackViewDataSource> dataSource;
     @property (weak, nonatomic) id <PhotoStackViewDelegate> delegate;

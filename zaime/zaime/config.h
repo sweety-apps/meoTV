@@ -55,4 +55,7 @@
 #pragma mark - 表名 
 #define kPicTableName @"kPicTableName"
 
+#pragma mark - 图片头像大小
+#define kAvatarSize 80
+
 #endif

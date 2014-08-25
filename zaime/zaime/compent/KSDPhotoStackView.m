@@ -8,19 +8,19 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import "PhotoStackView.h"
+#import "KSDPhotoStackView.h"
 
 static BOOL const BorderVisibilityDefault = YES;
 static CGFloat const BorderWidthDefault = 5.0f;
 static CGFloat const PhotoRotationOffsetDefault = 4.0f;
 
-@interface PhotoStackView()
+@interface KSDPhotoStackView()
 
     @property (nonatomic, strong) NSArray *photoViews;
 
 @end
 
-@implementation PhotoStackView
+@implementation KSDPhotoStackView
 
 @synthesize borderImage = _borderImage;
 @synthesize borderWidth = _borderWidth;

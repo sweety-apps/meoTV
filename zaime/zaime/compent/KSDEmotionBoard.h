@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface EmotionBoard : UIView
+@interface KSDEmotionBoard : UIView
 
 - (void)show;
 @end

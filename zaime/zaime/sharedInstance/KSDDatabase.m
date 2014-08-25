@@ -6,12 +6,12 @@
 //  Copyright (c) 2014年 kld. All rights reserved.
 //
 
-#import "KLDDatabase.h"
+#import "KSDDatabase.h"
 #import "SharedInstanceGCD.h"
 #import "config.h"
 #define kTableCount 1
 
-@implementation KLDDatabase
+@implementation KSDDatabase
 
 SHARED_INSTANCE_GCD_USING_BLOCK(^{
     return [[self alloc]init];
@@ -62,7 +62,7 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
 }
 - (void)addField :(NSArray*)field :(NSArray*)type :(NSString*)table
 {
-    KLDDatabase __weak *tmp = self;
+    KSDDatabase __weak *tmp = self;
     [self createTableWithTableName:table :^(BOOL isTableOk) {
         if(isTableOk)
         {
