@@ -104,21 +104,22 @@ static float lineWidthArray[4] = {10.0,20.0,30.0,40.0};
 {
     moving = action;
 }
+- (void)setClearHandler:(KSDClearHandler)action
+{
+    handler = action;
+}
 - (void)addPoint:(CGPoint)point
 {
     lastInvoke = [[NSDate date] timeIntervalSince1970];
-    MAIN(^{
-        if(lastReceivePoint.x != -1&&(fabs(lastReceivePoint.x - point.x)*fabs(lastReceivePoint.x - point.x) + fabs(lastReceivePoint.y - point.y)*fabs(lastReceivePoint.y - point.y) > 25))
-        {
-            
-            [self addLA];
-        }
-        lastReceivePoint = point;
-        NSString *sPoint=NSStringFromCGPoint(point);
-        [receivePointArray addObject:sPoint];
-        [self setNeedsDisplay];
+    if(lastReceivePoint.x != -1&&(fabs(lastReceivePoint.x - point.x)*fabs(lastReceivePoint.x - point.x) + fabs(lastReceivePoint.y - point.y)*fabs(lastReceivePoint.y - point.y) > 100))
+    {
         
-    });
+        [self addLA];
+    }
+    lastReceivePoint = point;
+    NSString *sPoint=NSStringFromCGPoint(point);
+    [receivePointArray addObject:sPoint];
+    [self setNeedsDisplay];
 }
 -(void)setLineColor:(ColorType)type
 {
@@ -126,6 +127,7 @@ static float lineWidthArray[4] = {10.0,20.0,30.0,40.0};
 }
 - (void)drawLine :(NSArray*)source :(NSInteger)width :(UIColor*)color :(CGContextRef)context
 {
+        
     CGContextBeginPath(context);
     CGContextSetAlpha(context,alaph);
     CGPoint myStartPoint=CGPointFromString([source objectAtIndex:0]);
@@ -139,6 +141,9 @@ static float lineWidthArray[4] = {10.0,20.0,30.0,40.0};
     CGContextSetStrokeColorWithColor(context,color.CGColor);
     CGContextSetLineWidth(context, width);
     CGContextStrokePath(context);
+    
+
+    
     
 }
 - (void)reDrawHistory :(CGContextRef)context

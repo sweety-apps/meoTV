@@ -24,7 +24,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-DBCamera.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-GPUImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -67,62 +77,72 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>020EE7EDCCB14EA199655171</key>
+		<key>00E9857EFBBE4E0DA783F550</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>322C7ED2BB6845468A200F1E</key>
+		<key>3F8DB638B7C44125A76B5FDA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>41F6B76548844F838F6DBE3B</key>
+		<key>4EDD3CDBE56B434ABAFDDE42</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B1622B89F6A4ACA94C77B42</key>
+		<key>60D88EF602D842F994EDC87C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6ADC560311714EE88C3B0231</key>
+		<key>69D74ECA8BDE4B5E81A9D80D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7336F5C637BE4D50BE875BF1</key>
+		<key>75DC85A2952C446BB674BBE4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>93778B4D51874A93ACECAA43</key>
+		<key>7672289691E9445E86D35FD3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A04F21C33CBA40B0B608D883</key>
+		<key>823A7E80C86D4A429297C217</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>AC96134FACE3469A960657A0</key>
+		<key>A8D02E777DC740A5A5B8CF4C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D1B5C48097254B9291F83211</key>
+		<key>AFEB446A5B454743AC5F2A94</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D1C8A7BC22954BFBB5386613</key>
+		<key>B57B9AA233A047E1813BF030</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DA2CEE3B35AE4C4EB55A4E19</key>
+		<key>BC4B9D62CAA444CEAC916A6E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D5AE28BAC18D42AC9FA8F44F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FEFBFF9B5EFD49EDB500422C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

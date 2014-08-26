@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 typedef void(^KSDMovingAction)(CGPoint point);
+typedef void(^KSDClearHandler)(CGPoint point);
 typedef enum{
     BlackColour,
     GreenColour,
@@ -23,6 +24,7 @@ typedef enum{
 @interface KSDDrawView : UIView
 {
     KSDMovingAction moving;
+    KSDClearHandler handler;
     CGPoint lastReceivePoint;
     ColorType colorCount;
     PenWidthType widthCount;
@@ -57,5 +59,6 @@ typedef enum{
 -(void)setlineWidth:(PenWidthType)type;
 
 - (void)setMovingAction :(KSDMovingAction)action;
+- (void)setClearHandler :(KSDClearHandler)action;
 - (void)addPoint:(CGPoint)point;
 @end

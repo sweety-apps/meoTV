@@ -58,4 +58,7 @@
 #pragma mark - 图片头像大小
 #define kAvatarSize 80
 
+#pragma mark - 震动范围
+#define kShockSize 10
+
 #endif
