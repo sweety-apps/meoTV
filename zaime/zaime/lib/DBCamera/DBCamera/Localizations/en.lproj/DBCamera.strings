@@ -1,0 +1,21 @@
+/* 
+  DBCamera.strings
+  DBCamera
+
+  Created by iBo on 11/02/14.
+  Copyright (c) 2014 PSSD - Daniele Bogo. All rights reserved.
+*/
+
+"button.use" = "使用照片";
+"button.retake" = "重拍";
+
+"general.error.title" = "Attention";
+"general.button.cancel" = "Cancel";
+
+"pickerimage.nopolicy" = "请允许程序访问您的想次, 请检查 设置 > 隐私 > 相册";
+"pickerimage.nophoto" = "相册中没有照片";
+
+"pagecontrol.text" = "%i ／ %i";
+
+"cropmode.title" = "Aspect Ratio";
+"cropmode.square" = "Square";

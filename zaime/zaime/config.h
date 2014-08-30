@@ -59,6 +59,6 @@
 #define kAvatarSize 80
 
 #pragma mark - 震动范围
-#define kShockSize 10
+#define kShockSize 100
 
 #endif

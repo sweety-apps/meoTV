@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A8D02E777DC740A5A5B8CF4C"
+               BlueprintIdentifier = "7279630782994EC9BED270B5"
                BuildableName = "libPods-UIView+PartialRoundedCorner.a"
                BlueprintName = "Pods-UIView+PartialRoundedCorner"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -17,4 +17,7 @@
 #define BACK(block) dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block)
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define SYSTEMFONT(x) [UIFont systemFontOfSize:(x)]
+#define KSDLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+#define SCREENWIDTH [[UIScreen mainScreen] bounds].size.width
+#define SCREENHEIGHT [[UIScreen mainScreen] bounds].size.height
 #endif

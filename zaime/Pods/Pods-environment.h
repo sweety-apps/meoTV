@@ -81,12 +81,6 @@
 // Please contact the author.
 // Version: 1.6.5.1.
 
-// DBCamera
-#define COCOAPODS_POD_AVAILABLE_DBCamera
-#define COCOAPODS_VERSION_MAJOR_DBCamera 2
-#define COCOAPODS_VERSION_MINOR_DBCamera 3
-#define COCOAPODS_VERSION_PATCH_DBCamera 4
-
 // FMDB
 #define COCOAPODS_POD_AVAILABLE_FMDB
 #define COCOAPODS_VERSION_MAJOR_FMDB 2
@@ -134,6 +128,12 @@
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 1
+
+// UIImage+Transforms
+#define COCOAPODS_POD_AVAILABLE_UIImage_Transforms
+#define COCOAPODS_VERSION_MAJOR_UIImage_Transforms 1
+#define COCOAPODS_VERSION_MINOR_UIImage_Transforms 0
+#define COCOAPODS_VERSION_PATCH_UIImage_Transforms 1
 
 // UIView+PartialRoundedCorner
 #define COCOAPODS_POD_AVAILABLE_UIView_PartialRoundedCorner

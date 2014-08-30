@@ -227,6 +227,7 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
 }
 - (void)xmppStream:(XMPPStream *)sender didReceiveMessage:(XMPPMessage *)message
 {
+    KSDLog(@"%@",message);
     NSString *body = message.body;
    NSString *kind = [[message attributeForName:@"kind"] stringValue];
     if([kind isEqualToString:@"text"])

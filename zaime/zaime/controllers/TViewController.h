@@ -10,6 +10,7 @@
 #import <MessageUI/MessageUI.h>
 #import "KSDPhotoStackView.h"
 
-@interface TViewController :UIViewController<MFMessageComposeViewControllerDelegate,PhotoStackViewDataSource,PhotoStackViewDelegate>
+@interface TViewController :UIViewController<MFMessageComposeViewControllerDelegate>
 
+- (void)clearAnimation;
 @end
