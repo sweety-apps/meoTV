@@ -30,6 +30,7 @@
 }
 - (void)clearSelfFire
 {
+    [self.clearSelf invalidate];
     MAIN(^{
     [self removeAnimation];
     });
@@ -65,7 +66,7 @@
 - (void)animationEmitter :(CGPoint)point
 {
     CAEmitterLayer *emitterLayer = (CAEmitterLayer *)self.layer;         
-    emitterLayer.emitterPosition = point;    // 坐标
+    emitterLayer.emitterPosition = CGPointMake(-100, -100);    // 坐标
     emitterLayer.emitterSize = self.bounds.size;            // 粒子大小
     emitterLayer.renderMode = kCAEmitterLayerAdditive;      // 递增渲染模式
     emitterLayer.emitterMode = kCAEmitterLayerPoints;       // 粒子发射模式（面发射）
@@ -108,18 +109,12 @@
     CGPathAddCurveToPoint(path, NULL, point.x, point.y, point.x, point.y, point.x, point.y);
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"emitterPosition"];
     animation.path = path;
-    animation.duration = 1;
+    animation.duration = 2;
     animation.repeatCount = MAXFLOAT;
     [self.layer addAnimation:animation forKey:animationKey];
     CGPathRelease(path);
 }
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [self.clearSelf invalidate];
-    [self removeAnimation];
-    [self animationEmitter:[[touches anyObject] locationInView:self]];
-    [self hideParticle:@"zhao"];
-}
+
 - (void)setMoving:(MovingAction)action
 {
     moving = action;
@@ -171,6 +166,17 @@
         }
     }
     CGPathRelease(path);
+}
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [self removeAnimation];
+    CAEmitterLayer *emitterLayer = (CAEmitterLayer *)self.layer;
+    if(emitterLayer.emitterCells.count == 0)
+    {
+        [self animationEmitter:[[touches anyObject] locationInView:self]];
+    }
+    
+    [self hideParticle:@"zhao"];
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {

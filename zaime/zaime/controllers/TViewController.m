@@ -42,8 +42,8 @@
 #import "UIImage+Transforms.h"
 #import "KSDImageStack.h"
 #import "WCGalleryView.h"
-#define kLoginUserName @"a"
-#define kConnectUserName @"zhao"
+#define kLoginUserName @"zhao"
+#define kConnectUserName @"a"
 typedef void (^TableRowBlock)();
 @interface TViewController ()<DBCameraViewControllerDelegate>
 {
