@@ -21,14 +21,12 @@
     if(current-lastInvoke >= 2 && isReceiving)
     {
         dispatch_async(dispatch_get_main_queue(), ^{
-            NSLog(@"xxxx");
-            isReceiving = NO;
-            otherPoint = CGPointZero;
-            [self hideParticle:@"xf"];
-           // [self performSelector:@selector(removeReceiveAnimation) withObject:nil afterDelay:1.f];
-            
+                isReceiving = NO;
+                otherPoint = CGPointZero;
+                [self hideParticle:@"xf"];
         });
     }
+    
 }
 - (void)clearSelfFire
 {
@@ -37,32 +35,29 @@
     });
     
 }
-- (void)removeReceiveAnimation
-{
-    CAEmitterLayer *emitterLayer = (CAEmitterLayer *)self.layer;
-    emitterLayer.emitterCells = nil;
-    [self.layer removeAnimationForKey:@"xf"];
-}
 - (void)removeAnimation
 {
-    CAEmitterLayer *emitterLayer = (CAEmitterLayer *)self.layer;
-    emitterLayer.emitterCells = nil;
     [self.layer removeAnimationForKey:@"zhao"];
+}
+- (void)receiveEnd
+{
+   
 }
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        self.privateQueue = dispatch_queue_create("com.mindsnacks.private_queue", DISPATCH_QUEUE_CONCURRENT);
-        self.clearReceive = [MSWeakTimer scheduledTimerWithTimeInterval:2
-                                                                    target:self
-                                                                  selector:@selector(clearReceiveFire)
-                                                                  userInfo:nil
-                                                                   repeats:YES
-                                                             dispatchQueue:self.privateQueue];
+        self.privateQueue = dispatch_queue_create("zhizhenxiaochu", DISPATCH_QUEUE_CONCURRENT);
+        self.clearReceive = [MSWeakTimer scheduledTimerWithTimeInterval:1
+                                                                 target:self
+                                                               selector:@selector(clearReceiveFire)
+                                                               userInfo:nil
+                                                                repeats:YES
+                                                          dispatchQueue:self.privateQueue];
+       
         myPoint = CGPointZero;
         otherPoint = CGPointZero;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveEnd) name:kReceiveMoveEnd object:nil];
     }
     return self;
 }
@@ -113,8 +108,8 @@
     CGPathAddCurveToPoint(path, NULL, point.x, point.y, point.x, point.y, point.x, point.y);
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"emitterPosition"];
     animation.path = path;
-    animation.duration = 2;
-    animation.repeatCount = 1;
+    animation.duration = 1;
+    animation.repeatCount = MAXFLOAT;
     [self.layer addAnimation:animation forKey:animationKey];
     CGPathRelease(path);
 }
@@ -132,6 +127,10 @@
 - (void)setMeet:(MovingAction)action
 {
     meet = action;
+}
+- (void)setEnd:(MovingAction)action
+{
+    end = action;
 }
 - (BOOL)isMeet
 {
@@ -154,22 +153,16 @@
     {
         [self animationEmitter:point];
     }
-    if(!isFirstReceiving)
-    {
-        isFirstReceiving = YES;
-        [self hideParticle:@"xf"];
-    }
     isReceiving = YES;
     lastInvoke = [[NSDate date] timeIntervalSince1970];
-    [self.layer removeAnimationForKey:@"xf"];
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathMoveToPoint(path, NULL, point.x, point.y);
     CGPathAddCurveToPoint(path, NULL, point.x, point.y, point.x, point.y, point.x, point.y);
     CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"emitterPosition"];
     animation.path = path;
     animation.duration = 4;
-    animation.repeatCount = MAXFLOAT;
     [self.layer addAnimation:animation forKey:@"xf"];
+   
     if([self isMeet])
     {
         if(meet)
@@ -216,6 +209,10 @@
                                                         userInfo:nil
                                                          repeats:YES
                                                    dispatchQueue:self.privateQueue];
+    if(end)
+    {
+        end(myPoint);
+    }
    
 }
 

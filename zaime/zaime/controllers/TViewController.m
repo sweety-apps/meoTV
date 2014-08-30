@@ -213,6 +213,10 @@ typedef void (^TableRowBlock)();
     [aview setMeet:^(CGPoint point) {
         // AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     }];
+    [aview setEnd:^(CGPoint point) {
+        BaseMesage *message = [tmpself createMsgWithTo:kConnectUserName from:kLoginUserName content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MEssageMoveEnd];
+        [[KSDXMPPClient sharedInstance] sendMsg:message];
+    }];
     [self.view addSubview:aview];
     
     [self.view bringSubviewToFront:galleryView];

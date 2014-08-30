@@ -15,6 +15,7 @@ typedef void(^MovingAction)(CGPoint point);
     NSTimeInterval lastInvoke;
     MovingAction moving;
     MovingAction meet;
+    MovingAction end;
     CGPoint myPoint;
     CGPoint otherPoint;
     BOOL isReceiving;
@@ -27,4 +28,5 @@ typedef void(^MovingAction)(CGPoint point);
 - (void)addPoint :(CGPoint)point;
 - (void)setMoving :(MovingAction)action;
 - (void)setMeet :(MovingAction)action;
+- (void)setEnd :(MovingAction)action;
 @end
