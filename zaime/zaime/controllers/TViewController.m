@@ -42,8 +42,9 @@
 #import "UIImage+Transforms.h"
 #import "KSDImageStack.h"
 #import "WCGalleryView.h"
-#define kLoginUserName @"zhao"
-#define kConnectUserName @"a"
+#import "ShowAllImageViewController.h"
+#define kLoginUserName @"a"
+#define kConnectUserName @"zhao"
 typedef void (^TableRowBlock)();
 @interface TViewController ()<DBCameraViewControllerDelegate>
 {
@@ -115,6 +116,11 @@ typedef void (^TableRowBlock)();
     galleryView.animationDuration   = 0.3f;
     galleryView.stackRadiusDirection = WCGalleryStackRadiusRandom;
     galleryView.animationType        = WCGalleryAnimationFade;
+    [galleryView setSelectAction:^(NSArray *images) {
+        
+        [self presentViewController:[[UINavigationController alloc]initWithRootViewController:[[ShowAllImageViewController alloc]init]] animated:YES completion:nil];
+        
+    }];
     [self.view addSubview:galleryView];
     self.view.backgroundColor = [UIColor whiteColor];
     

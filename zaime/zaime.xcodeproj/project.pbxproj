@@ -80,6 +80,18 @@
 		932DA3FE19B03240000BC267 /* WCGalleryExploreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DA3F919B03240000BC267 /* WCGalleryExploreView.m */; };
 		932DA3FF19B03240000BC267 /* WCGalleryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 932DA3FB19B03240000BC267 /* WCGalleryView.m */; };
 		932DA40119B044E2000BC267 /* left.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 932DA40019B044E2000BC267 /* left.jpg */; };
+		932E261719B4106500AC0194 /* ShowAllImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E261619B4106500AC0194 /* ShowAllImageViewController.m */; };
+		932E262619B4107500AC0194 /* MJPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E261A19B4107500AC0194 /* MJPhoto.m */; };
+		932E262719B4107500AC0194 /* MJPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 932E261B19B4107500AC0194 /* MJPhotoBrowser.bundle */; };
+		932E262819B4107500AC0194 /* MJPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E261D19B4107500AC0194 /* MJPhotoBrowser.m */; };
+		932E262919B4107500AC0194 /* MJPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E261F19B4107500AC0194 /* MJPhotoLoadingView.m */; };
+		932E262A19B4107500AC0194 /* MJPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E262119B4107500AC0194 /* MJPhotoProgressView.m */; };
+		932E262B19B4107500AC0194 /* MJPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E262319B4107500AC0194 /* MJPhotoToolbar.m */; };
+		932E262C19B4107500AC0194 /* MJPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E262519B4107500AC0194 /* MJPhotoView.m */; };
+		932E263319B410BF00AC0194 /* MBProgressHUD+Add.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E262F19B410BF00AC0194 /* MBProgressHUD+Add.m */; };
+		932E263419B410BF00AC0194 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 932E263019B410BF00AC0194 /* MBProgressHUD.bundle */; };
+		932E263519B410BF00AC0194 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E263219B410BF00AC0194 /* MBProgressHUD.m */; };
+		932E263819B4182800AC0194 /* NaviItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E263719B4182800AC0194 /* NaviItems.m */; };
 		93331B9619988CFC008AD730 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93331B9519988CFC008AD730 /* PushConfig.plist */; };
 		9334FB02199C5BF700A4BC4C /* KSDDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9334FB01199C5BF700A4BC4C /* KSDDatabase.m */; };
 		9334FB05199C610100A4BC4C /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 9334FB04199C610100A4BC4C /* Common.m */; };
@@ -265,6 +277,28 @@
 		932DA3FB19B03240000BC267 /* WCGalleryView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCGalleryView.m; sourceTree = "<group>"; };
 		932DA40019B044E2000BC267 /* left.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = left.jpg; sourceTree = "<group>"; };
 		932DDABA19A4846000AE3ABF /* KSDEmotionBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDEmotionBoard.h; sourceTree = "<group>"; };
+		932E261519B4106500AC0194 /* ShowAllImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowAllImageViewController.h; sourceTree = "<group>"; };
+		932E261619B4106500AC0194 /* ShowAllImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowAllImageViewController.m; sourceTree = "<group>"; };
+		932E261919B4107500AC0194 /* MJPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhoto.h; sourceTree = "<group>"; };
+		932E261A19B4107500AC0194 /* MJPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhoto.m; sourceTree = "<group>"; };
+		932E261B19B4107500AC0194 /* MJPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MJPhotoBrowser.bundle; sourceTree = "<group>"; };
+		932E261C19B4107500AC0194 /* MJPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoBrowser.h; sourceTree = "<group>"; };
+		932E261D19B4107500AC0194 /* MJPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoBrowser.m; sourceTree = "<group>"; };
+		932E261E19B4107500AC0194 /* MJPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoLoadingView.h; sourceTree = "<group>"; };
+		932E261F19B4107500AC0194 /* MJPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoLoadingView.m; sourceTree = "<group>"; };
+		932E262019B4107500AC0194 /* MJPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoProgressView.h; sourceTree = "<group>"; };
+		932E262119B4107500AC0194 /* MJPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoProgressView.m; sourceTree = "<group>"; };
+		932E262219B4107500AC0194 /* MJPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoToolbar.h; sourceTree = "<group>"; };
+		932E262319B4107500AC0194 /* MJPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoToolbar.m; sourceTree = "<group>"; };
+		932E262419B4107500AC0194 /* MJPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPhotoView.h; sourceTree = "<group>"; };
+		932E262519B4107500AC0194 /* MJPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPhotoView.m; sourceTree = "<group>"; };
+		932E262E19B410BF00AC0194 /* MBProgressHUD+Add.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Add.h"; sourceTree = "<group>"; };
+		932E262F19B410BF00AC0194 /* MBProgressHUD+Add.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Add.m"; sourceTree = "<group>"; };
+		932E263019B410BF00AC0194 /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		932E263119B410BF00AC0194 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		932E263219B410BF00AC0194 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		932E263619B4182800AC0194 /* NaviItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviItems.h; sourceTree = "<group>"; };
+		932E263719B4182800AC0194 /* NaviItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviItems.m; sourceTree = "<group>"; };
 		93331B9519988CFC008AD730 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		9334FB00199C5BF700A4BC4C /* KSDDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDDatabase.h; sourceTree = "<group>"; };
 		9334FB01199C5BF700A4BC4C /* KSDDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSDDatabase.m; sourceTree = "<group>"; };
@@ -626,6 +660,8 @@
 				932C554319AAD222003CAD6B /* KSDImageResize.m */,
 				932DA3BF19B02073000BC267 /* KSDImageStack.h */,
 				932DA3C019B02073000BC267 /* KSDImageStack.m */,
+				932E263619B4182800AC0194 /* NaviItems.h */,
+				932E263719B4182800AC0194 /* NaviItems.m */,
 			);
 			path = sharedInstance;
 			sourceTree = "<group>";
@@ -633,6 +669,8 @@
 		932BBDB31994686C00C46EB5 /* controllers */ = {
 			isa = PBXGroup;
 			children = (
+				932E261519B4106500AC0194 /* ShowAllImageViewController.h */,
+				932E261619B4106500AC0194 /* ShowAllImageViewController.m */,
 				93297D9119AC2CBE00B006E8 /* ACEViewController.h */,
 				93297D9219AC2CBE00B006E8 /* ACEViewController.m */,
 				93FB5C571998C26100B90FB6 /* ContactListController.h */,
@@ -665,6 +703,38 @@
 				932DA3FB19B03240000BC267 /* WCGalleryView.m */,
 			);
 			path = WCGalleryView;
+			sourceTree = "<group>";
+		};
+		932E261819B4107500AC0194 /* MJPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				932E261919B4107500AC0194 /* MJPhoto.h */,
+				932E261A19B4107500AC0194 /* MJPhoto.m */,
+				932E261B19B4107500AC0194 /* MJPhotoBrowser.bundle */,
+				932E261C19B4107500AC0194 /* MJPhotoBrowser.h */,
+				932E261D19B4107500AC0194 /* MJPhotoBrowser.m */,
+				932E261E19B4107500AC0194 /* MJPhotoLoadingView.h */,
+				932E261F19B4107500AC0194 /* MJPhotoLoadingView.m */,
+				932E262019B4107500AC0194 /* MJPhotoProgressView.h */,
+				932E262119B4107500AC0194 /* MJPhotoProgressView.m */,
+				932E262219B4107500AC0194 /* MJPhotoToolbar.h */,
+				932E262319B4107500AC0194 /* MJPhotoToolbar.m */,
+				932E262419B4107500AC0194 /* MJPhotoView.h */,
+				932E262519B4107500AC0194 /* MJPhotoView.m */,
+			);
+			path = MJPhotoBrowser;
+			sourceTree = "<group>";
+		};
+		932E262D19B410BF00AC0194 /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				932E262E19B410BF00AC0194 /* MBProgressHUD+Add.h */,
+				932E262F19B410BF00AC0194 /* MBProgressHUD+Add.m */,
+				932E263019B410BF00AC0194 /* MBProgressHUD.bundle */,
+				932E263119B410BF00AC0194 /* MBProgressHUD.h */,
+				932E263219B410BF00AC0194 /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		9370CFB219986B73007B5B8D /* images */ = {
@@ -703,6 +773,8 @@
 		93BBF25F1998A6E7005BD823 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				932E262D19B410BF00AC0194 /* MBProgressHUD */,
+				932E261819B4107500AC0194 /* MJPhotoBrowser */,
 				932DA3F319B0322C000BC267 /* WCGalleryView */,
 				9329B9CE19ADCE18008606BB /* DBCamera */,
 				93FB5C611998C5A100B90FB6 /* addressbook */,
@@ -864,6 +936,7 @@
 				933E96E119AF0DF300BBA3FD /* 3.png in Resources */,
 				933E96D919AF061E00BBA3FD /* lefUpPhoto.png in Resources */,
 				93229FFF199B544E00C75A77 /* photo4.jpg in Resources */,
+				932E262719B4107500AC0194 /* MJPhotoBrowser.bundle in Resources */,
 				9329BA1F19ADCE18008606BB /* 1977.acv in Resources */,
 				9329BA2519ADCE18008606BB /* DBCamera.strings in Resources */,
 				93BADA6A19AC822E00A29AD1 /* cycle.png in Resources */,
@@ -877,6 +950,7 @@
 				930D65D21993818E003A069D /* Images.xcassets in Resources */,
 				9329BA2019ADCE18008606BB /* amaro.acv in Resources */,
 				932DA40119B044E2000BC267 /* left.jpg in Resources */,
+				932E263419B410BF00AC0194 /* MBProgressHUD.bundle in Resources */,
 				930D65CA1993818E003A069D /* Main_iPhone.storyboard in Resources */,
 				93297D7F19AC27ED00B006E8 /* camera.png in Resources */,
 				9329BA3219ADCE19008606BB /* LICENSE in Resources */,
@@ -950,12 +1024,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				932E262B19B4107500AC0194 /* MJPhotoToolbar.m in Sources */,
 				93BADA5719AC7EC700A29AD1 /* KSDMovePathView.m in Sources */,
 				93FB5C6E1998C5C800B90FB6 /* KLDAddress.m in Sources */,
 				9329BA2E19ADCE19008606BB /* DBCameraFiltersView.m in Sources */,
 				932C965619A7062E00120631 /* KSDLiveBlurView.m in Sources */,
 				9329BA2D19ADCE19008606BB /* DBCameraCropView.m in Sources */,
 				932DA3FC19B03240000BC267 /* UIImage+WCGalleryView.m in Sources */,
+				932E263319B410BF00AC0194 /* MBProgressHUD+Add.m in Sources */,
 				932C965319A6E39300120631 /* KSDIMStatus.m in Sources */,
 				932DA3FF19B03240000BC267 /* WCGalleryView.m in Sources */,
 				9329BA2B19ADCE19008606BB /* DBMotionManager.m in Sources */,
@@ -973,23 +1049,30 @@
 				93C7F50019A355FF002DE9CC /* KSDCanvas.m in Sources */,
 				93229FF5199B508E00C75A77 /* KSDPhotoStackView.m in Sources */,
 				9334FB08199C882800A4BC4C /* KeyChainHelper.m in Sources */,
+				932E263819B4182800AC0194 /* NaviItems.m in Sources */,
 				93FB5C6D1998C5C800B90FB6 /* APPhoneWithLabel.m in Sources */,
 				9329BA1519ADCE18008606BB /* UIImage+Asset.m in Sources */,
 				9329BA1919ADCE18008606BB /* DBCameraBaseCropViewController.m in Sources */,
+				932E262919B4107500AC0194 /* MJPhotoLoadingView.m in Sources */,
 				93FB5C561998C1FC00B90FB6 /* NotificationCompent.m in Sources */,
+				932E261719B4106500AC0194 /* ShowAllImageViewController.m in Sources */,
 				930D65C31993818E003A069D /* main.m in Sources */,
 				9329BA2719ADCE18008606BB /* DBLibraryManager.m in Sources */,
 				93297D9019AC2CA200B006E8 /* ACEDrawingView.m in Sources */,
 				932DA3FE19B03240000BC267 /* WCGalleryExploreView.m in Sources */,
 				93BBF2651998B6D5005BD823 /* KSDAFClient.m in Sources */,
 				9334FB02199C5BF700A4BC4C /* KSDDatabase.m in Sources */,
+				932E263519B410BF00AC0194 /* MBProgressHUD.m in Sources */,
+				932E262C19B4107500AC0194 /* MJPhotoView.m in Sources */,
 				9329BA1D19ADCE18008606BB /* DBCameraSegueViewController.m in Sources */,
 				932C554719AAD7A4003CAD6B /* KSDShotScreen.m in Sources */,
 				9329BA1819ADCE18008606BB /* UIViewController+UIViewController_FullScreen.m in Sources */,
 				9329BA2819ADCE18008606BB /* DBCameraFilterCell.m in Sources */,
 				93297D8F19AC2CA200B006E8 /* ACEDrawingTools.m in Sources */,
 				93FB5C6B1998C5C800B90FB6 /* APAddressBook.m in Sources */,
+				932E262819B4107500AC0194 /* MJPhotoBrowser.m in Sources */,
 				9329BA3C19ADD94D008606BB /* UIImage+KSDCrop.m in Sources */,
+				932E262A19B4107500AC0194 /* MJPhotoProgressView.m in Sources */,
 				9329BA1719ADCE18008606BB /* UIImage+TintColor.m in Sources */,
 				9329BA2619ADCE18008606BB /* DBCameraManager.m in Sources */,
 				9329BA2919ADCE19008606BB /* DBCollectionViewCell.m in Sources */,
@@ -999,6 +1082,7 @@
 				9329BA4219ADEE88008606BB /* KSDCamerBox.m in Sources */,
 				93F3C1A819AF1B8C00CBF876 /* KSDSelectColor.m in Sources */,
 				93FB5C591998C26100B90FB6 /* ContactListController.m in Sources */,
+				932E262619B4107500AC0194 /* MJPhoto.m in Sources */,
 				9329BA2A19ADCE19008606BB /* DBCollectionViewFlowLayout.m in Sources */,
 				9329BA3019ADCE19008606BB /* DBCameraLoadingView.m in Sources */,
 				932DA3C119B02073000BC267 /* KSDImageStack.m in Sources */,
