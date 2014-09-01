@@ -18,5 +18,8 @@
     }
     return self;
 }
-
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    KSDLog(@"touchesBegan");
+}
 @end

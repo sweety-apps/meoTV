@@ -43,6 +43,8 @@
 #import "KSDImageStack.h"
 #import "WCGalleryView.h"
 #import "ShowAllImageViewController.h"
+#import "KSDPhoto.h"
+#import "KSDSelectColor.h"
 #define kLoginUserName @"a"
 #define kConnectUserName @"zhao"
 typedef void (^TableRowBlock)();
@@ -66,7 +68,7 @@ typedef void (^TableRowBlock)();
     NSDictionary *_actionMapping;
     KSDMovePathView *aview;
     
-    UIImageView *select;
+    KSDSelectColor *select;
     
     BOOL isAppera;
     
@@ -75,11 +77,17 @@ typedef void (^TableRowBlock)();
     UIButton *otherAvatar;
     UIButton *myAvatar;
     
+    KSDPhoto *photo;
+    WCGalleryView *galleryView;
+    
+   
+    
     
 }
 @property (strong, nonatomic) MSWeakTimer *backgroundTimer;
 @property (strong, nonatomic) dispatch_queue_t privateQueue;
 @property(nonatomic,assign) NSTimeInterval lastTime;
+@property(nonatomic,strong)  NSMutableArray *photos;
 @end
 
 @implementation TViewController
@@ -92,19 +100,21 @@ typedef void (^TableRowBlock)();
 {
     [super loadView];
 }
+- (void)test
+{
+    //[galleryView removeImageAtIndex:2 animated:NO];
+    [galleryView addImage:[UIImage imageNamed:@"photo4.jpg"] animated:NO];
+}
 - (void)viewDidLoad
 {
     KSDLog(@"viewDidLoad");
     [super viewDidLoad];
+    self.photos = [[NSMutableArray alloc]initWithCapacity:10];
+    
+     TViewController __weak *tmpself = self;
     
     
-    NSArray *kittens = @[
-                         [UIImage imageNamed:@"photo2.jpg"],
-                         [UIImage imageNamed:@"photo1.jpg"],
-                         [UIImage imageNamed:@"photo3.jpg"]];
-    NSMutableArray *degress = [NSMutableArray arrayWithObjects:@"-5",@"-10",@"-15", nil];
-    
-    WCGalleryView *galleryView      = [[WCGalleryView alloc] initWithImages:kittens degress:degress frame:CGRectMake(-100, -100, 200.0f, 200.0f)];
+    galleryView      = [[WCGalleryView alloc] initWithImages:[NSArray array] degress:[NSMutableArray array] frame:CGRectMake(-100, -100, 200.0f, 200.0f)];
     galleryView.backgroundColor     = [UIColor clearColor];
     galleryView.borderColor         = [UIColor whiteColor];
     galleryView.borderWidth         = 3.0f;
@@ -118,14 +128,23 @@ typedef void (^TableRowBlock)();
     galleryView.animationType        = WCGalleryAnimationFade;
     [galleryView setSelectAction:^(NSArray *images) {
         
-        [self presentViewController:[[UINavigationController alloc]initWithRootViewController:[[ShowAllImageViewController alloc]init]] animated:YES completion:nil];
+        [tmpself presentViewController:[[UINavigationController alloc]initWithRootViewController:[[ShowAllImageViewController alloc]initWithPhoto:tmpself.photos]] animated:YES completion:nil];
         
     }];
+    
+    downLoadEmotion = [[KSDDownloadEmotion alloc]init];
+    [downLoadEmotion downloadWithURLS:[NSArray arrayWithObjects:@"http://d.hiphotos.baidu.com/image/pic/item/5ab5c9ea15ce36d39e65badb38f33a87e850b1f3.jpg",@"http://e.hiphotos.baidu.com/image/pic/item/2cf5e0fe9925bc31d0f338735cdf8db1ca1370aa.jpg",@"http://h.hiphotos.baidu.com/image/pic/item/a686c9177f3e670966ec7c1439c79f3df9dc5568.jpg",nil] :^(UIImage *image, NSString *url) {
+        KSDPhoto *p = [[KSDPhoto alloc]init];
+        p.url = url;
+        [self.photos addObject:p];
+        [galleryView addImage:image animated:NO];
+    }];
+   // [self performSelector:@selector(test) withObject:nil afterDelay:10.f];
     [self.view addSubview:galleryView];
     self.view.backgroundColor = [UIColor whiteColor];
     
     lastReceivePoint = CGPointMake(-1, -1);
-    TViewController __weak *tmpself = self;
+   
    
     [[KSDXMPPClient sharedInstance] teardownStream];
     [[KSDXMPPClient sharedInstance] setupStream];
@@ -280,21 +299,26 @@ typedef void (^TableRowBlock)();
     [select setImage:four];
     [select setAnimationRepeatCount:1];
     [select startAnimating];
+    [self.view bringSubviewToFront:galleryView];
+    [select performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.3];
+
 }
 - (void)show:(UIButton*)sender
 {
+    [self.view bringSubviewToFront:selectColour];
     UIImage *four = [UIImage imageNamed:@"4"];
     NSLog(@"show->%f",four.size.width);
     if(!select)
     {
 
        
-        select =[[UIImageView alloc] initWithFrame:CGRectMake(29, SCREENHEIGHT-30-four.size.height/2.f, four.size.width/2.f, four.size.height/2.f)];
+        select =[[KSDSelectColor alloc] initWithFrame:CGRectMake(29, SCREENHEIGHT-30-four.size.height/2.f, four.size.width/2.f, four.size.height/2.f)];
         CGPoint center = select.center;
         center.x = sender.center.x;
         select.center = center;
-        [self.view insertSubview:select belowSubview:selectColour];
+        
     }
+    [self.view insertSubview:select belowSubview:selectColour];
     select.animationImages=[NSArray arrayWithObjects:
                              [UIImage imageNamed:@"0"],
                              [UIImage imageNamed:@"1"],
@@ -478,6 +502,13 @@ typedef void (^TableRowBlock)();
 #pragma mark - 相机委托
 - (void) camera:(id)cameraViewController didFinishWithImage:(UIImage *)image withMetadata:(NSDictionary *)metadata
 {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];   // 保存文件的名称
+    BOOL result = [UIImageJPEGRepresentation(image, 1.f) writeToFile:filePath atomically:YES];
+    KSDPhoto *pf = [[KSDPhoto alloc]init];
+    pf.url = filePath;
+    [self.photos insertObject:pf atIndex:0];
+    [galleryView addImage:image animated:NO];
     [cameraViewController dismissViewControllerAnimated:YES completion:nil];
 }
 - (void) dismissCamera:(id)cameraViewController

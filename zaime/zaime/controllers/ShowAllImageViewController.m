@@ -32,7 +32,15 @@
     }
     return self;
 }
-
+- (id)initWithPhoto :(NSArray*)photos
+{
+    self = [super init];
+    if(self)
+    {
+        myImageUrlArr = [NSMutableArray arrayWithArray:photos];
+    }
+    return self;
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -44,30 +52,7 @@
     
     [self.view addSubview: myScrollView];
     
-    myImageUrlArr = [[NSMutableArray alloc] init];
-    
-    
-    [myImageUrlArr addObject: @"http://d.hiphotos.baidu.com/image/pic/item/3812b31bb051f8199591c04ed8b44aed2e73e77a.jpg" ];
-    
-    [myImageUrlArr addObject: @"http://b.hiphotos.baidu.com/image/pic/item/94cad1c8a786c917be4d9f3dcb3d70cf3bc7576c.jpg" ];
-    
-    [myImageUrlArr addObject: @"http://app.ijianren.com:9898//jr//upload//post//hd//d03ca12a6525e008_1395940809640.jpg" ];
-    
-    [myImageUrlArr addObject: @"http://app.ijianren.com:9898//jr//upload//post//hd//35287b8b8dad25dfca18fc8acb53dbf33fef3ede_1395941778406.jpg" ];
-    
-    [myImageUrlArr addObject: @"http://app.ijianren.com:9898//jr//upload//post//hd//539e8e324c587ac7_1395941334203.jpg" ];
-    
-    [myImageUrlArr addObject: @"http://app.ijianren.com:9898//jr//upload//post//hd//539e8e324c587ac7_1395941334281.jpg" ];
-    
-    [myImageUrlArr addObject: @"http://app.ijianren.com:9898//jr//upload//post//hd//539e8e324c587ac7_1395941334156.jpg" ];
-    
-    [myImageUrlArr addObject: @"http://app.ijianren.com:9898//jr//upload//post//hd//11fe460ffcb14399_1395945336218.JPG" ];
-    
-    [myImageUrlArr addObject: @"http://app.ijianren.com:9898//jr//upload//post//hd//539e8e324c587ac7_1395941257796.jpg" ];
-    
-    [myImageUrlArr addObject: @"http://app.ijianren.com:9898//jr//upload//post//hd//d03ca12a6525e008_1395940809640.jpg" ];
     self.navigationItem.leftBarButtonItem = [NaviItems naviLeftBtnWithTitle:@"返回" target:self selector:@selector(goback)];
-    
     
     
     
@@ -88,8 +73,15 @@
         // 内容模式
         imageview.clipsToBounds = YES;
         imageview.contentMode = UIViewContentModeScaleAspectFill;
+        KSDPhoto *photo = [myImageUrlArr objectAtIndex:i];
+        if([photo.url hasPrefix:@"/var"])
+        {
+            [imageview setImage:[UIImage imageWithContentsOfFile:photo.url]];
+        }else
+        {
+            [imageview sd_setImageWithURL: [NSURL URLWithString: photo.url] placeholderImage: [UIImage imageNamed:@"TopViewRight.png"] ];
+        }
         
-        [imageview sd_setImageWithURL: [NSURL URLWithString: [myImageUrlArr objectAtIndex:i]] placeholderImage: [UIImage imageNamed:@"TopViewRight.png"] ];
         [imageview addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(BtnClick:)] ];
         [myScrollView addSubview: imageview];
     }
@@ -141,8 +133,8 @@
     NSMutableArray *photos = [NSMutableArray arrayWithCapacity: [myImageUrlArr count] ];
     for (int i = 0; i < [myImageUrlArr count]; i++) {
         // 替换为中等尺寸图片
-        
-        NSString * getImageStrUrl = [NSString stringWithFormat:@"%@", [myImageUrlArr objectAtIndex:i] ];
+        KSDPhoto *ksdphoto = [myImageUrlArr objectAtIndex:i];
+        NSString * getImageStrUrl = [NSString stringWithFormat:@"%@", ksdphoto.url ];
         MJPhoto *photo = [[MJPhoto alloc] init];
         photo.url = [NSURL URLWithString: getImageStrUrl ]; // 图片路径
         

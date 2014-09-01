@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "KSDPhoto.h"
 @interface ShowAllImageViewController : UIViewController
 
+- (id)initWithPhoto :(NSArray*)photos;
 @end

@@ -9,6 +9,7 @@
 #import "WCGalleryView.h"
 #import "UIView+WCGalleryView.h"
 #import "UIImage+WCGalleryView.h"
+#import "UIImageView+WebCache.h"
 @interface WCGalleryView()
 {
     NSOperationQueue        *_imageQueue;
@@ -26,7 +27,7 @@
 - (void)loadImage:(UIImage *)image animated:(BOOL)animated;
 - (UIImage *)generateImageForGalleryWithImage:(UIImage *)image;
 - (void)insertImageViewAtIndex:(NSInteger)index animated:(BOOL)animated;
-- (void)rotateImageView:(UIImageView *)imageView withControl:(NSInteger)control animated:(BOOL)animated callback:(void(^)())block;
+- (void)rotateImageView:(UIImageView *)imageView degress:(CGFloat)deg withControl:(NSInteger)control animated:(BOOL)animated callback:(void(^)())block;
 //- (void)handlePinchGesture:(UIPinchGestureRecognizer *)gesture;
 - (void)touchAction:(UITapGestureRecognizer *)gesture;
 @end
@@ -70,6 +71,7 @@
 }
 - (void)addImage:(UIImage *)image animated:(BOOL)animated
 {
+    [_images addObject:image];
     [_imageQueue addOperationWithBlock:^{
         [self performSelectorOnMainThread:@selector(runLoadImage:) withObject:@[image, [NSNumber numberWithBool:animated]] waitUntilDone:YES];
     }];
@@ -78,6 +80,8 @@
 - (void)removeImageAtIndex:(NSInteger)index animated:(BOOL)animated
 {
     
+    UIView *sub = [_imageViews objectAtIndex:index];
+    [sub removeFromSuperview];
     [_imageViews removeObjectAtIndex:index];
 }
 
@@ -109,59 +113,63 @@
     {
         case WCGalleryAnimationFall:
         {
-            fromFrame                 = imageView.frame;
-            fromFrame.size.width     *= 2.0f;
-            fromFrame.size.height    *= 2.0f;
-            fromFrame.origin.x        = ([[UIScreen mainScreen] bounds].size.width / 2)  - (toFrame.size.width / 2);
-            fromFrame.origin.y        = ([[UIScreen mainScreen] bounds].size.height / 2) - (toFrame.size.height / 2);
-            
-            toFrame             = self.bounds;
-            imageView.frame     = fromFrame;
-            imageView.center    = self.center;
-
-            [self addSubview:imageView];
-            
-            [UIView animateWithDuration:_animationDuration animations:^{
-                if(topImageView != nil)
-                    [self rotateImageView:topImageView withControl:[self.subviews indexOfObject:topImageView] animated:NO callback:nil];
-                
-                imageView.alpha = 1.0f;
-                imageView.frame = toFrame;
-            } completion:^(BOOL finished) {
-                [_imageQueue setSuspended:NO];
-            }];
+//            fromFrame                 = imageView.frame;
+//            fromFrame.size.width     *= 2.0f;
+//            fromFrame.size.height    *= 2.0f;
+//            fromFrame.origin.x        = ([[UIScreen mainScreen] bounds].size.width / 2)  - (toFrame.size.width / 2);
+//            fromFrame.origin.y        = ([[UIScreen mainScreen] bounds].size.height / 2) - (toFrame.size.height / 2);
+//            
+//            toFrame             = self.bounds;
+//            imageView.frame     = fromFrame;
+//            imageView.center    = self.center;
+//
+//            [self addSubview:imageView];
+//            
+//            [UIView animateWithDuration:_animationDuration animations:^{
+//                if(topImageView != nil)
+//                    [self rotateImageView:topImageView withControl:[self.subviews indexOfObject:topImageView] animated:NO callback:nil];
+//                
+//                imageView.alpha = 1.0f;
+//                imageView.frame = toFrame;
+//            } completion:^(BOOL finished) {
+//                [_imageQueue setSuspended:NO];
+//            }];
         }
         break;
         
         case WCGalleryAnimationCurl:
         {
-            toFrame = self.bounds;
-
-            imageView.frame = toFrame;
-            [UIView transitionWithView:topImageView duration:_animationDuration options:UIViewAnimationOptionTransitionCurlDown animations:^{
-                [self addSubview:imageView];
-                imageView.alpha = 1.0f;
-
-            } completion:^(BOOL finished) {
-                if(topImageView != nil)
-                {
-                    [self rotateImageView:topImageView withControl:[self.subviews indexOfObject:topImageView] animated:YES callback:^{
-                        [_imageQueue setSuspended:NO];
-                    }];
-                }
-            }];
+//            toFrame = self.bounds;
+//
+//            imageView.frame = toFrame;
+//            [UIView transitionWithView:topImageView duration:_animationDuration options:UIViewAnimationOptionTransitionCurlDown animations:^{
+//                [self addSubview:imageView];
+//                imageView.alpha = 1.0f;
+//
+//            } completion:^(BOOL finished) {
+//                if(topImageView != nil)
+//                {
+//                    [self rotateImageView:topImageView withControl:[self.subviews indexOfObject:topImageView] animated:YES callback:^{
+//                        [_imageQueue setSuspended:NO];
+//                    }];
+//                }
+//            }];
         }
         break;
             
         default:
         {
             [self addSubview:imageView];
-            
             [UIView animateWithDuration:_animationDuration animations:^{
-                if(topImageView != nil)
-                    [self rotateImageView:topImageView withControl:[self.subviews indexOfObject:topImageView] animated:NO callback:nil];
                 
-                imageView.alpha = 1.0f;
+                for (UIImageView *item in self.imageViews)
+                {
+                    [self rotateImageView:item degress:-5 withControl:[self.imageViews indexOfObject:item] animated:NO callback:nil];
+                    item.alpha = 1.f;
+                }
+                    
+                
+                
             } completion:^(BOOL finished) {
                 [_imageQueue setSuspended:NO];
             }];    
@@ -183,7 +191,7 @@
     return [tmpImage transparentBorderImage:1.0f];
 }
 
-- (void)rotateImageView:(UIImageView *)imageView withControl:(NSInteger)control animated:(BOOL)animated callback:(void(^)())block
+- (void)rotateImageView:(UIImageView *)imageView degress:(CGFloat)deg withControl:(NSInteger)control animated:(BOOL)animated callback:(void(^)())block
 {
     
     
@@ -205,9 +213,8 @@
 //            break;
 //    }
 
-    CGFloat animationDuration = (!animated)? 0 : (((_animationDuration == -1)? ((control == 0)? 0 : [[_roteDegress objectAtIndex:control] integerValue] / 100) : _animationDuration));
-    
-    [imageView rotateView:[[_roteDegress objectAtIndex:control] integerValue] duration:animationDuration callback:block];
+    CGFloat animationDuration = (!animated)? 0 : (((_animationDuration == -1)? ((control == 0)? 0 : (control+1)*(-5) / 100) : _animationDuration));
+    [imageView rotateView:deg duration:animationDuration callback:block];
 }
 
 - (void)insertImageViewAtIndex:(NSInteger)index animated:(BOOL)animated
@@ -236,7 +243,7 @@
         [self addSubview:imageView];
     }
 
-   [self rotateImageView:imageView withControl:index animated:animated callback:nil];
+    [self rotateImageView:imageView degress:(index+1)*(-5) withControl:index animated:animated callback:nil];
     
     if([[_imageViews lastObject] isEqual:imageView])
         [_imageQueue setSuspended:NO];
@@ -265,6 +272,7 @@
             [self insertImageViewAtIndex:total animated:_animate];
             
         _haveBuiltImageViews = YES;
+        [_imageQueue setSuspended:NO];
     }
 }
 

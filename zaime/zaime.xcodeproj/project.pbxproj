@@ -92,6 +92,11 @@
 		932E263419B410BF00AC0194 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 932E263019B410BF00AC0194 /* MBProgressHUD.bundle */; };
 		932E263519B410BF00AC0194 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E263219B410BF00AC0194 /* MBProgressHUD.m */; };
 		932E263819B4182800AC0194 /* NaviItems.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E263719B4182800AC0194 /* NaviItems.m */; };
+		932E263B19B4220200AC0194 /* KSDPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E263A19B4220200AC0194 /* KSDPhoto.m */; };
+		932E264519B4255400AC0194 /* STDb.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E263E19B4255400AC0194 /* STDb.m */; };
+		932E264619B4255400AC0194 /* STDbHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E264019B4255400AC0194 /* STDbHandle.m */; };
+		932E264719B4255400AC0194 /* STDbObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E264319B4255400AC0194 /* STDbObject.m */; };
+		932E264A19B42D8200AC0194 /* NSDate+Exts.m in Sources */ = {isa = PBXBuildFile; fileRef = 932E264919B42D8200AC0194 /* NSDate+Exts.m */; };
 		93331B9619988CFC008AD730 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 93331B9519988CFC008AD730 /* PushConfig.plist */; };
 		9334FB02199C5BF700A4BC4C /* KSDDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 9334FB01199C5BF700A4BC4C /* KSDDatabase.m */; };
 		9334FB05199C610100A4BC4C /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = 9334FB04199C610100A4BC4C /* Common.m */; };
@@ -299,6 +304,18 @@
 		932E263219B410BF00AC0194 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		932E263619B4182800AC0194 /* NaviItems.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NaviItems.h; sourceTree = "<group>"; };
 		932E263719B4182800AC0194 /* NaviItems.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NaviItems.m; sourceTree = "<group>"; };
+		932E263919B4220200AC0194 /* KSDPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDPhoto.h; sourceTree = "<group>"; };
+		932E263A19B4220200AC0194 /* KSDPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSDPhoto.m; sourceTree = "<group>"; };
+		932E263D19B4255400AC0194 /* STDb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDb.h; sourceTree = "<group>"; };
+		932E263E19B4255400AC0194 /* STDb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDb.m; sourceTree = "<group>"; };
+		932E263F19B4255400AC0194 /* STDbHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDbHandle.h; sourceTree = "<group>"; };
+		932E264019B4255400AC0194 /* STDbHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDbHandle.m; sourceTree = "<group>"; };
+		932E264119B4255400AC0194 /* STDbKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDbKit.h; sourceTree = "<group>"; };
+		932E264219B4255400AC0194 /* STDbObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDbObject.h; sourceTree = "<group>"; };
+		932E264319B4255400AC0194 /* STDbObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = STDbObject.m; sourceTree = "<group>"; };
+		932E264419B4255400AC0194 /* STDbVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = STDbVersion.h; sourceTree = "<group>"; };
+		932E264819B42D8200AC0194 /* NSDate+Exts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Exts.h"; sourceTree = "<group>"; };
+		932E264919B42D8200AC0194 /* NSDate+Exts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Exts.m"; sourceTree = "<group>"; };
 		93331B9519988CFC008AD730 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		9334FB00199C5BF700A4BC4C /* KSDDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDDatabase.h; sourceTree = "<group>"; };
 		9334FB01199C5BF700A4BC4C /* KSDDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSDDatabase.m; sourceTree = "<group>"; };
@@ -686,6 +703,8 @@
 			children = (
 				932BBDB51994687A00C46EB5 /* BaseMesage.h */,
 				932BBDB61994687A00C46EB5 /* BaseMesage.m */,
+				932E263919B4220200AC0194 /* KSDPhoto.h */,
+				932E263A19B4220200AC0194 /* KSDPhoto.m */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -737,6 +756,23 @@
 			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
+		932E263C19B4255400AC0194 /* STDb */ = {
+			isa = PBXGroup;
+			children = (
+				932E264819B42D8200AC0194 /* NSDate+Exts.h */,
+				932E264919B42D8200AC0194 /* NSDate+Exts.m */,
+				932E263D19B4255400AC0194 /* STDb.h */,
+				932E263E19B4255400AC0194 /* STDb.m */,
+				932E263F19B4255400AC0194 /* STDbHandle.h */,
+				932E264019B4255400AC0194 /* STDbHandle.m */,
+				932E264119B4255400AC0194 /* STDbKit.h */,
+				932E264219B4255400AC0194 /* STDbObject.h */,
+				932E264319B4255400AC0194 /* STDbObject.m */,
+				932E264419B4255400AC0194 /* STDbVersion.h */,
+			);
+			path = STDb;
+			sourceTree = "<group>";
+		};
 		9370CFB219986B73007B5B8D /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,6 +809,7 @@
 		93BBF25F1998A6E7005BD823 /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				932E263C19B4255400AC0194 /* STDb */,
 				932E262D19B410BF00AC0194 /* MBProgressHUD */,
 				932E261819B4107500AC0194 /* MJPhotoBrowser */,
 				932DA3F319B0322C000BC267 /* WCGalleryView */,
@@ -1028,6 +1065,7 @@
 				93BADA5719AC7EC700A29AD1 /* KSDMovePathView.m in Sources */,
 				93FB5C6E1998C5C800B90FB6 /* KLDAddress.m in Sources */,
 				9329BA2E19ADCE19008606BB /* DBCameraFiltersView.m in Sources */,
+				932E264719B4255400AC0194 /* STDbObject.m in Sources */,
 				932C965619A7062E00120631 /* KSDLiveBlurView.m in Sources */,
 				9329BA2D19ADCE19008606BB /* DBCameraCropView.m in Sources */,
 				932DA3FC19B03240000BC267 /* UIImage+WCGalleryView.m in Sources */,
@@ -1037,11 +1075,13 @@
 				9329BA2B19ADCE19008606BB /* DBMotionManager.m in Sources */,
 				9329BA1E19ADCE18008606BB /* DBCameraViewController.m in Sources */,
 				93229FF2199B119800C75A77 /* KSDDownloadEmotion.m in Sources */,
+				932E264A19B42D8200AC0194 /* NSDate+Exts.m in Sources */,
 				9329BA1C19ADCE18008606BB /* DBCameraLibraryViewController.m in Sources */,
 				93FB5C6C1998C5C800B90FB6 /* APContact.m in Sources */,
 				932BBDB71994687A00C46EB5 /* BaseMesage.m in Sources */,
 				93297D9819AC591500B006E8 /* TViewController.m in Sources */,
 				9329BA3119ADCE19008606BB /* DBCameraView.m in Sources */,
+				932E264619B4255400AC0194 /* STDbHandle.m in Sources */,
 				9329BA2F19ADCE19008606BB /* DBCameraGridView.m in Sources */,
 				930D65C71993818E003A069D /* AppDelegate.m in Sources */,
 				9334FB05199C610100A4BC4C /* Common.m in Sources */,
@@ -1086,9 +1126,11 @@
 				9329BA2A19ADCE19008606BB /* DBCollectionViewFlowLayout.m in Sources */,
 				9329BA3019ADCE19008606BB /* DBCameraLoadingView.m in Sources */,
 				932DA3C119B02073000BC267 /* KSDImageStack.m in Sources */,
+				932E264519B4255400AC0194 /* STDb.m in Sources */,
 				932C554419AAD222003CAD6B /* KSDImageResize.m in Sources */,
 				932DA3FD19B03240000BC267 /* UIView+WCGalleryView.m in Sources */,
 				932BBDB21994670700C46EB5 /* KSDXMPPClient.m in Sources */,
+				932E263B19B4220200AC0194 /* KSDPhoto.m in Sources */,
 				93297D9319AC2CBE00B006E8 /* ACEViewController.m in Sources */,
 				9329BA1B19ADCE18008606BB /* DBCameraContainerViewController.m in Sources */,
 			);
