@@ -45,8 +45,10 @@
 #import "ShowAllImageViewController.h"
 #import "KSDPhoto.h"
 #import "KSDSelectColor.h"
-#define kLoginUserName @"a"
-#define kConnectUserName @"zhao"
+#import "ACEDrawingView.h"
+#import "KSDFingerDistance.h"
+#define kLoginUserName @"zhao"
+#define kConnectUserName @"a"
 typedef void (^TableRowBlock)();
 @interface TViewController ()<DBCameraViewControllerDelegate>
 {
@@ -62,11 +64,10 @@ typedef void (^TableRowBlock)();
     
     int picSize;
     NSMutableArray *_photos;
-    KSDDrawView *drawView;
     
     CGPoint lastReceivePoint;
     NSDictionary *_actionMapping;
-    KSDMovePathView *aview;
+   
     
     KSDSelectColor *select;
     
@@ -80,21 +81,29 @@ typedef void (^TableRowBlock)();
     KSDPhoto *photo;
     WCGalleryView *galleryView;
     
+    
    
     
     
 }
-@property (strong, nonatomic) MSWeakTimer *backgroundTimer;
-@property (strong, nonatomic) dispatch_queue_t privateQueue;
+@property(strong,nonatomic) MSWeakTimer *siwtchView;
+@property(strong,nonatomic) dispatch_queue_t privateQueue;
 @property(nonatomic,assign) NSTimeInterval lastTime;
-@property(nonatomic,strong)  NSMutableArray *photos;
+@property(nonatomic,strong) NSMutableArray *photos;
+@property(nonatomic,strong) ACEDrawingView *drawView;
+@property(nonatomic,strong) KSDMovePathView *aview;
+@property(nonatomic,strong) UIView *backgroundView;
+@property(nonatomic,strong) KSDFingerDistance *distance;
+@property(nonatomic,assign) CGPoint myPos;
+@property(nonatomic,assign) CGPoint otherPos;
+@property (strong, nonatomic) MSWeakTimer *clearSelf;
 @end
 
 @implementation TViewController
 
 - (void)clearAnimation
 {
-    [aview.layer removeAllAnimations];
+    [self.aview.layer removeAllAnimations];
 }
 - (void)loadView
 {
@@ -109,15 +118,28 @@ typedef void (^TableRowBlock)();
 {
     KSDLog(@"viewDidLoad");
     [super viewDidLoad];
-    self.photos = [[NSMutableArray alloc]initWithCapacity:10];
-    
+    self.myPos = CGPointMake(-1, -1);
+     self.otherPos = CGPointMake(-1, -1);
+    self.privateQueue = dispatch_queue_create("distanceclear", DISPATCH_QUEUE_CONCURRENT);
      TViewController __weak *tmpself = self;
+    KSDLiveBlurView *bg = [[KSDLiveBlurView alloc] initWithFrame: self.view.bounds];
+    
+    bg.originalImage = [UIImage imageNamed:@"bg.png"];
+    bg.isGlassEffectOn = YES;
+    [self.view addSubview:bg];
+    
+   
+    
+    
+    self.backgroundView = [[UIView alloc]initWithFrame:self.view.bounds];
+    self.backgroundView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:self.backgroundView];
     
     
     galleryView      = [[WCGalleryView alloc] initWithImages:[NSArray array] degress:[NSMutableArray array] frame:CGRectMake(-100, -100, 200.0f, 200.0f)];
     galleryView.backgroundColor     = [UIColor clearColor];
     galleryView.borderColor         = [UIColor whiteColor];
-    galleryView.borderWidth         = 3.0f;
+    galleryView.borderWidth         = 10.0f;
     galleryView.shadowColor         = [UIColor blackColor];
     galleryView.shadowOffset        = CGSizeMake(1.0f, 2.0f);
     galleryView.shadowOpacity       = 0.0f;
@@ -131,6 +153,13 @@ typedef void (^TableRowBlock)();
         [tmpself presentViewController:[[UINavigationController alloc]initWithRootViewController:[[ShowAllImageViewController alloc]initWithPhoto:tmpself.photos]] animated:YES completion:nil];
         
     }];
+    [self.backgroundView addSubview:galleryView];
+    self.photos = [[NSMutableArray alloc]initWithCapacity:10];
+    
+    
+    
+    
+   
     
     downLoadEmotion = [[KSDDownloadEmotion alloc]init];
     [downLoadEmotion downloadWithURLS:[NSArray arrayWithObjects:@"http://d.hiphotos.baidu.com/image/pic/item/5ab5c9ea15ce36d39e65badb38f33a87e850b1f3.jpg",@"http://e.hiphotos.baidu.com/image/pic/item/2cf5e0fe9925bc31d0f338735cdf8db1ca1370aa.jpg",@"http://h.hiphotos.baidu.com/image/pic/item/a686c9177f3e670966ec7c1439c79f3df9dc5568.jpg",nil] :^(UIImage *image, NSString *url) {
@@ -140,7 +169,7 @@ typedef void (^TableRowBlock)();
         [galleryView addImage:image animated:NO];
     }];
    // [self performSelector:@selector(test) withObject:nil afterDelay:10.f];
-    [self.view addSubview:galleryView];
+   
     self.view.backgroundColor = [UIColor whiteColor];
     
     lastReceivePoint = CGPointMake(-1, -1);
@@ -189,18 +218,9 @@ typedef void (^TableRowBlock)();
     }];
     */
     
-    photoStackView.center = CGPointMake(0, 0);
     
-    KSDLiveBlurView *backgroundView = [[KSDLiveBlurView alloc] initWithFrame: self.view.bounds];
+  
     
-    backgroundView.originalImage = [UIImage imageNamed:@"bg.png"];
-    backgroundView.isGlassEffectOn = YES;
-    
-    
-    [self.view addSubview:backgroundView];
-    
-    //  [self.view addSubview:drawView];
-    [self.view addSubview:photoStackView];
     
     
     
@@ -230,22 +250,57 @@ typedef void (^TableRowBlock)();
     [self addCreamer];
     [self addWater];
     
-    aview = [[KSDMovePathView alloc]initWithFrame:CGRectMake(0, otherAvatar.frame.size.height+30, SCREENWIDTH, SCREENHEIGHT-30-otherAvatar.frame.size.height-myAvatar.frame.size.height-30)];
-    [aview setMoving:^(CGPoint point) {
+    self.aview = [[KSDMovePathView alloc]initWithFrame:CGRectMake(0, otherAvatar.frame.size.height+30, SCREENWIDTH, SCREENHEIGHT-30-otherAvatar.frame.size.height-myAvatar.frame.size.height-30)];
+    [self.aview setMoving:^(CGPoint point) {
+        tmpself.myPos = point;
         BaseMesage *message = [tmpself createMsgWithTo:kConnectUserName from:kLoginUserName content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MessageText];
         [[KSDXMPPClient sharedInstance] sendMsg:message];
+        
+        
+        BACK((^{
+            NSString *t = [NSString stringWithFormat:@"%d",(int)sqrt((tmpself.myPos.x-tmpself.otherPos.x)*(tmpself.myPos.x-tmpself.otherPos.x)+(tmpself.myPos.y-tmpself.otherPos.y)*(tmpself.myPos.y-tmpself.otherPos.y))];
+            if(t.length == 0)
+            {
+                t = @"错误";
+            }
+            MAIN(^{
+                
+                tmpself.distance.diatance.text = t;
+            });
+            
+        }));
     }];
-    [aview setMeet:^(CGPoint point) {
+    [self.aview setMeet:^(CGPoint point) {
         // AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     }];
-    [aview setEnd:^(CGPoint point) {
-        BaseMesage *message = [tmpself createMsgWithTo:kConnectUserName from:kLoginUserName content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MEssageMoveEnd];
-        [[KSDXMPPClient sharedInstance] sendMsg:message];
+    [self.aview setEnd:^(CGPoint point) {
+
     }];
-    [self.view addSubview:aview];
     
-    [self.view bringSubviewToFront:galleryView];
+    self.drawView = [[ACEDrawingView alloc]initWithFrame:CGRectMake(0, otherAvatar.frame.size.height+30, SCREENWIDTH, SCREENHEIGHT-30-otherAvatar.frame.size.height-myAvatar.frame.size.height-30)];
+    [self.backgroundView addSubview:self.aview];
     
+    
+    
+    
+    
+    
+    
+}
+- (void)switchViewAction
+{
+    MAIN(^{
+        [self.siwtchView invalidate];
+        self.siwtchView = nil;
+        [UIView animateWithDuration:1.f animations:^{
+            self.distance.text.alpha = 0;
+            self.distance.diatance.alpha = 0;
+            
+        } completion:^(BOOL finished){
+            [self.distance removeFromSuperview];
+            self.distance = nil;
+        }];
+    });
     
 }
 - (void)addMyAvatar
@@ -255,7 +310,7 @@ typedef void (^TableRowBlock)();
     [myAvatar setImage:selfAvatar forState:UIControlStateNormal];
     myAvatar.frame = CGRectMake(0, 0, selfAvatar.size.width/2.f, selfAvatar.size.height/2.f);
     myAvatar.center = CGPointMake(SCREENWIDTH/2.f, SCREENHEIGHT-30-selfAvatar.size.height/4.f);
-    [self.view addSubview:myAvatar];
+    [self.backgroundView addSubview:myAvatar];
 }
 - (void)addOtherAvatar
 {
@@ -263,30 +318,12 @@ typedef void (^TableRowBlock)();
     UIImage *otherAvatarImage = [UIImage imageNamed:@"otherNotLogin"];
     [otherAvatar setImage:otherAvatarImage forState:UIControlStateNormal];
     otherAvatar.frame = CGRectMake(([[UIScreen mainScreen] bounds].size.width-otherAvatarImage.size.width/2.f)/2.f, 30, otherAvatarImage.size.width/2.f, otherAvatarImage.size.height/2.f);
-    [self.view addSubview:otherAvatar];
-}
-
-- (void)backgroundTimerDidFire
-{
-    MAIN((^{
-        NSLog(@"backgroundTimerDidFire");
-        static int i = 1;
-        UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"%d",isAppera?i:5-i]];
-        [select setImage:image];
-        select.frame = CGRectMake(30, SCREENHEIGHT-30-image.size.height/2, image.size.width/2, image.size.height/2);
-        [select setNeedsDisplay];
-        i++;
-        if(i == 5)
-        {
-            [self.backgroundTimer invalidate];
-            self.privateQueue = nil;
-            i = 0;
-        }
-    }));
-    
+    [self.backgroundView addSubview:otherAvatar];
 }
 - (void)hide:(UIButton*)sender
 {
+    isAppera = NO;
+    [select removeSubView];
     UIImage *four = [UIImage imageNamed:@"0"];
     select.animationImages=[NSArray arrayWithObjects:
                              [UIImage imageNamed:@"4"],
@@ -295,19 +332,21 @@ typedef void (^TableRowBlock)();
                              [UIImage imageNamed:@"1"],
                              [UIImage imageNamed:@"0"],
                              nil ];
-    select.animationDuration=0.3;
+    select.animationDuration=0.2;
     [select setImage:four];
     [select setAnimationRepeatCount:1];
     [select startAnimating];
-    [self.view bringSubviewToFront:galleryView];
-    [select performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.3];
+  //  [self.view bringSubviewToFront:galleryView];
+    [select performSelector:@selector(removeFromSuperview) withObject:nil afterDelay:0.2];
 
 }
 - (void)show:(UIButton*)sender
 {
-    [self.view bringSubviewToFront:selectColour];
+    isAppera = YES;
+    [self.backgroundView bringSubviewToFront:selectColour];
     UIImage *four = [UIImage imageNamed:@"4"];
     NSLog(@"show->%f",four.size.width);
+    TViewController __weak *tmp = self;
     if(!select)
     {
 
@@ -316,9 +355,20 @@ typedef void (^TableRowBlock)();
         CGPoint center = select.center;
         center.x = sender.center.x;
         select.center = center;
+        [select setSelectColor:^(UIColor *color) {
+            if(tmp.drawView.superview == nil)
+            {
+                
+                [tmp.backgroundView insertSubview:tmp.drawView belowSubview:tmp.aview];
+                [tmp.aview removeFromSuperview];
+            }
+            [tmp hide:nil];
+            tmp.drawView.lineColor = color;
+           
+        }];
         
     }
-    [self.view insertSubview:select belowSubview:selectColour];
+    [self.backgroundView insertSubview:select belowSubview:selectColour];
     select.animationImages=[NSArray arrayWithObjects:
                              [UIImage imageNamed:@"0"],
                              [UIImage imageNamed:@"1"],
@@ -330,18 +380,19 @@ typedef void (^TableRowBlock)();
     [select setImage:four];
     [select setAnimationRepeatCount:1];
     [select startAnimating];
+    [select performSelector:@selector(addButton) withObject:nil afterDelay:0.3f];
   
 }
+
 - (void)drawing:(UIButton*)sender
 {
     if(isAppera)
     {
         [self hide:sender];
-        isAppera = NO;
+        
     }else
     {
         [self show:sender];
-        isAppera = YES;
     }
  
 }
@@ -376,7 +427,7 @@ typedef void (^TableRowBlock)();
     [creamer addTarget:self action:@selector(open) forControlEvents:UIControlEventTouchUpInside];
     creamer.center = CGPointMake(SCREENWIDTH/2.f+myAvatar.frame.size.width/2.f+(SCREENWIDTH/2.f-myAvatar.frame.size.width/2.f)/2.f,myAvatar.center.y);
     
-    [self.view addSubview:creamer];
+    [self.backgroundView addSubview:creamer];
     
 }
 - (void)addWater
@@ -388,7 +439,7 @@ typedef void (^TableRowBlock)();
     [selectColour addTarget:self action:@selector(drawing:) forControlEvents:UIControlEventTouchUpInside];
     selectColour.center = CGPointMake(myAvatar.frame.origin.x/2.f,myAvatar.center.y);
     KSDLog(@"%f,%f",myAvatar.frame.origin.x,myAvatar.center.x);
-    [self.view addSubview:selectColour];
+    [self.backgroundView addSubview:selectColour];
 }
 
 
@@ -467,7 +518,40 @@ typedef void (^TableRowBlock)();
         float y = [[points objectAtIndex:1] floatValue];
         dispatch_async(dispatch_get_main_queue(), ^{
             CGPoint rpoint = CGPointMake(x, y);
-            [aview addPoint:rpoint];
+            self.otherPos = rpoint;
+            [self.aview addPoint:rpoint];
+            if(!self.distance)
+            {
+                self.distance = [[KSDFingerDistance alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];
+                self.distance.center = self.view.center;
+                [UIView animateWithDuration:1.5 animations:^{
+                    self.distance.text.alpha = 1.f;
+                    self.distance.diatance.alpha = 1.f;
+                    [self.view insertSubview:self.distance belowSubview:self.backgroundView];
+                    
+                } completion:nil];
+            }
+            BACK((^{
+                NSString *t = [NSString stringWithFormat:@"%d",(int)sqrt((self.myPos.x-self.otherPos.x)*(self.myPos.x-self.otherPos.x)+(self.myPos.y-self.otherPos.y)*(self.myPos.y-self.otherPos.y))];
+                if(t.length == 0)
+                {
+                    t = @"错误";
+                }
+                MAIN(^{
+                
+                    self.distance.diatance.text = t;
+                });
+            
+            }));
+          
+            [self.siwtchView invalidate];
+            self.siwtchView = nil;
+            self.siwtchView = [MSWeakTimer scheduledTimerWithTimeInterval:3
+                                                                   target:self
+                                                                 selector:@selector(switchViewAction)
+                                                                 userInfo:nil
+                                                                  repeats:YES
+                                                            dispatchQueue:self.privateQueue];;
         });
         
     });
@@ -504,7 +588,7 @@ typedef void (^TableRowBlock)();
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];   // 保存文件的名称
-    BOOL result = [UIImageJPEGRepresentation(image, 1.f) writeToFile:filePath atomically:YES];
+    [UIImageJPEGRepresentation(image, 1.f) writeToFile:filePath atomically:YES];
     KSDPhoto *pf = [[KSDPhoto alloc]init];
     pf.url = filePath;
     [self.photos insertObject:pf atIndex:0];

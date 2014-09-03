@@ -61,4 +61,7 @@
 #pragma mark - 震动范围
 #define kShockSize 100
 
+#pragma mark - 图片的旋转角度
+#define kImageRotation 10
+
 #endif

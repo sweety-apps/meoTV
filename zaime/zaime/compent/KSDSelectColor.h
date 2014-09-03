@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^SelectColour)(UIColor *color);
 @interface KSDSelectColor : UIImageView
-
+{
+    SelectColour colour;
+}
+- (void)addButton;
+- (void)removeSubView;
+- (void)setSelectColor :(SelectColour)action;
 @end

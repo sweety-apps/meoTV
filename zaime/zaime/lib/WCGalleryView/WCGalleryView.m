@@ -10,6 +10,7 @@
 #import "UIView+WCGalleryView.h"
 #import "UIImage+WCGalleryView.h"
 #import "UIImageView+WebCache.h"
+#import "config.h"
 @interface WCGalleryView()
 {
     NSOperationQueue        *_imageQueue;
@@ -164,10 +165,10 @@
                 
                 for (UIImageView *item in self.imageViews)
                 {
-                    [self rotateImageView:item degress:-5 withControl:[self.imageViews indexOfObject:item] animated:NO callback:nil];
+                    [self rotateImageView:item degress:-kImageRotation withControl:[self.imageViews indexOfObject:item] animated:NO callback:nil];
                     item.alpha = 1.f;
                 }
-                    
+                
                 
                 
             } completion:^(BOOL finished) {
@@ -213,7 +214,7 @@
 //            break;
 //    }
 
-    CGFloat animationDuration = (!animated)? 0 : (((_animationDuration == -1)? ((control == 0)? 0 : (control+1)*(-5) / 100) : _animationDuration));
+    CGFloat animationDuration = (!animated)? 0 : (((_animationDuration == -1)? ((control == 0)? 0 : (control+1)*(-kImageRotation) / 100) : _animationDuration));
     [imageView rotateView:deg duration:animationDuration callback:block];
 }
 
@@ -243,7 +244,7 @@
         [self addSubview:imageView];
     }
 
-    [self rotateImageView:imageView degress:(index+1)*(-5) withControl:index animated:animated callback:nil];
+    [self rotateImageView:imageView degress:(index+1)*(-kImageRotation) withControl:index animated:animated callback:nil];
     
     if([[_imageViews lastObject] isEqual:imageView])
         [_imageQueue setSuspended:NO];

@@ -33,6 +33,7 @@
     if (self) {
         // Initialization code
         
+        self.userInteractionEnabled = YES;
         _initialBlurLevel = kDKBlurredBackgroundDefaultLevel;
         _initialGlassLevel = kDKBlurredBackgroundDefaultGlassLevel;
         _glassColor = kDKBlurredBackgroundDefaultGlassColor;

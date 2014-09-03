@@ -27,6 +27,15 @@
 		93229FFE199B544E00C75A77 /* photo3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93229FF8199B544E00C75A77 /* photo3.jpg */; };
 		93229FFF199B544E00C75A77 /* photo4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93229FF9199B544E00C75A77 /* photo4.jpg */; };
 		9322A000199B544E00C75A77 /* photo5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 93229FFA199B544E00C75A77 /* photo5.jpg */; };
+		93290A9119B5B7C7008AE5E3 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A8819B5B7C7008AE5E3 /* white.png */; };
+		93290A9219B5B7C7008AE5E3 /* orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A8919B5B7C7008AE5E3 /* orange.png */; };
+		93290A9319B5B7C7008AE5E3 /* black.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A8A19B5B7C7008AE5E3 /* black.png */; };
+		93290A9419B5B7C7008AE5E3 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A8B19B5B7C7008AE5E3 /* red.png */; };
+		93290A9519B5B7C7008AE5E3 /* yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A8C19B5B7C7008AE5E3 /* yellow.png */; };
+		93290A9619B5B7C7008AE5E3 /* gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A8D19B5B7C7008AE5E3 /* gray.png */; };
+		93290A9719B5B7C7008AE5E3 /* blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A8E19B5B7C7008AE5E3 /* blue.png */; };
+		93290A9819B5B7C7008AE5E3 /* green.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A8F19B5B7C7008AE5E3 /* green.png */; };
+		93290A9919B5B7C7008AE5E3 /* purple.png in Resources */ = {isa = PBXBuildFile; fileRef = 93290A9019B5B7C7008AE5E3 /* purple.png */; };
 		93297D7F19AC27ED00B006E8 /* camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 93297D7D19AC27ED00B006E8 /* camera.png */; };
 		93297D8819AC2B8600B006E8 /* board.png in Resources */ = {isa = PBXBuildFile; fileRef = 93297D8719AC2B8600B006E8 /* board.png */; };
 		93297D8A19AC2C1900B006E8 /* drawing.png in Resources */ = {isa = PBXBuildFile; fileRef = 93297D8919AC2C1900B006E8 /* drawing.png */; };
@@ -69,6 +78,8 @@
 		9329BA4219ADEE88008606BB /* KSDCamerBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 9329BA4119ADEE88008606BB /* KSDCamerBox.m */; };
 		932BBDB21994670700C46EB5 /* KSDXMPPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 932BBDB11994670700C46EB5 /* KSDXMPPClient.m */; };
 		932BBDB71994687A00C46EB5 /* BaseMesage.m in Sources */ = {isa = PBXBuildFile; fileRef = 932BBDB61994687A00C46EB5 /* BaseMesage.m */; };
+		932BD1DC19B6C4D4005450E8 /* KSDFingerDistance.m in Sources */ = {isa = PBXBuildFile; fileRef = 932BD1DB19B6C4D4005450E8 /* KSDFingerDistance.m */; };
+		932BD1DF19B6EB02005450E8 /* KSDPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 932BD1DE19B6EB02005450E8 /* KSDPhotoView.m */; };
 		932C554419AAD222003CAD6B /* KSDImageResize.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C554319AAD222003CAD6B /* KSDImageResize.m */; };
 		932C554719AAD7A4003CAD6B /* KSDShotScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C554619AAD7A4003CAD6B /* KSDShotScreen.m */; };
 		932C965319A6E39300120631 /* KSDIMStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 932C965219A6E39300120631 /* KSDIMStatus.m */; };
@@ -181,6 +192,15 @@
 		93229FF8199B544E00C75A77 /* photo3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo3.jpg; sourceTree = "<group>"; };
 		93229FF9199B544E00C75A77 /* photo4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo4.jpg; sourceTree = "<group>"; };
 		93229FFA199B544E00C75A77 /* photo5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = photo5.jpg; sourceTree = "<group>"; };
+		93290A8819B5B7C7008AE5E3 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
+		93290A8919B5B7C7008AE5E3 /* orange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = orange.png; sourceTree = "<group>"; };
+		93290A8A19B5B7C7008AE5E3 /* black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = black.png; sourceTree = "<group>"; };
+		93290A8B19B5B7C7008AE5E3 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		93290A8C19B5B7C7008AE5E3 /* yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellow.png; sourceTree = "<group>"; };
+		93290A8D19B5B7C7008AE5E3 /* gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray.png; sourceTree = "<group>"; };
+		93290A8E19B5B7C7008AE5E3 /* blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blue.png; sourceTree = "<group>"; };
+		93290A8F19B5B7C7008AE5E3 /* green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = green.png; sourceTree = "<group>"; };
+		93290A9019B5B7C7008AE5E3 /* purple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = purple.png; sourceTree = "<group>"; };
 		93297D7D19AC27ED00B006E8 /* camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera.png; sourceTree = "<group>"; };
 		93297D8719AC2B8600B006E8 /* board.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = board.png; sourceTree = "<group>"; };
 		93297D8919AC2C1900B006E8 /* drawing.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = drawing.png; sourceTree = "<group>"; };
@@ -261,6 +281,10 @@
 		932BBDB51994687A00C46EB5 /* BaseMesage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseMesage.h; sourceTree = "<group>"; };
 		932BBDB61994687A00C46EB5 /* BaseMesage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseMesage.m; sourceTree = "<group>"; };
 		932BBDB819946D3600C46EB5 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
+		932BD1DA19B6C4D4005450E8 /* KSDFingerDistance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDFingerDistance.h; sourceTree = "<group>"; };
+		932BD1DB19B6C4D4005450E8 /* KSDFingerDistance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSDFingerDistance.m; sourceTree = "<group>"; };
+		932BD1DD19B6EB02005450E8 /* KSDPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDPhotoView.h; sourceTree = "<group>"; };
+		932BD1DE19B6EB02005450E8 /* KSDPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSDPhotoView.m; sourceTree = "<group>"; };
 		932C554219AAD222003CAD6B /* KSDImageResize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDImageResize.h; sourceTree = "<group>"; };
 		932C554319AAD222003CAD6B /* KSDImageResize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KSDImageResize.m; sourceTree = "<group>"; };
 		932C554519AAD7A4003CAD6B /* KSDShotScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KSDShotScreen.h; sourceTree = "<group>"; };
@@ -776,6 +800,15 @@
 		9370CFB219986B73007B5B8D /* images */ = {
 			isa = PBXGroup;
 			children = (
+				93290A8819B5B7C7008AE5E3 /* white.png */,
+				93290A8919B5B7C7008AE5E3 /* orange.png */,
+				93290A8A19B5B7C7008AE5E3 /* black.png */,
+				93290A8B19B5B7C7008AE5E3 /* red.png */,
+				93290A8C19B5B7C7008AE5E3 /* yellow.png */,
+				93290A8D19B5B7C7008AE5E3 /* gray.png */,
+				93290A8E19B5B7C7008AE5E3 /* blue.png */,
+				93290A8F19B5B7C7008AE5E3 /* green.png */,
+				93290A9019B5B7C7008AE5E3 /* purple.png */,
 				932DA40019B044E2000BC267 /* left.jpg */,
 				932DA3F119B02FBF000BC267 /* left.png */,
 				93F3C1AB19AF20D200CBF876 /* 0.png */,
@@ -848,6 +881,10 @@
 				9329BA4119ADEE88008606BB /* KSDCamerBox.m */,
 				93F3C1A619AF1B8C00CBF876 /* KSDSelectColor.h */,
 				93F3C1A719AF1B8C00CBF876 /* KSDSelectColor.m */,
+				932BD1DA19B6C4D4005450E8 /* KSDFingerDistance.h */,
+				932BD1DB19B6C4D4005450E8 /* KSDFingerDistance.m */,
+				932BD1DD19B6EB02005450E8 /* KSDPhotoView.h */,
+				932BD1DE19B6EB02005450E8 /* KSDPhotoView.m */,
 			);
 			path = compent;
 			sourceTree = "<group>";
@@ -971,17 +1008,22 @@
 				933E96DF19AF0DF300BBA3FD /* 1.png in Resources */,
 				933E96E019AF0DF300BBA3FD /* 2.png in Resources */,
 				933E96E119AF0DF300BBA3FD /* 3.png in Resources */,
+				93290A9619B5B7C7008AE5E3 /* gray.png in Resources */,
 				933E96D919AF061E00BBA3FD /* lefUpPhoto.png in Resources */,
 				93229FFF199B544E00C75A77 /* photo4.jpg in Resources */,
+				93290A9719B5B7C7008AE5E3 /* blue.png in Resources */,
 				932E262719B4107500AC0194 /* MJPhotoBrowser.bundle in Resources */,
 				9329BA1F19ADCE18008606BB /* 1977.acv in Resources */,
 				9329BA2519ADCE18008606BB /* DBCamera.strings in Resources */,
+				93290A9919B5B7C7008AE5E3 /* purple.png in Resources */,
 				93BADA6A19AC822E00A29AD1 /* cycle.png in Resources */,
 				933E96D619AF061E00BBA3FD /* pen.png in Resources */,
 				93229FFE199B544E00C75A77 /* photo3.jpg in Resources */,
+				93290A9519B5B7C7008AE5E3 /* yellow.png in Resources */,
 				930D65CD1993818E003A069D /* Main_iPad.storyboard in Resources */,
 				9370CFB419986B7B007B5B8D /* fingerprint.png in Resources */,
 				9322A000199B544E00C75A77 /* photo5.jpg in Resources */,
+				93290A9219B5B7C7008AE5E3 /* orange.png in Resources */,
 				9329BA3319ADCE19008606BB /* README.md in Resources */,
 				9329BA2119ADCE18008606BB /* Hudson.acv in Resources */,
 				930D65D21993818E003A069D /* Images.xcassets in Resources */,
@@ -1000,11 +1042,15 @@
 				9341AB14199A085F0055076D /* loading.gif in Resources */,
 				933E96D019AF033200BBA3FD /* bg.png in Resources */,
 				9329BA2C19ADCE19008606BB /* DBCameraImages.xcassets in Resources */,
+				93290A9119B5B7C7008AE5E3 /* white.png in Resources */,
+				93290A9419B5B7C7008AE5E3 /* red.png in Resources */,
 				933E96E219AF0DF300BBA3FD /* 4.png in Resources */,
 				93331B9619988CFC008AD730 /* PushConfig.plist in Resources */,
 				933E96D719AF061E00BBA3FD /* creamer.png in Resources */,
 				932DA3F219B02FBF000BC267 /* left.png in Resources */,
+				93290A9319B5B7C7008AE5E3 /* black.png in Resources */,
 				93229FFD199B544E00C75A77 /* photo2.jpg in Resources */,
+				93290A9819B5B7C7008AE5E3 /* green.png in Resources */,
 				9329BA2319ADCE18008606BB /* Nashville.acv in Resources */,
 				933E96D819AF061E00BBA3FD /* selfNotLogin.png in Resources */,
 				93F3C1AC19AF20D200CBF876 /* 0.png in Resources */,
@@ -1071,6 +1117,7 @@
 				932DA3FC19B03240000BC267 /* UIImage+WCGalleryView.m in Sources */,
 				932E263319B410BF00AC0194 /* MBProgressHUD+Add.m in Sources */,
 				932C965319A6E39300120631 /* KSDIMStatus.m in Sources */,
+				932BD1DF19B6EB02005450E8 /* KSDPhotoView.m in Sources */,
 				932DA3FF19B03240000BC267 /* WCGalleryView.m in Sources */,
 				9329BA2B19ADCE19008606BB /* DBMotionManager.m in Sources */,
 				9329BA1E19ADCE18008606BB /* DBCameraViewController.m in Sources */,
@@ -1113,6 +1160,7 @@
 				932E262819B4107500AC0194 /* MJPhotoBrowser.m in Sources */,
 				9329BA3C19ADD94D008606BB /* UIImage+KSDCrop.m in Sources */,
 				932E262A19B4107500AC0194 /* MJPhotoProgressView.m in Sources */,
+				932BD1DC19B6C4D4005450E8 /* KSDFingerDistance.m in Sources */,
 				9329BA1719ADCE18008606BB /* UIImage+TintColor.m in Sources */,
 				9329BA2619ADCE18008606BB /* DBCameraManager.m in Sources */,
 				9329BA2919ADCE19008606BB /* DBCollectionViewCell.m in Sources */,
