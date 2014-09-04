@@ -47,8 +47,8 @@
 #import "KSDSelectColor.h"
 #import "ACEDrawingView.h"
 #import "KSDFingerDistance.h"
-#define kLoginUserName @"zhao"
-#define kConnectUserName @"a"
+#define kLoginUserName @"a"
+#define kConnectUserName @"zhao"
 typedef void (^TableRowBlock)();
 @interface TViewController ()<DBCameraViewControllerDelegate>
 {
@@ -91,7 +91,8 @@ typedef void (^TableRowBlock)();
 @property(nonatomic,assign) NSTimeInterval lastTime;
 @property(nonatomic,strong) NSMutableArray *photos;
 @property(nonatomic,strong) ACEDrawingView *drawView;
-@property(nonatomic,strong) KSDMovePathView *aview;
+@property(nonatomic,strong) KSDMovePathView *myFingerView;
+@property(nonatomic,strong) KSDMovePathView *otherFingerView;
 @property(nonatomic,strong) UIView *backgroundView;
 @property(nonatomic,strong) KSDFingerDistance *distance;
 @property(nonatomic,assign) CGPoint myPos;
@@ -103,7 +104,7 @@ typedef void (^TableRowBlock)();
 
 - (void)clearAnimation
 {
-    [self.aview.layer removeAllAnimations];
+    [self.myFingerView.layer removeAllAnimations];
 }
 - (void)loadView
 {
@@ -250,8 +251,9 @@ typedef void (^TableRowBlock)();
     [self addCreamer];
     [self addWater];
     
-    self.aview = [[KSDMovePathView alloc]initWithFrame:CGRectMake(0, otherAvatar.frame.size.height+30, SCREENWIDTH, SCREENHEIGHT-30-otherAvatar.frame.size.height-myAvatar.frame.size.height-30)];
-    [self.aview setMoving:^(CGPoint point) {
+    self.myFingerView = [[KSDMovePathView alloc]initWithFrame:CGRectMake(0, otherAvatar.frame.size.height+30, SCREENWIDTH, SCREENHEIGHT-30-otherAvatar.frame.size.height-myAvatar.frame.size.height-30)];
+    self.otherFingerView = [[KSDMovePathView alloc]initWithFrame:CGRectMake(0, otherAvatar.frame.size.height+30, SCREENWIDTH, SCREENHEIGHT-30-otherAvatar.frame.size.height-myAvatar.frame.size.height-30)];
+    [self.myFingerView setMoving:^(CGPoint point) {
         tmpself.myPos = point;
         BaseMesage *message = [tmpself createMsgWithTo:kConnectUserName from:kLoginUserName content:[NSString stringWithFormat:@"%f-%f",point.x,point.y] type:MessageText];
         [[KSDXMPPClient sharedInstance] sendMsg:message];
@@ -270,15 +272,16 @@ typedef void (^TableRowBlock)();
             
         }));
     }];
-    [self.aview setMeet:^(CGPoint point) {
+    [self.myFingerView setMeet:^(CGPoint point) {
         // AudioServicesPlaySystemSound (kSystemSoundID_Vibrate);
     }];
-    [self.aview setEnd:^(CGPoint point) {
+    [self.myFingerView setEnd:^(CGPoint point) {
 
     }];
     
     self.drawView = [[ACEDrawingView alloc]initWithFrame:CGRectMake(0, otherAvatar.frame.size.height+30, SCREENWIDTH, SCREENHEIGHT-30-otherAvatar.frame.size.height-myAvatar.frame.size.height-30)];
-    [self.backgroundView addSubview:self.aview];
+    [self.backgroundView addSubview:self.otherFingerView];
+    [self.backgroundView addSubview:self.myFingerView];
     
     
     
@@ -359,8 +362,9 @@ typedef void (^TableRowBlock)();
             if(tmp.drawView.superview == nil)
             {
                 
-                [tmp.backgroundView insertSubview:tmp.drawView belowSubview:tmp.aview];
-                [tmp.aview removeFromSuperview];
+                [tmp.backgroundView insertSubview:tmp.drawView belowSubview:tmp.myFingerView];
+                [tmp.myFingerView removeFromSuperview];
+                [tmp.otherFingerView removeFromSuperview];
             }
             [tmp hide:nil];
             tmp.drawView.lineColor = color;
@@ -519,7 +523,7 @@ typedef void (^TableRowBlock)();
         dispatch_async(dispatch_get_main_queue(), ^{
             CGPoint rpoint = CGPointMake(x, y);
             self.otherPos = rpoint;
-            [self.aview addPoint:rpoint];
+            [self.otherFingerView addPoint:rpoint];
             if(!self.distance)
             {
                 self.distance = [[KSDFingerDistance alloc]initWithFrame:CGRectMake(0, 0, 200, 200)];

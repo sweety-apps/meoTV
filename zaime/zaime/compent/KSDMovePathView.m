@@ -140,33 +140,7 @@
     }
     return NO;
 }
-- (void)addPoint:(CGPoint)point
-{
-    otherPoint = point;
-    CAEmitterLayer *emitterLayer = (CAEmitterLayer *)self.layer;
-    if(emitterLayer.emitterCells == nil)
-    {
-        [self animationEmitter:point];
-    }
-    isReceiving = YES;
-    lastInvoke = [[NSDate date] timeIntervalSince1970];
-    CGMutablePathRef path = CGPathCreateMutable();
-    CGPathMoveToPoint(path, NULL, point.x, point.y);
-    CGPathAddCurveToPoint(path, NULL, point.x, point.y, point.x, point.y, point.x, point.y);
-    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"emitterPosition"];
-    animation.path = path;
-    animation.duration = 4;
-    [self.layer addAnimation:animation forKey:@"xf"];
-   
-    if([self isMeet])
-    {
-        if(meet)
-        {
-            meet(point);
-        }
-    }
-    CGPathRelease(path);
-}
+
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [self removeAnimation];
@@ -177,6 +151,34 @@
     }
     
     [self hideParticle:@"zhao"];
+}
+- (void)addPoint:(CGPoint)point
+{
+    
+    otherPoint = point;
+    CAEmitterLayer *emitterLayer = (CAEmitterLayer *)self.layer;
+    if(emitterLayer.emitterCells.count == 0)
+    {
+        [self animationEmitter:point];
+    }
+    isReceiving = YES;
+    lastInvoke = [[NSDate date] timeIntervalSince1970];
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, point.x, point.y);
+    CGPathAddCurveToPoint(path, NULL, point.x, point.y, point.x, point.y, point.x, point.y);
+    CAKeyframeAnimation *animation = [CAKeyframeAnimation animationWithKeyPath:@"emitterPosition"];//emitterPosition
+    animation.path = path;
+    animation.duration = 4;
+    [self.layer addAnimation:animation forKey:@"xf"];
+    
+    if([self isMeet])
+    {
+        if(meet)
+        {
+            meet(point);
+        }
+    }
+    CGPathRelease(path);
 }
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
