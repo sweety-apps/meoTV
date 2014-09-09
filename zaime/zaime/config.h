@@ -18,6 +18,7 @@
 #define kReceiveTextMsg @"kReceiveTextMsg"
 #define kReceiveEmotionMsg @"kReceiveEmotionMsg"
 #define kReceiveMoveEnd @"kReceiveMoveEnd"
+#define kReceiveImage @"kReceiveImage"
 
 #pragma mark - 手指移动不发送范围矩形的边长
 #define kNotSendSquire 3

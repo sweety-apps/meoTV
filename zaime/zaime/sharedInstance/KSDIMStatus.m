@@ -7,7 +7,7 @@
 //
 
 #import "KSDIMStatus.h"
-static NSString * const AFAppDotNetAPIBaseURLString = @"http://192.168.1.138:9090";
+static NSString * const AFAppDotNetAPIBaseURLString = @"http://192.168.1.138:3000";
 @implementation KSDIMStatus
 
 + (instancetype)sharedClient {
@@ -18,8 +18,7 @@ static NSString * const AFAppDotNetAPIBaseURLString = @"http://192.168.1.138:909
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.requestSerializer = [AFHTTPRequestSerializer serializer];
         _sharedClient.responseSerializer = [AFHTTPResponseSerializer serializer];
-        _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-        _sharedClient.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/plain"];
+        _sharedClient.responseSerializer.acceptableContentTypes=  [NSSet setWithObjects:@"application/json", @"text/html", @"text/plain",@"image/jpeg", nil];
         
     });
     

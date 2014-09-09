@@ -35,10 +35,12 @@ PODS:
     - FMDB/common
   - GPUImage (0.1.5)
   - KeychainItemWrapper (1.2)
+  - MD5Digest (0.1.0)
   - MSWeakTimer (1.1.0)
   - SDWebImage (3.7.1):
     - SDWebImage/Core
   - SDWebImage/Core (3.7.1)
+  - SQAESDE (0.1.1)
   - UIImage+Transforms (1.0.1)
   - UIView+PartialRoundedCorner (1.0.0)
   - XMPPFramework (3.6.4):
@@ -189,8 +191,10 @@ DEPENDENCIES:
   - FMDB (~> 2.3)
   - GPUImage (~> 0.1.5)
   - KeychainItemWrapper (~> 1.2)
+  - MD5Digest (~> 0.1.0)
   - MSWeakTimer (~> 1.1.0)
   - SDWebImage (~> 3.7.1)
+  - SQAESDE (~> 0.1.1)
   - UIImage+Transforms (~> 1.0.1)
   - UIView+PartialRoundedCorner (~> 1.0.0)
   - XMPPFramework (~> 3.6.4)
@@ -204,8 +208,10 @@ SPEC CHECKSUMS:
   FMDB: 31ec26773c7f7b7890a6038235a1f2bbd933a7cb
   GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
   KeychainItemWrapper: 577e9e920185892873ded075b8ceb730bebdfd91
+  MD5Digest: 058b7162b1fc8c30feddf10bfe66e0565797c45f
   MSWeakTimer: 6bd071c058fd49daa62013e4ae70caf61d0f2dc2
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SQAESDE: eb246c690317cb2c82b63c0e13c53deac540e054
   UIImage+Transforms: 8800244cc748c5983209650f5e9feabe4efa8796
   UIView+PartialRoundedCorner: 36b024da40e9a7f163766384bdf47c57dfa2d902
   XMPPFramework: 5a8555132822ebb3e11d2bac0258e62754315bc5

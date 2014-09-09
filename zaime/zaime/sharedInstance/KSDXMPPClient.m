@@ -238,6 +238,9 @@ SHARED_INSTANCE_GCD_USING_BLOCK(^{
     }else if([kind isEqualToString:@"touchend"])
     {
         [[NSNotificationCenter defaultCenter] postNotificationName:kReceiveMoveEnd object:body];
+    }else if([kind isEqualToString:@"image"])
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kReceiveImage object:body];
     }
    
 }

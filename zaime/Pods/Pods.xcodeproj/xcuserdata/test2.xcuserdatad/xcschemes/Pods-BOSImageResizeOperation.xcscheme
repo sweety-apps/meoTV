@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7F8C848321EA47E2B283A5DD"
+               BlueprintIdentifier = "438FE288395A412FB895B3D4"
                BuildableName = "libPods-BOSImageResizeOperation.a"
                BlueprintName = "Pods-BOSImageResizeOperation"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -47,8 +47,10 @@
 #import "KSDSelectColor.h"
 #import "ACEDrawingView.h"
 #import "KSDFingerDistance.h"
-#define kLoginUserName @"a"
-#define kConnectUserName @"zhao"
+#import "NSData+SQAES256.h"
+#import "NSString+MD5.h"
+#define kLoginUserName @"zhao"
+#define kConnectUserName @"a"
 typedef void (^TableRowBlock)();
 @interface TViewController ()<DBCameraViewControllerDelegate>
 {
@@ -185,18 +187,24 @@ typedef void (^TableRowBlock)();
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMsg:) name:kReceiveTextMsg object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMoveEnd:) name:kReceiveMoveEnd object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveEmotion:) name:kReceiveEmotionMsg object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveImage:) name:kReceiveImage object:nil];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
     btn.frame = CGRectMake(20, 60, 60, 60);
     [btn addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
     // [self.view addSubview:btn];
     btn.backgroundColor  = [UIColor greenColor];
     
-    
-    [[KSDAFClient sharedClient] POST:kFetchFriendLists parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"18617149851",@"owner", nil] success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSLog(@"%@",responseObject);
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"%@",error);
-    }];
+
+
+//    [[KSDIMStatus sharedClient] POST:@"http://192.168.1.138:3000/upload" parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"8ae2a36bac373ff52d090f27956f1d12",@"filename", @"123321",@"password",nil] constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+//        
+//          [formData appendPartWithFileData:UIImageJPEGRepresentation([UIImage imageNamed:@"photo1.jpg"], 1.f) name:@"image" fileName:@"avatar" mimeType:@"image/jpg"];
+//    } success:^(NSURLSessionDataTask *task, id responseObject) {
+//        NSDictionary *info = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+//        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//         NSLog(@"%@",error);
+//    }];
     addressBook = [[APAddressBook alloc]init];
     addressBook.sortDescriptors = @[
                                     [NSSortDescriptor sortDescriptorWithKey:@"firstName" ascending:YES],
@@ -288,7 +296,16 @@ typedef void (^TableRowBlock)();
     
     
     
-    
+    [self performSelector:@selector(test1) withObject:nil afterDelay:5.f];
+}
+- (void)test1
+{
+    [[KSDIMStatus sharedClient] POST:@"http://192.168.1.138:3000/login" parameters:[NSDictionary dictionaryWithObjectsAndKeys:@"zhao",@"username", [@"123321" MD5Digest],@"password",nil] success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSLog(@"%@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"%@",error);
+    }];
 }
 - (void)switchViewAction
 {
@@ -505,6 +522,19 @@ typedef void (^TableRowBlock)();
     }];
     
 }
+- (void)receiveImage :(NSNotification*)noti
+{
+     NSString *emotion = [noti object];
+    [[SDWebImageDownloader sharedDownloader] downloadImageWithURL:[NSURL URLWithString:emotion] options:SDWebImageDownloaderLowPriority progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+        
+    } completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+        if(data == nil) return ;
+        KSDPhoto *pf = [[KSDPhoto alloc]init];
+        pf.url = emotion;
+        [self.photos insertObject:pf atIndex:0];
+        [galleryView addImage:image animated:NO];
+    }];
+}
 - (void)receiveEmotion:(NSNotification*)noti
 {
     NSString *emotion = [noti object];
@@ -592,12 +622,24 @@ typedef void (^TableRowBlock)();
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%f",[[NSDate date] timeIntervalSince1970]]];   // 保存文件的名称
-    [UIImageJPEGRepresentation(image, 1.f) writeToFile:filePath atomically:YES];
+    [UIImageJPEGRepresentation(image, 0.5) writeToFile:filePath atomically:YES];
     KSDPhoto *pf = [[KSDPhoto alloc]init];
     pf.url = filePath;
     [self.photos insertObject:pf atIndex:0];
     [galleryView addImage:image animated:NO];
-    [cameraViewController dismissViewControllerAnimated:YES completion:nil];
+    [[KSDIMStatus sharedClient] POST:@"/sendimg" parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        [formData appendPartWithFileData:UIImageJPEGRepresentation(image, 1.f) name:@"image" fileName:@"photo1.jpg" mimeType:@"image/jpeg"];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSDictionary *retInfo = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableLeaves error:nil];
+        if([[retInfo objectForKey:@"retcode"] integerValue] == 0)
+        {
+            [[KSDXMPPClient sharedInstance] sendMsg:[self createMsgWithTo:kConnectUserName from:kLoginUserName content:[retInfo objectForKey:@"path"] type:MessageImage]];
+        }
+        [cameraViewController dismissViewControllerAnimated:YES completion:nil];
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [cameraViewController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
 }
 - (void) dismissCamera:(id)cameraViewController
 {
