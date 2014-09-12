@@ -24,6 +24,7 @@
  */
 
 #import "ACEDrawingTools.h"
+
 #if (TARGET_OS_EMBEDDED || TARGET_OS_IPHONE)
 #import <CoreText/CoreText.h>
 #else
@@ -36,7 +37,6 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
 }
 
 #pragma mark - ACEDrawingPenTool
-
 @implementation ACEDrawingPenTool
 
 @synthesize lineColor = _lineColor;
@@ -76,7 +76,25 @@ CGPoint midPoint(CGPoint p1, CGPoint p2)
     
     return bounds;
 }
+- (void)setFade:(FadeAction)afade
+{
+    fade = afade;
+}
+- (void)test
+{
+    self.privateQueue = dispatch_queue_create("clear", DISPATCH_QUEUE_CONCURRENT);
+    self.timer = [MSWeakTimer scheduledTimerWithTimeInterval:0.2
+                                                           target:self
+                                                         selector:@selector(fideout)
+                                                         userInfo:nil
+                                                          repeats:YES
+                                                    dispatchQueue:self.privateQueue];;
+}
+- (void)fideout
+{
 
+    
+}
 - (void)draw
 {
     CGContextRef context = UIGraphicsGetCurrentContext();

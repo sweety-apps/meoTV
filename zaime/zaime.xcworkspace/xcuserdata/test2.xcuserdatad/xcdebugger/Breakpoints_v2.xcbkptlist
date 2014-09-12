@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "zaime/controllers/TViewController.m"
-            timestampString = "431945670.91789"
+            timestampString = "432032099.764423"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "366"
-            endingLineNumber = "366"
+            startingLineNumber = "367"
+            endingLineNumber = "367"
             landmarkName = "-show:"
             landmarkType = "5">
          </BreakpointContent>

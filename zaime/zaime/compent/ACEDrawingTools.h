@@ -24,7 +24,7 @@
  */
 
 #import <Foundation/Foundation.h>
-
+#import "MSWeakTimer.h"
 
 #if __has_feature(objc_arc)
 #define ACE_HAS_ARC 1
@@ -50,16 +50,22 @@
 
 - (void)draw;
 
+
 @end
 
 #pragma mark -
 
+typedef void (^FadeAction)(CGRect rect);
 @interface ACEDrawingPenTool : UIBezierPath<ACEDrawingTool> {
     CGMutablePathRef path;
+    FadeAction fade;
 }
-
+@property(strong,nonatomic) dispatch_queue_t privateQueue;
+@property(strong,nonatomic) MSWeakTimer *timer;
 - (CGRect)addPathPreviousPreviousPoint:(CGPoint)p2Point withPreviousPoint:(CGPoint)p1Point withCurrentPoint:(CGPoint)cpoint;
-
+- (void)fideout;
+- (void)test;
+- (void)setFade :(FadeAction)afade;
 @end
 
 #pragma mark -

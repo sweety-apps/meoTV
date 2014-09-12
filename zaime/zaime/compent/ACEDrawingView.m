@@ -146,6 +146,10 @@
     }
     
     // clear the current tool
+[(ACEDrawingPenTool*)self.pathArray.lastObject setFade:^(CGRect rect) {
+    [self setNeedsDisplayInRect:rect];
+}];
+    [(ACEDrawingPenTool*)self.pathArray.lastObject test];
     self.currentTool = nil;
 }
 
@@ -279,6 +283,7 @@
     }
     else {
         [self finishDrawing];
+        
     }
 }
 

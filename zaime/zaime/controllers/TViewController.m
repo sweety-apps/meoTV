@@ -89,6 +89,7 @@ typedef void (^TableRowBlock)();
     
 }
 @property(strong,nonatomic) MSWeakTimer *siwtchView;
+
 @property(strong,nonatomic) dispatch_queue_t privateQueue;
 @property(nonatomic,assign) NSTimeInterval lastTime;
 @property(nonatomic,strong) NSMutableArray *photos;

@@ -1343,7 +1343,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zaime/zaime-Prefix.pch";
 				INFOPLIST_FILE = "zaime/zaime-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../Vendor/libidn\"",
 					"$(inherited)",
@@ -1367,7 +1367,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "zaime/zaime-Prefix.pch";
 				INFOPLIST_FILE = "zaime/zaime-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../../Vendor/libidn\"",
 					"$(inherited)",
