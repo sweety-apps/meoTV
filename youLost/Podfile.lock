@@ -1,0 +1,51 @@
+PODS:
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+    - AFNetworking/UIKit
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - BOSImageResizeOperation (0.1.0)
+  - DBCamera (2.3.4):
+    - GPUImage (~> 0.1)
+  - GPUImage (0.1.5)
+  - MD5Digest (0.1.0)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core
+  - SDWebImage/Core (3.7.1)
+  - SharedInstanceGCD (1.0.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.4.1)
+  - BOSImageResizeOperation (~> 0.1.0)
+  - DBCamera (~> 2.3.4)
+  - GPUImage (~> 0.1.5)
+  - MD5Digest (~> 0.1.0)
+  - SDWebImage (~> 3.7.1)
+  - SharedInstanceGCD (~> 1.0.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  BOSImageResizeOperation: f62c2cecf8daabdd8cc40dd6405d736de16eb721
+  DBCamera: d78a9f58aaf29d0a0811baa8cea747c7d7e80923
+  GPUImage: 5114a47f5fc33eb312f3731550a3cea379416d04
+  MD5Digest: 058b7162b1fc8c30feddf10bfe66e0565797c45f
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SharedInstanceGCD: 75b3730748c98fe1e2d0a42ac63271dc00ee2323
+
+COCOAPODS: 0.33.1

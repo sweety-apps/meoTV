@@ -1,0 +1,7 @@
+pod 'SDWebImage', '~> 3.7.1'
+pod 'BOSImageResizeOperation', '~> 0.1.0'
+pod 'SharedInstanceGCD', '~> 1.0.2'
+pod 'GPUImage', '~> 0.1.5'
+pod 'AFNetworking', '~> 2.4.1'
+pod 'MD5Digest', '~> 0.1.0'
+pod 'DBCamera', '~> 2.3.4'
