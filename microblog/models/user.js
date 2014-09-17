@@ -6,6 +6,7 @@ function User(user) {
     this.name = user.name;
     this.password = user.password;
     this.avatar = user.avatar;
+    this.nickName = user.nickName;
 };
 module.exports = User;
 User.prototype.save = function save(callback) { // 存入 Mongodb 的文档
@@ -13,7 +14,8 @@ User.prototype.save = function save(callback) { // 存入 Mongodb 的文档
     var user = {
         name: this.name,
         password: this.password,
-        avatar: this.avatar
+        avatar: this.avatar,
+        nickName: this.nickName
     };
     mongodb.open(function(err, db) { if (err) {
         return callback(err);

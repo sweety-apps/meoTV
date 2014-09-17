@@ -25,7 +25,8 @@ router.post('/reg',function(req,res){
         var newUser = new User({
             name: req.body.username,
             password: req.body.password,
-            avatar: 'www.baidu.com'
+            avatar: 'http://192.168.1.117:3000/images/default.jpg',
+            nickName: req.body.nickName
         });
         User.get(newUser.name, function(err, user) {
             if (user)
@@ -73,10 +74,10 @@ router.post('/setVcode',function(req,res){
 
 });
 router.post('/fetchweibo',function(req,res){
-   Weibo.get(parseInt(req.body.datafrom),parseInt(req.body.dataend),function(err,users){
-       if(users)
+   Weibo.get(parseInt(req.body.datafrom),parseInt(req.body.dataend),function(err,weibos){
+       if(weibos)
        {
-           res.json({'retcode':'0','data':{'users':users}});
+           res.json({'retcode':'0','data':{'weibos':weibos}});
        }else
        {
            res.json({'retcode':'0','data':{}});
@@ -159,7 +160,6 @@ router.post('/createweibo',function(req,res){
         form.keepExtensions = true;
         form.uploadDir = fileDirectory;
         form.parse(req, function (err, fields, files) {
-            console.log(files);
             if (err) throw (err);
             var image = [];
             var i = 0;
@@ -170,14 +170,15 @@ router.post('/createweibo',function(req,res){
                     .save("./public/images/"+path[2].split('.')[0]+"_160_160.jpg", {               //保存图片到文件,图片质量为50
                         quality : 50
                     });
-                var url = 'http://127.0.0.1:3000/' + path[1]+'/'+path[2].split('.')[0]+'_160_160.jpg';
+                var url = 'http://192.168.1.117:3000/' + path[1]+'/'+path[2].split('.')[0]+'_160_160.jpg';
                 image[i] = url;
                 i++;
             }
             var newWeibo = new Weibo({
                 desc: fields['content'],
                 user: req.session.user,
-                images: image
+                images: image,
+                createTime :fields['createTime']
             });
             newWeibo.save(function(err){
 
@@ -225,8 +226,8 @@ router.post('/upload',function(req,res){
                     .save("./public/images/"+path[2].split('.')[0]+"_160_160.jpg", {               //保存图片到文件,图片质量为50
                         quality : 50
                     });
-                User.edit(req.session.user.name,'http://127.0.0.1:3000/' + path[1]+'/'+path[2],function(err,obj){
-                    res.json({'path':'http://127.0.0.1:3000/' + path[1]+'/'+path[2]});
+                User.edit(req.session.user.name,'http://192.168.1.117:3000/' + path[1]+'/'+path[2],function(err,obj){
+                    res.json({'path':'http://192.168.1.117:3000/' + path[1]+'/'+path[2]});
                 });
                 break;
             }

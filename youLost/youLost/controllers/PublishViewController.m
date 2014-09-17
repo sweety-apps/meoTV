@@ -81,7 +81,7 @@
         int i = 0;
         for (UIImage *img in images)
         {
-            [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 1.f) name:[NSString stringWithFormat:@"%d",i] fileName:@"x.jpg" mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:UIImageJPEGRepresentation(img, 0.8) name:[NSString stringWithFormat:@"%d",i] fileName:@"x.jpg" mimeType:@"image/jpeg"];
             i++;
         }
     } success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -207,11 +207,21 @@
 - (void) camera:(id)cameraViewController didFinishWithImage:(UIImage *)image withMetadata:(NSDictionary *)metadata
 {
      [cameraViewController dismissViewControllerAnimated:YES completion:nil];
+    
+    UIGraphicsBeginImageContext(image.size);
+    [image drawInRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+    image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     if(!images)
     {
         images = [[NSMutableArray alloc]init];
     }
     [images addObject:image];
+    
+    
+    
+     
+    
     double shortLine = image.size.height>image.size.width?image.size.width:image.size.height;
     UIImage *cutimage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect([image CGImage], CGRectMake((image.size.width-shortLine)/2.f, (image.size.height-shortLine)/2.f, shortLine, shortLine))];
     

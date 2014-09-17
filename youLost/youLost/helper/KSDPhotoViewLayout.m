@@ -90,9 +90,10 @@
             {
                 image = [UIImage imageWithData:UIImageJPEGRepresentation(image, 1.f)];
             }
-            
             double shortLine = image.size.height>image.size.width?image.size.width:image.size.height;
             UIImage *cutimage = [UIImage imageWithCGImage:CGImageCreateWithImageInRect([image CGImage], CGRectMake((image.size.width-shortLine)/2.f, (image.size.height-shortLine)/2.f, shortLine, shortLine))];
+            
+            
             [imageView setImage:cutimage forState:UIControlStateNormal];
             imageView.frame = CGRectMake(kLeftPading+(i%3)*(kImageHeight+5), offset+(i/3)*(kImageHeight+5), kImageHeight, cutimage.size.height/(cutimage.size.width/kImageHeight));
             

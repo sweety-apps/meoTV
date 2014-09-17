@@ -6,6 +6,7 @@ function Weibo(weibo) {
     this.desc = weibo.desc;
     this.user = weibo.user;
     this.images = weibo.images;
+    this.createTime = weibo.createTime;
 };
 
 module.exports = Weibo;
@@ -14,7 +15,8 @@ Weibo.prototype.save = function save(callback) { // 存入 Mongodb 的文档
     var weibo = {
         desc: this.desc,
         user: this.user,
-        images: this.images
+        images: this.images,
+        createTime :this.createTime
     };
     mongodb.open(function(err, db) { if (err) {
         return callback(err);
@@ -34,7 +36,7 @@ Weibo.prototype.save = function save(callback) { // 存入 Mongodb 的文档
     });
 };
 
-Weibo.prototype.get =  function get(from,to,callback) {
+Weibo.get =  function get(from,to,callback) {
     mongodb.open(function(err, db) {
         if (err) {
             return callback(err);
@@ -44,7 +46,7 @@ Weibo.prototype.get =  function get(from,to,callback) {
                 mongodb.close();
                 return callback(err);
             }
-            collection.find().limit(to).skip(from).toArray(function(err,result){
+            collection.find().sort({'_id':-1}).limit(to).skip(from).toArray(function(err,result){
                 callback(err,result);
             });
         });
